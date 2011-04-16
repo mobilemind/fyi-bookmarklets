@@ -10,6 +10,7 @@ Available versions include:
 
 + **fyi-webkit** - optimized for iOS (iPhone/iPad/iPod) and Chrome
 + **fyi-firefox** - optimized for Firefox to support address bar with custom keyword %s argument
++ **fyi-ie** - works with Internet Explorer and its (odd-to-me) DOM selected text methods
 
 Install
 ----------
@@ -21,6 +22,7 @@ so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in *
 
 + **fyi-webkit** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title);location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+'--'+r+encodeURIComponent(window.getSelection())+r+'--'+r+location.href+r;" title="fyi-webkit">fyi</a>
 + **fyi-firefox** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title);location.href='mailto:'+('%25s'=='%s'?'%20':'%s')+'%3Fsubject=fyi:%20'+t+'%26body='+t+r+'--'+r+encodeURIComponent(window.getSelection())+r+'--'+r+location.href+r;" title="fyi-firefox">fyi</a>
++ **fyi-ie** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;void(location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+(g%26%26g.createRange().text?('--'+r+encodeURIComponent(g.createRange().text)+r+'--'+r):'')+location.href+r+r)" title="fyi-ie">fyi</a>
 
 **Mobile browser**  
 Tap the link below, bookmark the new page and follow the instructions
@@ -75,7 +77,7 @@ and then press `Esc`.
 Requirements
 ----------
 
-Web browser. Tested with Firefox 3.6 & 4.0, Safari 5.0.x, and Mobile Safari 4.x.
+Web browser. Tested with Firefox 3.6 & 4.0, Safari 5.0.x, Mobile Safari 4.x, and IE 8.
 
 License
 ----------
@@ -101,3 +103,8 @@ Inspired by [Mike Chambers' Firefox Ubiquity fyi command](http://www.mikechamber
 
 Version 1.0 ~ April 5, 2011  
 First release
+
+Version 1.1 ~ April 15, 2011  
+Optimized for shorter emails if no text was selected.  
+Adds version for IE to accommodate IE DOM method weirdness.
+
