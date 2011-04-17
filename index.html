@@ -71,9 +71,9 @@ Optionally edit or rename the bookmark/favorite. Firefox users may want to set b
 so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in <strong>Usage</strong> below.</p>
 
 <ul>
-<li><strong>fyi-webkit</strong> - </li>
-<li><strong>fyi-firefox</strong> - </li>
-<li><strong>fyi-ie</strong> - </li>
+<li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title);location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+'--'+r+encodeURIComponent(window.getSelection())+r+'--'+r+location.href+r;" title="fyi-webkit">fyi</a></li>
+<li><strong>fyi-firefox</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title);location.href='mailto:'+('%25s'=='%s'?'%20':'%s')+'%3Fsubject=fyi:%20'+t+'%26body='+t+r+'--'+r+encodeURIComponent(window.getSelection())+r+'--'+r+location.href+r;" title="fyi-firefox">fyi</a></li>
+<li><strong>fyi-ie</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;void(location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+(g%26%26g.createRange().text?('--'+r+encodeURIComponent(g.createRange().text)+r+'--'+r):'')+location.href+r+r)" title="fyi-ie">fyi</a></li>
 </ul>
 
 <p><strong>Mobile browser</strong> <br />
@@ -81,7 +81,7 @@ Tap the link below, bookmark the new page and follow the instructions
 on the page to turn a saved bookmark into a JavaScript bookmarklet.</p>
 
 <ul>
-<li><strong>Setup fyi-webkit</strong> - </li>
+<li><strong>Setup fyi-webkit</strong> - <a href="http://mobilemind.net/_?javascript:var%20r=%27%250A%27,t=encodeURIComponent(document.title);location.href=%27mailto:%20%3Fsubject=fyi:%20%27+t+%27%26body=%27+t+r+%27--%27+r+encodeURIComponent(window.getSelection())+r+%27--%27+r+location.href+r;" title="Setup fyi-webkit">Setup fyi</a></li>
 </ul>
 
 <h2>Source Code Notes</h2>
