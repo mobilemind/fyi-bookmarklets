@@ -1,1 +1,5 @@
-javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;void(location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+(g%26%26g.createRange().text?('--'+r+encodeURIComponent(g.createRange().text)+r+'--'+r):'')+location.href+r+r)
+// ie version uses weird MS createRange() instead of standard getSelection()
+var r = '%0A',
+	t = encodeURIComponent(document.title),
+	g = document.selection;
+void(location.href = 'mailto: ?subject=fyi: ' + t + '&body=' + t + r + (g && g.createRange().text ? ('--' + r + encodeURIComponent(g.createRange().text) + r + '--' + r) : '') + location.href + r + r)

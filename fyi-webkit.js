@@ -1,1 +1,5 @@
-javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20%3Fsubject=fyi:%20'+t+'%26body='+t+r+(g!=''?('--'+r+encodeURIComponent(g)+r+'--'+r):'')+location.href+r+r
+//  webkit version skips substitution string and void(), but other code is shared with firefox
+var r = '%0A',
+	t = encodeURIComponent(document.title),
+	g = window.getSelection();
+location.href = 'mailto: ?subject=fyi: ' + t + '&body=' + t + r + (g != '' ? ('--' + r + encodeURIComponent(g) + r + '--' + r) : '') + location.href + r + r
