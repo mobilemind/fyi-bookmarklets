@@ -17,6 +17,7 @@ README = README.md
 # macros/utils
 JSLINT := jsl
 JSLINTOPTIONS := -nologo -nofilelisting -nosummary
+PERL := perl
 YUICOMPRESSOR := $(shell type -p yuicompressor || echo 'java -jar $(COMMONLIB)/yuicompressor-2.4.7.jar')
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 NODEJS := $(shell type -p node || type -p nodejs)
@@ -24,16 +25,17 @@ MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
 VERSIONOLD := $(shell head -n 1 $(VERSIONTXT))
 VERSIONNEW := $(shell tail -n 1 $(VERSIONTXT))
 
-default: $(PROJWEB) | $(BUILD) $(WEB)
+default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
 	@echo 'Done.'; echo
 
+# update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
 	@echo 'Updating README…'
-#  Use a perl script in lib to update $(README), look for
-#		"(webkit** - <a href=")(javascript:… )" to replace with "\1"{web/fyi-webkit.js}
-#		"(firefox** - <a href="javascript:…)" to replace with "\1"{web/fyi-firefox.js}
-#		"(ie** - <a href="javascript:…)" to replace with "\1{web/fyi-ie.js}"
-#		"(mmind.me/_?)(javascript:…) to replace with …{web/fyi-webkit.js}
+	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=http:\/\/mmind\.me\/_\?)javascript:.*?(?=\")/@f/g' $@
+	)
 
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
@@ -42,19 +44,21 @@ $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
 	@$(JSLINT) -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
 		echo "*** ERROR: $^"; $(JSLINT) -process $< $(JSLINTOPTIONS); \
 		exit 1)
-	@[[ "$(@F)" == "fyi-firefox.com.js" ]] && ( \
-		perl -pe "s/\%s\"\)/_PERCENT_S_\"\)/g;" < $^ > $^.tmp; \
-		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | perl -pe "s/_PERCENT_S_/\%s/g;" > $@ && \
-		rm -f $^.tmp ) \
-	|| $(NODEJS) $(MAKEBOOKMARK) $^ > $@
+ifeq ($(@F),fyi-firefox.com.js)
+	@($(PERL) -pe "s/\%s\"\)/_PERCENT_S_\"\)/g;" < $^ > $^.tmp; \
+		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;" > $@ && \
+		rm -f $^.tmp )
+else
+	@$(NODEJS) $(MAKEBOOKMARK) $^ > $@
+endif
 
-# uncomment rule below to retain contents of $(BUILD)
-.SECONDARY: $(BUILD)/fyi-firefox.js $(BUILD)/fyi-ie.js $(BUILD)/fyi-webkit.js
+# uncomment '.SECONDARY' rule below to retain contents of $(BUILD)
+#.SECONDARY: $(BUILD)/fyi-firefox.js $(BUILD)/fyi-ie.js $(BUILD)/fyi-webkit.js
 
 # replace tokens & minify JavaScript
 $(BUILD)/%.js: $(SRC)/%.js $(VERSIONTXT) | $(BUILD)
-	@perl -pe "s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;" < $< > $@.tmp || ( \
-		echo "*** ERROR with: perl -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
+	@$(PERL) -pe "s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;" < $< > $@.tmp || ( \
+		echo "*** ERROR with: $(PERL) -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
 		exit 1 )
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
 		echo "*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^"; \
