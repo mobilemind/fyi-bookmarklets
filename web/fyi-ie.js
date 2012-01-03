@@ -1,1 +1,1 @@
-javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=document.selection;location.href=%22mailto:%20?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+r+(g&&g.createRange().text?(%22---%22+r+encodeURIComponent(g.createRange().text)+r+%22--%22+r+r):%22%22);void%20(%221.8%22);
+javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('1.9')

@@ -20,15 +20,15 @@ Drag the desired bookmark to the bookmark bar or add bookmark/favorite.
 Optionally edit or rename the bookmark/favorite. Firefox users may want to set bookmark properties
 so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in **Usage** below.
 
-+ **fyi-webkit** - <a href="javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=window.getSelection();location.href=%22mailto:%20?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+r+(g!=%22%22?(%22---%22+r+encodeURIComponent(g)+r+r):%22%22);void%20(%221.Y%22);" title="fyi-webkit">fyi</a>
-+ **fyi-firefox** - <a href="javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=window.getSelection();location.href=%22mailto:%22+(String(%22%25s%22)===%22%25s%22?%22%20%22:%22%25s%22)+%22?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+(g!=%22%22?(%22---%22+r+encodeURIComponent(g)+r+r):%22%22);void%20(%221.8%22);" title="fyi-firefox">fyi</a>
-+ **fyi-ie** - <a href="javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=document.selection;location.href=%22mailto:%20?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+r+(g&&g.createRange().text?(%22---%22+r+encodeURIComponent(g.createRange().text)+r+%22--%22+r+r):%22%22);void%20(%221.8%22);" title="fyi-ie">fyi</a>
++ **fyi-webkit** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit">fyi</a>
++ **fyi-firefox** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r+r;void('1.9')" title="fyi-firefox">fyi</a>
++ **fyi-ie** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('1.9')" title="fyi-ie">fyi</a>
 
 **Mobile browser**
 Tap the link below, bookmark the new page and follow the instructions
 on the page to turn a saved bookmark into a JavaScript bookmarklet.
 
-+ **Setup fyi-webkit** - <a href="http://mmind.me/_?javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=window.getSelection();location.href=%22mailto:%20?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+r+(g!=%22%22?(%22---%22+r+encodeURIComponent(g)+r+r):%22%22);void%20(%221.Y%22);" title="Setup fyi-webkit">Setup fyi</a>
++ **Setup fyi-webkit** - <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="Setup fyi-webkit">Setup fyi</a>
 
 
 Usage
@@ -77,7 +77,7 @@ and then press `Esc`.
 Requirements
 ----------
 
-Web browser. Tested with Firefox 3.6 & 4.0, Safari 5.0.x, Mobile Safari 4.x, and IE 8.
+Web browser. Tested with Firefox 3.x-9.x, Safari 5.0-5.1.x, Mobile Safari 4.x-5.0.x, and IE 8.
 
 License
 ----------
@@ -108,3 +108,11 @@ Version 1.1 ~ April 15, 2011
 Optimized for shorter emails if no text was selected.
 Adds version for IE to accommodate IE DOM method weirdness.
 
+Versions 1.2-1.8
+Numerous encoding tweaks
+Attempts to make each bookmarklet even 1 character shorter
+Makefile automation for use of HTML Tidy validation, jsl (JavaScript Lint) check, and yuicompressor
+
+Version 1.9 ~ January 3, 2012
+Streamlined message body of resulting email
+Embed version number of bookmarklet in bookmarklet itself-- _e.g.,_ javascript:… void('**1.9**')

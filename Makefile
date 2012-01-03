@@ -31,14 +31,10 @@ default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
 	@echo 'Updating README…'
-	@(cat $(WEB)/fyi-webkit.js | tr -d "\n" > uri.tmp; echo; \
-		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=http:\/\/mmind\.me\/_\?)javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		cat $(WEB)/fyi-firefox.js | tr -d "\n" > uri.tmp; \
-		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		cat $(WEB)/fyi-ie.js | tr -d "\n" > uri.tmp; \
-		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		rm -f uri.tmp; \
+	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#(?<=http://mmind.me/_\?)javascript:.*?(?=\")#@f#g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
 	)
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
@@ -47,12 +43,18 @@ $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
 	@$(JSLINT) -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
 		echo "*** ERROR: $^"; $(JSLINT) -process $< $(JSLINTOPTIONS); \
 		exit 1)
-ifeq ($(@F),fyi-firefox.com.js)
+ifneq ($(@F),fyi-firefox.js)
 	@($(PERL) -pe "s/\%s\"\)/_PERCENT_S_\"\)/g;" < $^ > $^.tmp; \
-		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;" > $@ && \
-		rm -f $^.tmp )
+		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
+		rm -f $^.tmp || ( \
+			echo "*** ERROR with: $(NODEJS) $(MAKEBOOKMARK)... ($(@F))"; \
+			exit 1 \
+	))
 else
-	@$(NODEJS) $(MAKEBOOKMARK) $^ > $@
+	@$(NODEJS) $(MAKEBOOKMARK) $^ | $(PERL) -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
+		echo "*** ERROR with: $(NODEJS) $(MAKEBOOKMARK) $^ > $@"; \
+		exit 1 \
+	)
 endif
 
 # uncomment '.SECONDARY' rule below to retain contents of $(BUILD)
@@ -79,4 +81,4 @@ $(WEB):
 .PHONY: clean
 clean:
 	@echo 'Cleaning build directory and web directory…'
-	@rm -rf $(BUILD)/* $(WEB)/* || true
+	@rm -rf $(BUILD)/* $(WEB)/*; touch $(VERSIONTXT)
