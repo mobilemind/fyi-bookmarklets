@@ -31,12 +31,15 @@ default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
 	@echo 'Updating README…'
-	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=http:\/\/mmind\.me\/_\?)javascript:.*?(?=\")/@f/g' $@
+	@(cat $(WEB)/fyi-webkit.js | tr -d "\n" > uri.tmp; echo; \
+		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=http:\/\/mmind\.me\/_\?)javascript:.*?(?=\")/@f/g' $@; \
+		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		cat $(WEB)/fyi-firefox.js | tr -d "\n" > uri.tmp; \
+		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		cat $(WEB)/fyi-ie.js | tr -d "\n" > uri.tmp; \
+		perl -p -i -e 'BEGIN{open F,"uri.tmp";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+		rm -f uri.tmp; \
 	)
-
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
