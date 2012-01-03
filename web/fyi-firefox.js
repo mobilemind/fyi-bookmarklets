@@ -1,0 +1,1 @@
+javascript:var%20r=%22%250A%22,t=encodeURIComponent(document.title),g=window.getSelection();location.href=%22mailto:%22+(String(%22%25s%22)===%22%25s%22?%22%20%22:%22%25s%22)+%22?subject=fyi:%20%22+t+%22&body=%22+t+r+location.href+(g!=%22%22?(%22---%22+r+encodeURIComponent(g)+r+r):%22%22);void%20(%221.8%22);
