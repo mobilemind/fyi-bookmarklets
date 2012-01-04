@@ -18,7 +18,9 @@ README = README.md
 JSLINT := jsl
 JSLINTOPTIONS := -nologo -nofilelisting -nosummary
 PERL := perl
-YUICOMPRESSOR := $(shell type -p yuicompressor || echo 'java -jar $(COMMONLIB)/yuicompressor-2.4.7.jar')
+YUICOMPRESSORJAR := yuicompressor-2.4.7.jar
+YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
+YUICOMPRESSOR := $(shell type -p yuicompressor || echo 'java -jar $(YUILCOMPRESSORPATH)$(YUICOMPRESSORJAR)')
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 NODEJS := $(shell type -p node || type -p nodejs)
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
@@ -30,24 +32,24 @@ default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
 
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
-	@echo 'Updating README…'
-	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#(?<=http://mmind.me/_\?)javascript:.*?(?=\")#@f#g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g' $@; \
+	@echo 'Updating README...'
+	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#(?<=http://mmind.me/_\?)javascript:.*?(?=\")#@f#g;' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
+		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
 	)
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
-	@echo "   $@"
+	@echo '   $@'
 	@$(JSLINT) -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
-		echo "*** ERROR: $^"; $(JSLINT) -process $< $(JSLINTOPTIONS); \
+		echo '*** ERROR: $^'; $(JSLINT) -process $< $(JSLINTOPTIONS); \
 		exit 1)
 ifneq ($(@F),fyi-firefox.js)
-	@($(PERL) -pe "s/\%s\"\)/_PERCENT_S_\"\)/g;" < $^ > $^.tmp; \
+	@($(PERL) -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp; \
 		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
 		rm -f $^.tmp || ( \
-			echo "*** ERROR with: $(NODEJS) $(MAKEBOOKMARK)... ($(@F))"; \
+			echo '*** ERROR with: $(NODEJS) $(MAKEBOOKMARK)... ($(@F))'; \
 			exit 1 \
 	))
 else
@@ -66,7 +68,7 @@ $(BUILD)/%.js: $(SRC)/%.js $(VERSIONTXT) | $(BUILD)
 		echo "*** ERROR with: $(PERL) -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
 		exit 1 )
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
-		echo "*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^"; \
+		echo '*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^'; \
 		exit 1 )
 	@rm -f $@.tmp
 
@@ -80,5 +82,5 @@ $(WEB):
 
 .PHONY: clean
 clean:
-	@echo 'Cleaning build directory and web directory…'
+	@echo 'Cleaning build directory and web directory...'
 	@rm -rf $(BUILD)/* $(WEB)/*; touch $(VERSIONTXT)
