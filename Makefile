@@ -20,7 +20,7 @@ JSLINTOPTIONS := -nologo -nofilelisting -nosummary
 PERL := perl
 YUICOMPRESSORJAR := yuicompressor-2.4.7.jar
 YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
-YUICOMPRESSOR := $(shell type -p yuicompressor || echo 'java -jar $(YUILCOMPRESSORPATH)$(YUICOMPRESSORJAR)')
+YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)$(YUICOMPRESSORJAR)'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 NODEJS := $(shell type -p node || type -p nodejs)
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
