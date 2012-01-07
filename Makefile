@@ -22,7 +22,7 @@ YUICOMPRESSORJAR := yuicompressor-2.4.7.jar
 YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
 YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)$(YUICOMPRESSORJAR)'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
-NODEJS := $(shell type -p node || type -p nodejs)
+NODE := node
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
 VERSIONOLD := $(shell head -n 1 $(VERSIONTXT))
 VERSIONNEW := $(shell tail -n 1 $(VERSIONTXT))
@@ -47,14 +47,14 @@ $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
 		exit 1)
 ifneq ($(@F),fyi-firefox.js)
 	@($(PERL) -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp; \
-		$(NODEJS) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
+		$(NODE) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
 		rm -f $^.tmp || ( \
-			echo '*** ERROR with: $(NODEJS) $(MAKEBOOKMARK)... ($(@F))'; \
+			echo '*** ERROR with: $(NODE) $(MAKEBOOKMARK)... ($(@F))'; \
 			exit 1 \
 	))
 else
-	@$(NODEJS) $(MAKEBOOKMARK) $^ | $(PERL) -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
-		echo "*** ERROR with: $(NODEJS) $(MAKEBOOKMARK) $^ > $@"; \
+	@$(NODE) $(MAKEBOOKMARK) $^ | $(PERL) -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
+		echo "*** ERROR with: $(NODE) $(MAKEBOOKMARK) $^ > $@"; \
 		exit 1 \
 	)
 endif
