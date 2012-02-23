@@ -25,7 +25,7 @@
     h3 { font-size: 1.1em; font-weight:bold; color: #222; vertical-align: bottom; margin-bottom: 0; padding: 0; text-transform: none;}
     a { color: #DE7008; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; 
+    .download { float: right;
 	}
 	a:hover {color:#E0AD12}
     pre { background: #000; color: #fff; padding: 15px;}
@@ -48,10 +48,14 @@
     -->
 
     <h1><a href="http://github.com/mobilemind/fyi-bookmarklets">fyi-bookmarklets</a>
-      <span class="small" style="color: #333">by <a href="http://github.com/mobilemind">mobilemind</a></span></h1>
+      <span class="small" style="color: #333">by
+      	<a href="http://github.com/mobilemind">mobilemind</a>
+      </span>
+    </h1>
 
     <div class="description">
-      bookmarklets to easily create an email from the browser with the current page title, url and any selected text in the new email
+      bookmarklets to easily create an email from the browser with the current page title,
+      url and any selected text in the new email
     </div>
 
     <p>The "fyi" bookmarklets make it easy to select text on a web page and fire off an email
@@ -69,22 +73,23 @@ that quotes the selection and includes the page title and URL.</p>
 
 <h2>Install</h2>
 <p><strong>Desktop browser</strong> <br />
-<p>Drag the desired bookmark to the bookmark bar or add bookmark/favorite. 
-Optionally edit or rename the bookmark/favorite. Firefox users may want to set bookmark properties
-so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in <strong>Usage</strong> below.</p>
+<p>Drag the desired bookmark to the bookmark bar or add bookmark/favorite.
+Optionally edit or rename the bookmark/favorite. Firefox users may want to set bookmark
+properties so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in
+<strong>Usage</strong> below.</p>
 
 <ul>
-<li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit">fyi</a></li>
-<li><strong>fyi-firefox</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r+r;void('1.9')" title="fyi-firefox">fyi</a></li>
-<li><strong>fyi-ie</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('1.9')" title="fyi-ie">fyi</a></li>
+<li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit">fyi</a></li>
+<li><strong>fyi-firefox</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-firefox">fyi</a></li>
+<li><strong>fyi-ie</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-ie">fyi</a></li>
 </ul>
 
 <p><strong>Mobile browser</strong> <br />
-Tap the link below, bookmark the new page and follow the instructions
-on the page to turn a saved bookmark into a JavaScript bookmarklet.</p>
+Tap the link below, bookmark the new page and follow the instructions on the page to turn
+a saved bookmark into a JavaScript bookmarklet.</p>
 
 <ul>
-<li><strong>Setup fyi-webkit</strong> - <a href="http://mobilemind.net/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="Setup fyi-webkit">Setup fyi</a></li>
+<li><strong>Setup fyi-webkit</strong> - <a href="http://mobilemind.net/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit setup">Setup fyi</a></li>
 </ul>
 
 <h2 id="use">Use</h2>
@@ -93,12 +98,15 @@ on the page to turn a saved bookmark into a JavaScript bookmarklet.</p>
 Visit a web page.
 Activate the fyi bookmarklet (click it on bookmark bar or use Bookmarks/Favorite menu).</p>
 
-<p>The fyi bookmarklet will open a new email with the page title in the subject line,
-the page title repeated again in the body, along with the selected text (if any text
-was selected), and the URL of the original page.</p>
+<p>The fyi bookmarklet will open a new email with the page title in the subject line, the
+page title repeated again in the body, along with the selected text (if any text was
+selected), and the URL of the original page.</p>
 
 <p><strong>iPad Use</strong> <br />
-For quick access, store the &ldquo;fyi&rdquo; bookmark in the &ldquo;Bookmarks&rdquo; folder. Use the <b>Settings</b> app, <b>Safari</b> settings to set <b>Always Show Bookmarks Bar</b> to <code><b>ON</b></code>. With one tap, you&apos;ll be able to send a nicely formatted email with the current page&apos;s title, URL, <i>and</i> any selected text.</p>
+For quick access, store the &ldquo;fyi&rdquo; bookmark in the &ldquo;Bookmarks&rdquo;
+folder. Use the <b>Settings</b> app, <b>Safari</b> settings to set <b>Always Show Bookmarks
+Bar</b> to <code><b>ON</b></code>. With one tap, you&apos;ll be able to send a nicely
+formatted email with the current page&apos;s title, URL, <i>and</i> any selected text.</p>
 
 <p><strong>Quick Use</strong><br>
 With Firefox you'll be able to do something like:
@@ -108,31 +116,31 @@ With Firefox you'll be able to do something like:
 For details see  <strong>Firefox Custom Keywords</strong> below.
 
 <p><strong>Firefox Custom Keywords</strong><br>
-Each bookmark in Firefox can have attributes including a Name, Tags, and
-a Keyword. Custom keywords can be used with a dynamic "replacement string"
-for the bookmark location (URL or javascript:…).
-For general information on Custom Keywords, see <a href="https://www.mozilla.org/docs/end-user/keywords.html" title="Mozilla Firefox Custom Keywords">Firefox Custom Keywords</a>.</p>
+Each bookmark in Firefox can have attributes including a Name, Tags, and a Keyword.
+Custom keywords can be used with a dynamic "replacement string" for the bookmark location
+(URL or javascript:&hellip;). For general information on Custom Keywords, see
+<a href="https://www.mozilla.org/docs/end-user/keywords.html" title="Mozilla Firefox Custom Keywords">Firefox Custom Keywords</a>.</p>
 
 <p>The fyi Firefox bookmarklet can take advantage of a Custom Keyword, <em>and</em>
-a replacement string (to pre-address the email). The recommended bookmark
-<strong>Name</strong> is "<em>fyi email</em>" since this gives a syntax hint when using it. The
-recommended <strong>Keyword</strong> is "<em>fyi</em>". </p>
+a replacement string (to pre-address the email). The recommended bookmark <strong>Name</strong>
+is "<em>fyi email</em>" since this gives a syntax hint when using it. The recommended
+<strong>Keyword</strong> is "<em>fyi</em>". </p>
 
-<p>Given a designated keyword (ie, "fyi"), the bookmarklet can be activated by
-typing the keyword in the address bar and pressing enter. The intended syntax
-is:</p>
+<p>Given a designated keyword (ie, "fyi"), the bookmarklet can be activated by typing the
+keyword in the address bar and pressing enter. The intended syntax is:</p>
 
 <p><code><b>  fyi</b> [<i>emailAddress(es)</i>]</code></p>
 
-<p>The optional argument is one or more email addresses, separated by semicolons.
-The email address(es) will be put in the TO field of the new email. Outlook users
-can include multiple recpients using syntax like:</p>
-<p><code><b>  fyi</b> <em>Lastname1</em>,<em>Firstname1</em>;<em>Lastname2</em>,<em>Firstname2</em>;…</code></p>
+<p>The optional argument is one or more email addresses, separated by semicolons. The
+email address(es) will be put in the TO field of the new email. Outlook users can include
+multiple recpients using syntax like:</p>
+<p><code><b>  fyi</b> <em>Lastname1</em>,<em>Firstname1</em>;<em>Lastname2</em>,
+<em>Firstname2</em>;&hellip;</code></p>
 
-<p>There is a <strong>Known Issue</strong> with using Custom Keywords— 
-the current page URL appears properly in the email, but is over-written in the browser's
-address bar. The work-around is as follows: when you return to the browser, click in the address bar
-and then press <code>Esc</code>.</p>
+<p>There is a <strong>Known Issue</strong> with using Custom Keywords&mdash; the current page
+URL appears properly in the email, but is over-written in the browser's address bar. The
+work-around is as follows: when you return to the browser, click in the address bar and
+then press <code>Esc</code>.</p>
 
 <h2>Requirements</h2>
 
@@ -140,9 +148,7 @@ and then press <code>Esc</code>.</p>
 
 <h2>Source Code Notes</h2>
 
-<p>Source code is available as text files for each bookmarklet.
-The JavaScript was written to be as small as practical and URL-encoded by hand.
-Sorry if it isn't easy to read.</p>
+<p>Source code is available as text files for each bookmarklet.</p>
 
 <h2>License</h2>
 <p>MIT License - <a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a></p>
