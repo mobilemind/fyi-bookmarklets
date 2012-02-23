@@ -80,6 +80,10 @@ $(BUILD):
 $(WEB):
 	@[[ -d $(WEB) ]] || mkdir -m 744 $(WEB)
 
+.PHONY: deploy
+deploy: default
+	@echo 'Commit changes. Then do- git checkout gh-pages; make deploy; make clean; git checkout master'
+
 .PHONY: clean
 clean:
 	@echo 'Cleaning build directory and web directory...'
