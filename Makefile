@@ -16,40 +16,38 @@ VERSIONTXT := VERSIONS.txt
 SRCURL := https://raw.github.com/mobilemind/fyi-bookmarklets/master/src
 WEBURL := https://raw.github.com/mobilemind/fyi-bookmarklets/master/web
 # vars
-VERSION := $(shell curl -sS $(SRCURL)/$(VERSIONTXT) | tail -n 1)
 BUILDDATE := $(shell date)
+NULLSTR := ""
+VERSION := $(shell curl -sS $(SRCURL)/$(VERSIONTXT) | tail -n 1)
 # macros/utils
 GRECHO = $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
-REPLACETOKENS = perl -p -i -e 's/$(MMVERSION)/$(VERSION)/g;' $@; perl -p -i -e 's/$(MMBUILDDATE)/$(BUILDDATE)/g;' $@
+thefile = $(@F)
+stem = $(thefile:.js=)
 
 
 default: $(INDEXFILE)
-	@$(GRECHO) 'make:' "Done. REMEMBER COMMIT.\n"
+	@echo
+	@$(GRECHO) 'make:' "Done. Remember to- make deploy.\n"
 
 $(INDEXFILE):  $(BUILDJS)
-	touch $@
+	@printf "\nValidate $@\n"
+	@hash tidy && (tidy -eq $@; [[ $$? -lt 2 ]] && true);
 
 $(BUILDJS):
-	curl -# -o $@ https://raw.github.com/mobilemind/fyi-bookmarklets/master/web/$(@F)
+	@printf "\nGet $@ and update link in $(INDEXFILE)\n"
+	@curl -# -o $@ $(WEBURL)/$(@F) && perl -p -i -e 's/&/&amp;/g;' $@
+	@perl -p -i -e 'BEGIN{open F,"$@";@f=<F>}s#javascript:.*?(?=\"$(STEM))#@f#g;' $(INDEXFILE)
 
 
 # deploy
 .PHONY: deploy
-deploy: default
+deploy: $(INDEXFILE)
+	@echo
 	@echo 'make:' "Deploy to github"
-	git status
-	git add $(INDEXFILE)
-	git commit --dry-run -m 'update gh-pages for v$(VERSION)'
-	@(cd $(WEBDIR); \
-		scp -p vnet vnetp *.manifest "$$MYUSER@$$MYSERVER:$$MYSERVERHOME/me"; \
-		scp -p img/*.* "$$MYUSER@$$MYSERVER:$$MYSERVERHOME/me/img"; \
-		echo \
-	)
+	@git add $(INDEXFILE) && git commit -m 'update gh-pages for v$(VERSION)' && git push
+	@echo
 	@$(GRECHO) 'make:' "Done. Deployed $(PROJ) to github.com\n"
-
-
 
 .PHONY: clean
 clean:
-	@echo 'Cleaning build directory and web directory...'
-	@rm -rf $(BUILDDIR)/* || true
+	rm -fv $(BUILDDIR)/*.js
