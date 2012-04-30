@@ -17,13 +17,13 @@ PROJURL := https://raw.github.com/mobilemind/$(PROJ)/master/
 FYIFIREFOXURL := $(PROJURL)/web/$(FYIFIREFOX)
 FYIIEURL := $(PROJURL)/web/$(FYIIE)
 FYIWEBKITURL := $(PROJURL)/web/$(FYIWEBKIT)
-VERSIONURL := $(PROJURL)/SRC/$(VERSIONTXT)
+VERSIONURL := $(PROJURL)/src/$(VERSIONTXT)
 
 # macros/utils
 FYIFIREFOXJS := $(shell curl -s $(FYIFIREFOXURL))
 FYIIEJS := $(shell curl -s $(FYIIEURL))
 FYIWEBKITJS := $(shell curl -s $(FYIWEBKITURL))
-VERSION := $(shell curl -s $(VERSIONURL))
+VERSION := $(shell curl -s $(VERSIONURL) | tail -n 1)
 GRECHO := $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
 TIDY := $(shell hash tidy-html5 2>/dev/null && echo 'tidy-html5' || (hash tidy 2>/dev/null && echo 'tidy' || exit 1))
 
