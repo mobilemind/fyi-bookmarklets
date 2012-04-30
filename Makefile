@@ -56,7 +56,7 @@ deploy: default
 		git commit -a -m 'revised HTML to v$(VERSION)' && git push; \
 		( git tag $(VERSION) && git push --tags || echo '  Continuing') && \
 		$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION). To return to master do:\
-		\n\tgit checkout master && make clean\n\n" )
+		\n\tgit checkout master && make clean\n\n" ) \
 	|| $(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
 
 # clean
