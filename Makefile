@@ -3,56 +3,52 @@
 ##
 # FYI PROJECT
 #
+
 # directories/paths
-SRC := src
 BUILD := build
-WEB := web
 LOCALLIB := lib
 COMMONLIB := $$HOME/common/lib
-VPATH := $(WEB):$(BUILD)
-# files
-PROJWEB := $(WEB)/fyi-firefox.js $(WEB)/fyi-ie.js $(WEB)/fyi-webkit.js
-VERSIONTXT := $(SRC)/VERSIONS.txt
-README = README.md
-# macros/utils
-JSLINT := jsl
-JSLINTOPTIONS := -nologo -nofilelisting -nosummary
-PERL := perl
-YUICOMPRESSORJAR := yuicompressor-2.4.7.jar
-YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
-YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)$(YUICOMPRESSORJAR)'")
-COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
-NODE := node
-MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
-VERSIONOLD := $(shell head -n 1 $(VERSIONTXT))
-VERSIONNEW := $(shell tail -n 1 $(VERSIONTXT))
+VPATH := web:$(BUILD)
 
-default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
+# files
+PROJWEB := web/fyi-firefox.js web/fyi-ie.js web/fyi-webkit.js
+README = README.md
+
+# macros/utils
+JSLINTOPTIONS := -nologo -nofilelisting -nosummary
+YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
+YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.7.jar'")
+COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
+MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
+VERSIONOLD := $(shell head -n 1 src/VERSIONS.txt)
+VERSIONNEW := $(shell tail -n 1 src/VERSIONS.txt)
+
+default: $(PROJWEB) $(README) | $(BUILD) web
 	@echo 'Done.'; echo
 
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
 	@echo 'Updating README...'
-	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#@f#g;' $@
-	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-firefox\")#@f#g;' $@
-	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-ie\")#@f#g;' $@
+	@perl -pi -e 'BEGIN{open F,"web/fyi-webkit.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#@f#g;' $@
+	@perl -pi -e 'BEGIN{open F,"web/fyi-firefox.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-firefox\")#@f#g;' $@
+	@perl -pi -e 'BEGIN{open F,"web/fyi-ie.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-ie\")#@f#g;' $@
 	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' $@
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
-$(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
+web/%.js: $(BUILD)/%.js | $(BUILD) web
 	@echo '   $@'
-	@$(JSLINT) -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
-		echo '*** ERROR: $^'; $(JSLINT) -process $< $(JSLINTOPTIONS); \
+	@jsl -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
+		echo '*** ERROR: $^'; jsl -process $< $(JSLINTOPTIONS); \
 		exit 1)
 ifneq ($(@F),fyi-firefox.js)
-	@($(PERL) -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp; \
-		$(NODE) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
+	@(perl -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp; \
+		node $(MAKEBOOKMARK) $^.tmp | perl -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
 		rm -f $^.tmp || ( \
-			echo '*** ERROR with: $(NODE) $(MAKEBOOKMARK)... ($(@F))'; \
+			echo '*** ERROR with: node $(MAKEBOOKMARK)... ($(@F))'; \
 			exit 1 ))
 else
-	@$(NODE) $(MAKEBOOKMARK) $^ | $(PERL) -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
-		echo "*** ERROR with: $(NODE) $(MAKEBOOKMARK) $^ > $@"; \
+	@node $(MAKEBOOKMARK) $^ | perl -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
+		echo "*** ERROR with: node $(MAKEBOOKMARK) $^ > $@"; \
 		exit 1 )
 endif
 
@@ -60,9 +56,9 @@ endif
 #.SECONDARY: $(BUILD)/fyi-firefox.js $(BUILD)/fyi-ie.js $(BUILD)/fyi-webkit.js
 
 # replace tokens & minify JavaScript
-$(BUILD)/%.js: $(SRC)/%.js $(VERSIONTXT) | $(BUILD)
-	@$(PERL) -pe "s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;" < $< > $@.tmp || ( \
-		echo "*** ERROR with: $(PERL) -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
+$(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
+	@perl -pe "s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;" < $< > $@.tmp || ( \
+		echo "*** ERROR with: perl -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
 		exit 1 )
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
 		echo '*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^'; \
@@ -73,9 +69,9 @@ $(BUILD)/%.js: $(SRC)/%.js $(VERSIONTXT) | $(BUILD)
 $(BUILD):
 	@[[ -d $(BUILD) ]] || mkdir -m 744 $(BUILD)
 
-.PHONY: $(WEB)
-$(WEB):
-	@[[ -d $(WEB) ]] || mkdir -m 744 $(WEB)
+.PHONY: web
+web:
+	@[[ -d web ]] || mkdir -m 744 web
 
 .PHONY: deploy
 deploy: default
@@ -84,4 +80,4 @@ deploy: default
 .PHONY: clean
 clean:
 	@echo 'Cleaning build directory and web directory...'
-	@rm -rf $(BUILD)/* $(WEB)/*; touch $(VERSIONTXT)
+	@rm -rf $(BUILD)/* web/*; touch src/VERSIONS.txt
