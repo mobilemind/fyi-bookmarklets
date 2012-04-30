@@ -54,7 +54,7 @@ deploy: default
 	@printf "make: \tDeploy: Checking git diff --name-only as trigger to update gh-pages\n"
 	@[[ -n "$(shell git diff --name-only)" ]] && ( \
 		git commit -a -m 'revised HTML to v$(VERSION)' && git push; \
-		( git tag $(VERSION) && git push --tags ) && \
+		( git tag $(VERSION) && git push --tags || echo '  tag $(VERSION) exists') && \
 		$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION). To return to master do:\
 		\n\tgit checkout master && make clean\n\n" )
 	|| $(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
