@@ -33,11 +33,10 @@ default: $(PROJWEB) $(README) | $(BUILD) $(WEB)
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
 	@echo 'Updating README...'
-	@(perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#(?<=http://mmind.me/_\?)javascript:.*?(?=\")#@f#g;' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s/(?<=webkit\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s/(?<=firefox\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
-		perl -p -i -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s/(?<=ie\*\* - <a href=\")javascript:.*?(?=\")/@f/g;' $@; \
-	)
+	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-webkit.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#@f#g;' $@
+	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-firefox.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-firefox\")#@f#g;' $@
+	@perl -pi -e 'BEGIN{open F,"$(WEB)/fyi-ie.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-ie\")#@f#g;' $@
+	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' $@
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 $(WEB)/%.js: $(BUILD)/%.js | $(BUILD) $(WEB)
@@ -50,13 +49,11 @@ ifneq ($(@F),fyi-firefox.js)
 		$(NODE) $(MAKEBOOKMARK) $^.tmp | $(PERL) -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
 		rm -f $^.tmp || ( \
 			echo '*** ERROR with: $(NODE) $(MAKEBOOKMARK)... ($(@F))'; \
-			exit 1 \
-	))
+			exit 1 ))
 else
 	@$(NODE) $(MAKEBOOKMARK) $^ | $(PERL) -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
 		echo "*** ERROR with: $(NODE) $(MAKEBOOKMARK) $^ > $@"; \
-		exit 1 \
-	)
+		exit 1 )
 endif
 
 # uncomment '.SECONDARY' rule below to retain contents of $(BUILD)
@@ -82,7 +79,7 @@ $(WEB):
 
 .PHONY: deploy
 deploy: default
-	@echo 'Commit changes. Then do- git checkout gh-pages; make deploy; make clean; git checkout master'
+	@echo 'Commit changes. Then do- git checkout gh-pages && make deploy && git checkout master'
 
 .PHONY: clean
 clean:
