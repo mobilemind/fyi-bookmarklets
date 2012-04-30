@@ -51,9 +51,6 @@ update:
 # deploy
 .PHONY: deploy
 deploy: default
-	@echo 'make: Deploy to github'
-	@git commit -a -m 'update gh-pages to v$(VERSION)' && git push
-	@$(GRECHO) "\nmake:" "Done. Deployed $(PROJ) gh-pages $(INDEXFILE) to github.com\n"
 	@printf "make: \tDeploy: Checking git diff --name-only as trigger to update gh-pages\n"
 	@[[ -z "$(shell git diff --name-only)" ]] && $(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n" || true
 	@[[ -n "$(shell git diff --name-only)" ]] && ( \
