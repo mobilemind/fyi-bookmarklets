@@ -20,15 +20,15 @@ Drag the desired bookmark to the bookmark bar or add bookmark/favorite.
 Optionally edit or rename the bookmark/favorite. Firefox users may want to set bookmark properties
 so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in **Usage** below.
 
-+ **fyi-webkit** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit">fyi</a>
-+ **fyi-firefox** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r+r;void('1.9')" title="fyi-firefox">fyi</a>
-+ **fyi-ie** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('1.9')" title="fyi-ie">fyi</a>
++ **fyi-webkit** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="fyi-webkit">fyi</a>
++ **fyi-firefox** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r+r;void('1.9')" title="fyi-firefox">fyi</a>
++ **fyi-ie** - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('1.9')" title="fyi-ie">fyi</a>
 
 **Mobile browser**
 Tap the link below, bookmark the new page and follow the instructions
 on the page to turn a saved bookmark into a JavaScript bookmarklet.
 
-+ **Setup fyi-webkit** - <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="Setup fyi-webkit">Setup fyi</a>
++ **Setup fyi-webkit** - <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9')" title="Setup fyi-webkit">Setup fyi</a>
 
 
 Usage
