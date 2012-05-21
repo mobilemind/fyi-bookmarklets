@@ -2,7 +2,7 @@
 
 ##
 # FYI PROJECT
-#
+PROJ := fyi-bookmarklets
 
 # directories/paths
 BUILD := build
@@ -24,7 +24,7 @@ VERSIONOLD := $(shell head -n 1 src/VERSIONS.txt)
 VERSIONNEW := $(shell tail -n 1 src/VERSIONS.txt)
 
 default: $(PROJWEB) $(README) | $(BUILD) web
-	@echo 'Done.'; echo
+	@echo 'make $(PROJ): Done.'; echo
 
 # update README with pastelet URLS just built
 $(README): $(VERSIONTXT) | $(PROJWEB)
@@ -75,9 +75,9 @@ web:
 
 .PHONY: deploy
 deploy: default
-	@echo 'Commit changes. Then do- git checkout gh-pages && make deploy && git checkout master'
+	@echo 'make $(PROJ): Commit changes. Then do- git checkout gh-pages && make deploy && git checkout master'
 
 .PHONY: clean
 clean:
-	@echo 'Cleaning build directory and web directory...'
+	@echo 'make $(PROJ): Cleaning build directory and web directory...'
 	@rm -rf $(BUILD)/* web/*; touch src/VERSIONS.txt
