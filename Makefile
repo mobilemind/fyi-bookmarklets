@@ -57,8 +57,8 @@ endif
 
 # replace tokens & minify JavaScript
 $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
-	@perl -pe "s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;" < $< > $@.tmp || ( \
-		echo "*** ERROR with: perl -p -i -e \"s/void\(\'$(VERSIONOLD)\'\)/void\(\'$(VERSIONNEW)\'\)/g;\" $@"; \
+	@perl -pe "s/void\(\'$(VERSIONOLD)/void\(\'$(VERSIONNEW)/g;" < $< > $@.tmp || ( \
+		echo "*** ERROR with: perl -p -i -e \"s/void\(\'$(VERSIONOLD)/void\(\'$(VERSIONNEW)/g;\" $@"; \
 		exit 1 )
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
 		echo '*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^'; \

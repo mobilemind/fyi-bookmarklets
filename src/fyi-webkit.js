@@ -3,4 +3,4 @@ var r = '%0A',
 	t = encodeURIComponent(document.title),
 	g = window.getSelection();
 	location.href = 'mailto: ?subject=fyi: ' + t + '&body=' + t + r + location.href + r + (g != '' ? ('---' + r + encodeURIComponent(g) + r) : '') + r;
-	void('1.8');
+	void('1.9wk');
