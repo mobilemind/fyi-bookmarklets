@@ -55,7 +55,7 @@ deploy: default
 	@[[ -n "`git diff --name-only`" ]] && ( \
 		git commit -a -m 'revised HTML to v$(VERSION)g' && git push origin gh-pages; \
 		( git tag $(VERSION)g && git push --tags origin gh-pages || echo '  Continuing') && \
-		$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION). To return to master do:\
+		$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION)g. To return to master do:\
 		\n\tgit checkout master && make clean\n\n" ) \
 	|| $(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
 
