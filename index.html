@@ -76,7 +76,7 @@ that quotes the selection and includes the page title and URL.</p>
 <p>Drag the desired bookmark to the bookmark bar or add bookmark/favorite.
 Optionally edit or rename the bookmark/favorite. Firefox users may want to set bookmark
 properties so the Name is "fyi email" the custom Keyword is "fyi" for reasons detailed in
-<strong>Usage</strong> below.</p>
+<a href="#usage">Usage</a> below.</p>
 
 <ul>
 <li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9wk')" title="fyi-webkit">fyi</a></li>
@@ -92,11 +92,11 @@ a saved bookmark into a JavaScript bookmarklet.</p>
 <li><strong>Setup fyi-webkit</strong> - <a href="http://mobilemind.net/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?('---'+r+encodeURIComponent(g)+r):'')+r;void('1.9wk')" title="fyi-webkit setup">Setup fyi</a></li>
 </ul>
 
-<h2 id="use">Use</h2>
+<h2 id="usage">Usage</h2>
 
 <p><strong>General Use</strong><br>
-Visit a web page.
-Activate the fyi bookmarklet (click it on bookmark bar or use Bookmarks/Favorite menu).</p>
+Visit a web page. Activate the fyi bookmarklet (click it on bookmark bar or use the
+Bookmarks/Favorites menu).</p>
 
 <p>The fyi bookmarklet will open a new email with the page title in the subject line, the
 page title repeated again in the body, along with the selected text (if any text was
@@ -109,8 +109,8 @@ Bar</b> to <code><b>ON</b></code>. With one tap, you'll be able to send a nicely
 formatted email with the current page's title, URL, <i>and</i> any selected text.</p>
 
 <p><strong>Quick Use</strong><br>
-With Firefox you'll be able to do something like:
-</p><blockquote>
+With Firefox you'll be able to do something like:</p>
+<blockquote>
 <i>Cmd-L/Ctr-L</i> <code>fyi user@domain.com</code> <i>Enter</i>
 </blockquote>
 For details see  <strong>Firefox Custom Keywords</strong> below.
@@ -144,7 +144,7 @@ then press <code>Esc</code>.</p>
 
 <h2>Requirements</h2>
 
-<p>Web browser. Tested with Firefox 3.6 &amp; 4.0, Safari 5.0.x, Mobile Safari 4.x, and IE 8.</p>
+<p>Web browser. Tested with Firefox 3.6-13, Safari 5.0-5.1, Mobile Safari 4.x-5.x, and IE 8.</p>
 
 <h2>Source Code Notes</h2>
 
