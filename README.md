@@ -11,9 +11,8 @@ Available versions include:
 + **fyi-firefox** -- optimized for Firefox to support address bar with custom keyword %s argument
 + **fyi-ie** -- works with Internet Explorer and its (odd-to-me) DOM selected text methods
 
-# Install
-
-## Desktop browser
+## Install
+### Desktop browser
 Drag the desired bookmark to the bookmark bar or add bookmark/favorite. Optionally edit
 or rename the bookmark/favorite. Firefox users may want to set bookmark properties so the
 **Name** is "fyi email" and the custom **Keyword** is "fyi" for reasons detailed in
@@ -23,15 +22,14 @@ or rename the bookmark/favorite. Firefox users may want to set bookmark properti
 + **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r+r;void('2.0ff')" title="fyi-firefox">fyi</a>
 + **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?('---'+r+encodeURIComponent(g.createRange().text)+r):'')+r+r;void('2.0ie')" title="fyi-ie">fyi</a>
 
-## Mobile browser
+### Mobile browser
 Tap the link below, bookmark the new page and follow the instructions on the page to turn
 the followed bookmark into a JavaScript bookmarklet.
 
 + **Mobile browser** -- <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g!=''?('---'+r+encodeURIComponent(g)+r):'')+r;void('2.0wk')" title="Setup fyi-webkit">Setup fyi</a>
 
-# Usage<a id="usage"></a>
-
-## General Use
+## Usage<a id="usage"></a>
+### General Use
 Visit a web page. Activate the fyi bookmarklet (click it on bookmark bar or use
 the Bookmarks/Favorites menu).
 
@@ -39,12 +37,12 @@ The fyi bookmarklet will open a new email with the page title in the subject lin
 the page title repeated again in the body, along with the selected text (if any text
 was selected), and the URL of the original page.
 
-## Quick Use
+### Quick Use
 With **Firefox Custom Keywords** you'll be able to do something like:
 
 _Cmd-L/Ctr-L_ `fyi user@domain.com` _Enter_
 
-### Firefox Custom Keywords
+#### Firefox Custom Keywords
 Each bookmark in Firefox can have attributes including a Name, Tags, and
 a Keyword. Custom keywords can be used with a dynamic "replacement string"
 for the bookmark location (URL or javascript:…).
@@ -71,20 +69,19 @@ There is a **Known Issue** with using Custom Keywords--- the current page URL ap
 properly in the email, but is over-written in the browser's address bar. The work-around
 is as follows: when you return to the browser, click in the address bar and press `Esc`.
 
-# Requirements
+## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.  
 Tested with Firefox 3.x-13.x, Safari 5.0-5.1.x, Mobile Safari 4.x-5.0.x, and IE 8.
 
-# License
-MIT License --
-[http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
+## License
+MIT License - <http://www.opensource.org/licenses/mit-license.php>
 
-# Source Code Notes
+## Source Code Notes
 Source code is available as text files for each bookmarklet. The JavaScript was written to
 be as small as practical when URL-encoded. Sorry if it isn't easy to read. The version
 number is embedded in the `void()` call at the end of the code in version 1.9 and later.
 
-# Version Notes
+## Version Notes
 Inspired by
 [Mike Chambers' Firefox Ubiquity fyi command](http://www.mikechambers.com/blog/2009/07/13/fyi-ubiquity-command-updated/ "Mike Chambers: code=joy : Ubiquity fyi command updated").
 
