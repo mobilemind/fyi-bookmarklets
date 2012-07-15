@@ -79,4 +79,4 @@ deploy: default
 .PHONY: clean
 clean:
 	@echo 'make $(PROJ): Cleaning build directory and web directory...'
-	@rm -rf $(BUILD)/* web/*; touch src/VERSIONS.txt
+	@rm -rf $(BUILD)/* web/*; touch src/VERSION.txt
