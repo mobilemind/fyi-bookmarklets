@@ -20,8 +20,7 @@ YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $
 YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.7.jar'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
-VERSIONOLD := $(shell head -n 1 src/VERSIONS.txt)
-VERSIONNEW := $(shell tail -n 1 src/VERSIONS.txt)
+VERSION := $(shell head -n 1 src/VERSION.txt)
 
 default: $(PROJWEB) $(README) | $(BUILD) web
 	@echo 'make $(PROJ): Done.'; echo
@@ -57,8 +56,8 @@ endif
 
 # replace tokens & minify JavaScript
 $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
-	@perl -pe "s/void\(\'$(VERSIONOLD)/void\(\'$(VERSIONNEW)/g;" < $< > $@.tmp || ( \
-		echo "*** ERROR with: perl -p -i -e \"s/void\(\'$(VERSIONOLD)/void\(\'$(VERSIONNEW)/g;\" $@"; \
+	@perl -pe "s/void\('/void\(\'$(VERSION)/g;" < $< > $@.tmp || ( \
+		echo "*** ERROR with: perl -p -i -e \"s/void\('/void\(\'$(VERSION)/g\" $@"; \
 		exit 1 )
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
 		echo '*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^'; \
