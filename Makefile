@@ -15,7 +15,6 @@ PROJWEB := web/fyi-firefox.js web/fyi-ie.js web/fyi-webkit.js
 README = README.md
 
 # macros/utils
-JSLINTOPTIONS := -nologo -nofilelisting -nosummary
 YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
 YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.7.jar'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
@@ -35,33 +34,29 @@ $(README): $(VERSIONTXT) | $(PROJWEB)
 
 # run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 web/%.js: $(BUILD)/%.js | $(BUILD) web
-	@echo '   $@'
-	@jsl -process $< $(JSLINTOPTIONS) > /dev/null ; [ $$? -lt 2 ] || ( \
-		echo '*** ERROR: $^'; jsl -process $< $(JSLINTOPTIONS); \
-		exit 1)
+	@echo "Make bookmark  $(notdir $@)"
 ifneq ($(@F),fyi-firefox.js)
-	@(perl -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp; \
-		node $(MAKEBOOKMARK) $^.tmp | perl -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ && \
-		rm -f $^.tmp || ( \
-			echo '*** ERROR with: node $(MAKEBOOKMARK)... ($(@F))'; \
-			exit 1 ))
+	@perl -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp
+	@jshint $^.tmp
+	@node $(MAKEBOOKMARK) $^.tmp | perl -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@
+	@rm -f $^.tmp
 else
-	@node $(MAKEBOOKMARK) $^ | perl -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@ || ( \
-		echo "*** ERROR with: node $(MAKEBOOKMARK) $^ > $@"; \
-		exit 1 )
+	@node $(MAKEBOOKMARK) $^ | perl -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@
 endif
+	@echo
 
 # uncomment '.SECONDARY' rule below to retain contents of $(BUILD)
 #.SECONDARY: $(BUILD)/fyi-firefox.js $(BUILD)/fyi-ie.js $(BUILD)/fyi-webkit.js
 
 # replace tokens & minify JavaScript
 $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
-	@perl -pe "s/void\('/void\(\'$(VERSION)/g;" < $< > $@.tmp || ( \
-		echo "*** ERROR with: perl -p -i -e \"s/void\('/void\(\'$(VERSION)/g\" $@"; \
-		exit 1 )
-	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp || ( \
-		echo '*** ERROR with: $(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $^'; \
-		exit 1 )
+	@echo "Check source   $(notdir $<)"
+	@jshint $<
+	@echo "Replace tokens $(notdir $<)"
+	@perl -pe "s/void\('/void\(\'$(VERSION)/g;" < $< > $@.tmp
+	@echo "Compress code  $(notdir $@)"
+	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp
+	@jshint $@
 	@rm -f $@.tmp
 
 .PHONY: $(BUILD)
