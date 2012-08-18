@@ -53,7 +53,7 @@ $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
 	@echo "Check source   $(notdir $<)"
 	@jshint $<
 	@echo "Replace tokens $(notdir $<)"
-	@perl -pe "s/void\('/void\(\'$(VERSION)/g;" < $< > $@.tmp
+	@perl -pe "s/void'/void'$(VERSION)/g;" < $< > $@.tmp
 	@echo "Compress code  $(notdir $@)"
 	@$(YUICOMPRESSOR) $(COMPRESSOPTIONS) -o $@ $@.tmp
 	@jshint $@
