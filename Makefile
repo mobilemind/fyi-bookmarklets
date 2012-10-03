@@ -34,7 +34,7 @@ default: validate
 .PHONY:	validate
 validate: update
 	@echo 'Validate $(INDEXFILE)'
-	@($(TIDY) -eq $(INDEXFILE); [[ $$? -lt 2 ]] && true)
+	@($(TIDY) -eq $(INDEXFILE); [ $$? -lt 2 ] && true)
 
 .PHONY: update
 update:
@@ -52,7 +52,7 @@ update:
 .PHONY: deploy
 deploy: default
 	@printf "make: \tDeploy: Checking git diff --name-only as trigger to update gh-pages\n"
-	@[[ -n "`git diff --name-only`" ]] && ( \
+	@[ -n "$(shell git diff --name-only)" ] && ( \
 		git commit -a -m 'revised HTML to v$(VERSION)g' && git push origin gh-pages; \
 		( git tag $(VERSION)g && git push --tags origin gh-pages || echo '  Continuing') && \
 		$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION)g. To return to master do:\
