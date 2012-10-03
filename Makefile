@@ -13,13 +13,14 @@ VPATH := web:$(BUILD)
 # files
 PROJWEB := web/fyi-firefox.js web/fyi-ie.js web/fyi-webkit.js
 README = README.md
+VERSIONTXT = src/VERSION.txt
 
 # macros/utils
-YUILCOMPRESSORPATH := $(shell [[ 'cygwin' == $$OSTYPE ]] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
+YUILCOMPRESSORPATH := $(shell [ 'cygwin' = "$$OSTYPE" ] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
 YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.7.jar'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
-VERSION := $(shell head -n 1 src/VERSION.txt)
+VERSION := $(shell head -n 1 $(VERSIONTXT))
 
 default: $(PROJWEB) $(README) | $(BUILD) web
 	@echo 'make $(PROJ): Done.'; echo
@@ -61,11 +62,11 @@ $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
 
 .PHONY: $(BUILD)
 $(BUILD):
-	@[[ -d $(BUILD) ]] || mkdir -m 744 $(BUILD)
+	@[ -d $(BUILD) ] || mkdir -m 744 $(BUILD)
 
 .PHONY: web
 web:
-	@[[ -d web ]] || mkdir -m 744 web
+	@[ -d web ] || mkdir -m 744 web
 
 .PHONY: deploy
 deploy: default
