@@ -53,12 +53,12 @@ update:
 deploy: default
 	@printf "make: \tDeploy: Checking git diff --name-only as trigger to update gh-pages\n"
 ifeq "$(shell git diff --name-only)" ''
-	$(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
+	@$(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
 else
-	git commit -a -m 'revised HTML to v$(VERSION)g'
-	git tag $(VERSION)g
-	git push --tags origin gh-pages
-	$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION)g. To return to master do:\n\tgit checkout master && make clean\n\n" )
+	@git commit -a -m 'revised HTML to v$(VERSION)g'
+	@git tag $(VERSION)g
+	@git push --tags origin gh-pages
+	@$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION)g. To return to master do:\n\tgit checkout master && make clean\n\n" )
 endif
 
 # clean
