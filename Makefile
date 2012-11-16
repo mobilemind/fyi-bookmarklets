@@ -45,8 +45,7 @@ update:
 	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-ie\")#$(FYIIEJS)#g;" $(INDEXFILE)
 	@echo 'Update Webkit bookmark from GitHub'
 	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#$(FYIWEBKITJS)#g;" $(INDEXFILE)
-	@perl -pi -e 's/&body/&amp;body/g;' $(INDEXFILE)
-	@perl -pi -e 's/&&/&amp;&amp;/g;' $(INDEXFILE)
+	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' $(INDEXFILE)
 
 # deploy
 .PHONY: deploy
