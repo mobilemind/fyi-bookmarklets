@@ -33,7 +33,7 @@ $(README): $(VERSIONTXT) | $(PROJWEB)
 	@perl -pi -e 'BEGIN{open F,"web/fyi-ie.js";@f=<F>}s#javascript:.*(?=\" title=\"fyi-ie\")#@f#g;' $@
 	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' $@
 
-# run JSLINT then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
+# run jshint then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 web/%.js: $(BUILD)/%.js | $(BUILD) web
 	@echo "Make bookmark  $(notdir $@)"
 ifneq ($(@F),fyi-firefox.js)
