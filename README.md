@@ -71,7 +71,7 @@ is as follows: when you return to the browser, click in the address bar and pres
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-13.x, Safari 5.0-5.1.x, Mobile Safari 4.x-5.0.x, and IE 8.
+Tested with Firefox 3.x-16.x, Safari 5.0-6.x, Mobile Safari 4.x-6.x, and IE 8.
 
 ## License
 MIT License - <http://www.opensource.org/licenses/mit-license.php>
@@ -79,7 +79,7 @@ MIT License - <http://www.opensource.org/licenses/mit-license.php>
 ## Source Code Notes
 Source code is available as text files for each bookmarklet. The JavaScript was written to
 be as small as practical when URL-encoded. Sorry if it isn't easy to read. The version
-number is embedded in the `void()` call at the end of the code in version 1.9 and later.
+number is embedded in the `void'code'` call at the end of the code in version 1.9 and later.
 
 ## Version Notes
 Inspired by
@@ -105,4 +105,4 @@ _e.g.,_&nbsp;<code>javascript:… void('<b>1.9</b>')</code> for version 1.9
 
 Version 2.0 - June 10, 2012
 add code in embedded version number to identify associated browser,
-_e.g.,_&nbsp;<code>javascript:… void('<b>2.0ff</b>')</code> for Firefox fyi-bookmarklet 2.0
+_e.g.,_&nbsp;<code>javascript:… void'<b>2.0ff</b>'</code> for Firefox fyi-bookmarklet 2.0
