@@ -22,6 +22,8 @@ COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
 VERSION := $(shell head -n 1 $(VERSIONTXT))
 
+.PHONY: $(BUILD) web deploy clean
+
 default: $(PROJWEB) $(README) | $(BUILD) web
 	@echo 'make $(PROJ): Done.'; echo
 
@@ -60,19 +62,13 @@ $(BUILD)/%.js: src/%.js $(VERSIONTXT) | $(BUILD)
 	@jshint $@
 	@rm -f $@.tmp
 
-.PHONY: $(BUILD)
-$(BUILD):
-	@[ -d $(BUILD) ] || mkdir -m 744 $(BUILD)
+# make directories
+$(BUILD) web:
+	@[ -d $@ ] || mkdir -m 744 $@
 
-.PHONY: web
-web:
-	@[ -d web ] || mkdir -m 744 web
-
-.PHONY: deploy
 deploy: default
 	@echo 'make $(PROJ): Commit changes. Then do- git checkout gh-pages && make deploy && git checkout master'
 
-.PHONY: clean
 clean:
 	@echo 'make $(PROJ): Cleaning build directory and web directory...'
-	@rm -rf $(BUILD)/* web/*; touch src/VERSION.txt
+	@rm -Rf $(BUILD) web
