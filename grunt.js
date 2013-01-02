@@ -63,23 +63,17 @@ module.exports = function(grunt) {
 
   grunt.registerTask('firefox', 'setup for firefox', function() {
     // set files (both set to the same for Firefox)
-    var myDist = {src: ['web/fyi-firefox.js'], dest: 'web/fyi-firefox.js'};
+    var myDist = {src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js'};
     grunt.config('min.dist', myDist);
     grunt.config('js2uri.dist', myDist);
-
-    // special pre-processing for firefox
-    // note hardcoded path below (read from src, write to dest)
-    var jsString = grunt.file.read('src/fyi-firefox.js').replace("('%s')", "('PERCENT_S')");
-    grunt.file.write(myDist.dest, jsString);
-
+    grunt.config('js2uri.dist.src', myDist.dest);
     // process it (using dest as src and dest)
     grunt.task.run(['min', 'js2uri', 'firefox-post']);
   });
 
-
   grunt.registerTask('firefox-post', 'post-processing for firefox', function() {
     // special post-processing for firefox
-    var jsString = grunt.file.read('web/fyi-firefox.js').replace("('PERCENT_S')", "('%s')");
+    var jsString = grunt.file.read('web/fyi-firefox.js').replace(':%25s?', ':%s?');
     grunt.file.write('web/fyi-firefox.js', jsString);
   });
 
