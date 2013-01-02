@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     meta: {
-      version: '1.4.1'
+      version: '2.5.1'
     },
     lint: {
       files: ['grunt.js', 'src/*.js']
@@ -62,28 +62,25 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('js2uri');
 
   grunt.registerTask('firefox', 'setup for firefox', function() {
-    // set files
-    var myDist = {src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js'};
+    // set files (both set to the same for Firefox)
+    var myDist = {src: ['web/fyi-firefox.js'], dest: 'web/fyi-firefox.js'};
     grunt.config('min.dist', myDist);
     grunt.config('js2uri.dist', myDist);
-    grunt.config('js2uri.dist.src', myDist.dest);
 
     // special pre-processing for firefox
-    var tokenStr = "('%s')";
-    var placeholder = "('PERCENT_S')";
-    var jsString = grunt.file.read(myDist.src[0]).replace(tokenStr, placeholder);
-    console.log('jsString:' + jsString);
-    console.log('myDist.src:' + myDist.src);
-    grunt.file.write(myDist.src[0], jsString);
-
-    // process it
-    grunt.task.run(['min', 'js2uri']);
-
-    // special post-processing for firefox
-    jsString = grunt.file.read(myDist.dest).replace(placeholder, tokenStr);
-    console.log('jsString:' + jsString);
-    console.log('myDist.dest:' + myDist.dest);
+    // note hardcoded path below (read from src, write to dest)
+    var jsString = grunt.file.read('src/fyi-firefox.js').replace("('%s')", "('PERCENT_S')");
     grunt.file.write(myDist.dest, jsString);
+
+    // process it (using dest as src and dest)
+    grunt.task.run(['min', 'js2uri', 'firefox-post']);
+  });
+
+
+  grunt.registerTask('firefox-post', 'post-processing for firefox', function() {
+    // special post-processing for firefox
+    var jsString = grunt.file.read('web/fyi-firefox.js').replace("('PERCENT_S')", "('%s')");
+    grunt.file.write('web/fyi-firefox.js', jsString);
   });
 
   grunt.registerTask('ie', 'process IE', function() {
