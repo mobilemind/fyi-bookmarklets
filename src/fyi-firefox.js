@@ -4,4 +4,3 @@ var r = '%0A',
 	g = window.getSelection();
 	// '%s' is the argument string Firefox can provide to bookmark(lets)
 	location.href = 'mailto:' + (String('%s') === '%s' ? ' ': '%s') + '?subject=fyi: ' + t + '&body=' + t + r + location.href + r + (g ? '---' + r + encodeURIComponent(g) + r + r : r);
-	void'ff';
