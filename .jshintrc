@@ -1,8 +1,17 @@
 {
-	"trailing":		true,
-	"noempty":		true,
-
-	"lastsemic":	true,
-
-	"browser":		true
+    "strict": false,
+    "latedef": true,
+    "noarg": true,
+    "noempty": true,
+    "trailing": true,
+    "unused": true,
+    "sub": true,
+    "undef": true,
+    "boss": true,
+    "eqnull": true,
+    "evil": true,
+    "lastsemic": true,
+    "multistr": true,
+    "scripturl": true,
+    "browser": true
 }
