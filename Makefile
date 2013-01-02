@@ -38,13 +38,9 @@ $(README): $(VERSIONTXT) | $(PROJWEB)
 # run jshint then prepend with 'javascript:' and encodeURI (preserving Firefox '%s' token)
 web/%.js: $(BUILD)/%.js | $(BUILD) web
 	@echo "Make bookmark  $(notdir $@)"
-ifneq ($(@F),fyi-firefox.js)
-	@perl -pe 's/\%s\"\)/_PERCENT_S_\"\)/g;' < $^ > $^.tmp
-	@jshint $^.tmp
-	@node $(MAKEBOOKMARK) $^.tmp | perl -pe "s/_PERCENT_S_/\%s/g;s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@
-	@rm -f $^.tmp
-else
 	@node $(MAKEBOOKMARK) $^ | perl -pe "s/\%22/'/g;s/void%20/void/g;s/;$$//g;" | tr -d "\n" > $@
+ifeq ($(@F),fyi-firefox.js)
+	@perl -pe 's/:\%25s\?/:%s?/;' < $@ > $@
 endif
 	@echo
 
