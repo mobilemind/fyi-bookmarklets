@@ -18,9 +18,9 @@ or rename the bookmark/favorite. Firefox users may want to set bookmark properti
 **Name** is "fyi email" and the custom **Keyword** is "fyi" for reasons detailed in
 [Usage](#usage).
 
-+ **fyi-webkit** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.5wk'" title="fyi-webkit">fyi</a>
-+ **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.5ff'" title="fyi-firefox">fyi</a>
-+ **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.5ie'" title="fyi-ie">fyi</a>
++ **fyi-webkit** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6wk'" title="fyi-webkit">fyi</a>
++ **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%25s?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6ff'" title="fyi-firefox">fyi</a>
++ **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6ie'" title="fyi-ie">fyi</a>
 
 ### Mobile browser
 Tap the link below, bookmark the new page and follow the instructions on the page to turn
