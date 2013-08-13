@@ -17,7 +17,7 @@ VERSIONTXT = src/VERSION.txt
 
 # macros/utils
 YUILCOMPRESSORPATH := $(shell [ 'cygwin' = "$$OSTYPE" ] &&  echo "`cygpath -w $(COMMONLIB)`\\" || echo "$(COMMONLIB)/")
-YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.7.jar'")
+YUICOMPRESSOR := $(shell type -p yuicompressor || echo "java -jar '$(YUILCOMPRESSORPATH)yuicompressor-2.4.8.jar'")
 COMPRESSOPTIONS := --type js --nomunge --disable-optimizations
 MAKEBOOKMARK := $(LOCALLIB)/process-js2bookmarkURI.js
 VERSION := $(shell head -n 1 $(VERSIONTXT))
