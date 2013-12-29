@@ -1,0 +1,6 @@
+# required for Travis-CI
+# whitelist
+branches:
+  only:
+    - trygrunt
+# on this branch (master) this file does nothing.
