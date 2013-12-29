@@ -1,4 +1,5 @@
 # FYI Bookmarklets
+[![Build Status](https://secure.travis-ci.org/mobilemind/fyi-bookmarklets.png?branch=trygrunt)](http://travis-ci.org/mobilemind/fyi-bookmarklets)
 
 The "fyi" bookmarklets make it easy to select text on a web page and fire off an email
 that quotes the selection and includes the page title and URL.
