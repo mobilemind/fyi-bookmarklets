@@ -1,7 +1,7 @@
 {
   "name": "fyi-bookmarklets",
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
-  "version": "2.5.0",
+  "version": "2.6.1",
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "author": {
     "name": "\"mobilemind\" Tom King",
