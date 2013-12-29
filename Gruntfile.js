@@ -1,11 +1,9 @@
 /*global module:false*/
 module.exports = function(grunt) {
-
+  "use strict";
   // Project configuration.
   grunt.initConfig({
-    meta: {
-      version: '2.5.1'
-    },
+    pkg: grunt.file.readJSON('package.json'),
     uglify: {
       firefox: {
         src: ['src/fyi-firefox.js'],
@@ -43,7 +41,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['grunt.js', 'src/*.js'],
+      files: ['Gruntfile.js', 'src/fyi-*.js'],
       options: {
         strict: false,
         latedef: true,
@@ -94,23 +92,41 @@ module.exports = function(grunt) {
   // Load "js2uri" plugin
   grunt.loadNpmTasks('js2uri');
 
+  // default version to metadata version OR pkg.version if available
+  var fyi_pkgVersion = '';
+  if (undefined !== grunt.config('meta.version')) fyi_pkgVersion = grunt.config('meta.version');
+  else if (undefined !== grunt.config('pkg.version')) fyi_pkgVersion = grunt.config('pkg.version');
+  grunt.log.writeln('\n' + grunt.config('pkg.name') + ' ' + fyi_pkgVersion);
+
   grunt.registerTask('firefox', 'process firefox', function() {
-    grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'firefox-post']);
+    grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'post-firefox']);
   });
 
-  grunt.registerTask('firefox-post', 'post-process firefox', function() {
-    // special post-processing for firefox
+  grunt.registerTask('post-firefox', 'post-process firefox', function() {
     var jsString = grunt.file.read('web/fyi-firefox.js').replace(':%25s?', ':%s?');
+    jsString = jsString.replace(fyi_pkgVersion, fyi_pkgVersion + 'ff');
     grunt.file.write('web/fyi-firefox.js', jsString);
     grunt.log.writeln('web/fyi-firefox.js (' + jsString.length + ' bytes)');
   });
 
   grunt.registerTask('ie', 'process IE', function() {
-    grunt.task.run(['uglify:ie', 'js2uri:ie']);
+    grunt.task.run(['uglify:ie', 'js2uri:ie', 'post-ie']);
+  });
+
+  grunt.registerTask('post-ie', 'post-process IE', function() {
+		var jsString = grunt.file.read('web/fyi-ie.js').replace(fyi_pkgVersion, fyi_pkgVersion + "ie");
+    grunt.file.write('web/fyi-ie.js', jsString);
+    grunt.log.writeln('web/fyi-ie.js (' + jsString.length + ' bytes)');
   });
 
   grunt.registerTask('webkit', 'process WebKit', function() {
-    grunt.task.run(['uglify:webkit', 'js2uri:webkit']);
+    grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'post-webkit']);
+  });
+
+  grunt.registerTask('post-webkit', 'post-process WebKit', function() {
+		var jsString = grunt.file.read('web/fyi-webkit.js').replace(fyi_pkgVersion, fyi_pkgVersion + "wk");
+    grunt.file.write('web/fyi-webkit.js', jsString);
+    grunt.log.writeln('web/fyi-webkit.js (' + jsString.length + ' bytes)');
   });
 
   // Default task
