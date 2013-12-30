@@ -5,15 +5,9 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
-      firefox: {
-        src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js'
-      },
-      ie: {
-        src: ['src/fyi-ie.js'], dest: 'web/fyi-ie.js'
-      },
-      webkit: {
-        src: ['src/fyi-webkit.js'], dest: 'web/fyi-webkit.js'
-      },
+      firefox: { src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js' },
+      ie: { src: ['src/fyi-ie.js'], dest: 'web/fyi-ie.js' },
+      webkit: { src: ['src/fyi-webkit.js'], dest: 'web/fyi-webkit.js' },
       options: {
         compress: {
           sequences: true,
@@ -65,15 +59,9 @@ module.exports = function(grunt) {
         appendVoid: true,
         appendVersion: true
       },
-      firefox: {
-        src: ['web/fyi-firefox.js'], dest: 'web/fyi-firefox.js'
-      },
-      ie: {
-        src: ['web/fyi-ie.js'], dest: 'web/fyi-ie.js'
-      },
-      webkit: {
-        src: ['web/fyi-webkit.js'], dest: 'web/fyi-webkit.js'
-      }
+      firefox: { src: ['web/fyi-firefox.js'], dest: 'web/fyi-firefox.js' },
+      ie: { src: ['web/fyi-ie.js'], dest: 'web/fyi-ie.js' },
+      webkit: { src: ['web/fyi-webkit.js'], dest: 'web/fyi-webkit.js' }
     }
   });
 
