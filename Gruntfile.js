@@ -84,35 +84,23 @@ module.exports = function(grunt) {
 
   grunt.log.writeln('\n' + grunt.config('pkg.name') + ' ' + grunt.config('pkg.version'));
 
-  grunt.registerTask('firefox', 'process firefox', function() {
-    grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'post-firefox']);
+  grunt.registerTask('version-suffix', 'add suffix to version', function(bookmarklet, suffix) {
+    var jsString = grunt.file.read(bookmarklet).replace(':%25s?', ':%s?');
+    jsString = jsString.replace(grunt.config('pkg.version'), grunt.config('pkg.version') + suffix);
+    grunt.file.write(bookmarklet, jsString);
+    grunt.log.writeln(bookmarklet + ' (' + jsString.length + ' bytes)');
   });
 
-  grunt.registerTask('post-firefox', 'post-process firefox', function() {
-    var jsString = grunt.file.read('web/fyi-firefox.js').replace(':%25s?', ':%s?');
-    jsString = jsString.replace(grunt.config('pkg.version'), grunt.config('pkg.version') + 'ff');
-    grunt.file.write('web/fyi-firefox.js', jsString);
-    grunt.log.writeln('web/fyi-firefox.js (' + jsString.length + ' bytes)');
+  grunt.registerTask('firefox', 'process firefox', function() {
+    grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'version-suffix:web/fyi-firefox.js:ff']);
   });
 
   grunt.registerTask('ie', 'process IE', function() {
-    grunt.task.run(['uglify:ie', 'js2uri:ie', 'post-ie']);
-  });
-
-  grunt.registerTask('post-ie', 'post-process IE', function() {
-		var jsString = grunt.file.read('web/fyi-ie.js').replace(grunt.config('pkg.version'), grunt.config('pkg.version') + "ie");
-    grunt.file.write('web/fyi-ie.js', jsString);
-    grunt.log.writeln('web/fyi-ie.js (' + jsString.length + ' bytes)');
+    grunt.task.run(['uglify:ie', 'js2uri:ie', 'version-suffix:web/fyi-ie.js:ie']);
   });
 
   grunt.registerTask('webkit', 'process WebKit', function() {
-    grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'post-webkit']);
-  });
-
-  grunt.registerTask('post-webkit', 'post-process WebKit', function() {
-		var jsString = grunt.file.read('web/fyi-webkit.js').replace(grunt.config('pkg.version'), grunt.config('pkg.version') + "wk");
-    grunt.file.write('web/fyi-webkit.js', jsString);
-    grunt.log.writeln('web/fyi-webkit.js (' + jsString.length + ' bytes)');
+    grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'version-suffix:web/fyi-webkit.js:wk']);
   });
 
   // Default task
