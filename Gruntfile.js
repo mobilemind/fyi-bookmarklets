@@ -4,49 +4,60 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    clean: ['web/'],
     uglify: {
       firefox: { src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js' },
       ie: { src: ['src/fyi-ie.js'], dest: 'web/fyi-ie.js' },
       webkit: { src: ['src/fyi-webkit.js'], dest: 'web/fyi-webkit.js' },
       options: {
         compress: {
-          sequences: true,
-          properties: true,
+          booleans: true,
+          cascade: true,
+          comparisons: true,
+          conditionals: true,
           dead_code: true,
           drop_debugger: true,
-          unsafe: false,
-          conditionals: true,
           evaluate: true,
-          booleans: true,
-          loops: true,
-          unused: true,
           hoist_funs: false,
           hoist_vars: false,
           if_return: true,
           join_vars: true,
-          cascade: true,
-          warnings: true
+          loops: true,
+          properties: true,
+          sequences: true,
+          side_effects: true,
+          unsafe: false,
+          unused: true,
+          warnings: true,
+          global_defs: {}
           },
-        codegen: {quote_keys: false},
+        codegen: {
+          ie_proof: true,
+          max_line_len: 32767,
+          quote_keys: false,
+          semicolons: true,
+          space_colon: false
+        },
         report: 'min'
       }
     },
     jshint: {
       files: ['Gruntfile.js', 'src/fyi-*.js'],
       options: {
-        strict: false,
+        es3: true,
+        freeze: true,
         latedef: true,
+        newcap: true,
         noarg: true,
         noempty: true,
+        nonew: true,
+        strict: true,
         trailing: true,
-        unused: true,
-        sub: true,
         undef: true,
+        unused: true,
         boss: true,
         eqnull: true,
-        evil: true,
         lastsemic: true,
-        multistr: true,
         scripturl: true,
         browser: true
       }
@@ -66,6 +77,7 @@ module.exports = function(grunt) {
   });
 
   // Load plugins
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('js2uri');
@@ -91,7 +103,10 @@ module.exports = function(grunt) {
     grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'version-suffix:web/fyi-webkit.js:wk']);
   });
 
+  // test task
+  grunt.registerTask('test', ['jshint', 'firefox', 'ie', 'webkit']);
+
   // Default task
-  grunt.registerTask('default', ['jshint', 'firefox', 'ie', 'webkit']);
+  grunt.registerTask('default', ['clean', 'jshint', 'firefox', 'ie', 'webkit']);
 
 };
