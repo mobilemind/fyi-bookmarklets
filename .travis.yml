@@ -3,4 +3,5 @@
 branches:
   only:
     - trygrunt
+    - trygulp
 # on this branch (master) this file does nothing.
