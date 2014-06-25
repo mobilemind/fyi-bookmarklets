@@ -1,0 +1,10 @@
+# required for Travis-CI
+branches:
+  except:
+    - gh-pages
+language: node_js
+node_js:
+  - "0.10"
+cache:
+  directories:
+    - node_modules
