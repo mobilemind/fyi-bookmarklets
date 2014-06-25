@@ -19,15 +19,15 @@ or rename the bookmark/favorite. Firefox users may want to set bookmark properti
 **Name** is "fyi email" and the custom **Keyword** is "fyi" for reasons detailed in
 [Usage](#usage).
 
-+ **fyi-webkit** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.5wk'" title="fyi-webkit">fyi</a>
-+ **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.5ff'" title="fyi-firefox">fyi</a>
-+ **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.5ie'" title="fyi-ie">fyi</a>
++ **fyi-webkit** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a>
++ **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1ff'" title="fyi-firefox">fyi</a>
++ **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.1ie'" title="fyi-ie">fyi</a>
 
 ### Mobile browser
 Tap the link below, bookmark the new page and follow the instructions on the page to turn
 the followed bookmark into a JavaScript bookmarklet.
 
-+ **Mobile browser** -- <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.5wk'" title="Setup fyi-webkit">Setup fyi</a>
++ **Mobile browser** -- <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="Setup fyi-webkit">Setup fyi</a>
 
 ## Usage<a id="usage"></a>
 ### General Use
@@ -72,7 +72,7 @@ is as follows: when you return to the browser, click in the address bar and pres
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-16.x, Safari 5.0-6.x, Mobile Safari 4.x-6.x, and IE 8.
+Tested with Firefox 3.x-30.x, Safari 5.0-7.0.x, Mobile Safari 4.x-7.0.x, and IE 8.
 
 ## License
 MIT License - <http://www.opensource.org/licenses/mit-license.php>
@@ -107,3 +107,6 @@ _e.g.,_&nbsp;<code>javascript:… void('<b>1.9</b>')</code> for version 1.9
 Version 2.0 - June 10, 2012
 add code in embedded version number to identify associated browser,
 _e.g.,_&nbsp;<code>javascript:… void'<b>2.0ff</b>'</code> for Firefox fyi-bookmarklet 2.0
+
+Version 2.6.1 - June 10, 2014
+switched build system to grunt; use "semver-like" versioning, update README.md
