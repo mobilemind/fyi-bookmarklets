@@ -17,13 +17,13 @@ PROJURL := https://raw.githubusercontent.com/mobilemind/$(PROJ)/master
 FYIFIREFOXURL := $(PROJURL)/web/$(FYIFIREFOX)
 FYIIEURL := $(PROJURL)/web/$(FYIIE)
 FYIWEBKITURL := $(PROJURL)/web/$(FYIWEBKIT)
-VERSIONURL := $(PROJURL)/src/$(PKGFILE)
+VERSIONURL := $(PROJURL)/$(PKGFILE)
 
 # macros/utils
 FYIFIREFOXJS := $(shell curl -s $(FYIFIREFOXURL))
 FYIIEJS := $(shell curl -s $(FYIIEURL))
 FYIWEBKITJS := $(shell curl -s $(FYIWEBKITURL))
-VERSION := $(shell curl -s $(VERSIONURL) | awk '/"version"/ { gsub(/,|"/, "") ; print $2 }')
+VERSION := $(shell curl -s $(VERSIONURL) | awk '/"version"/ { gsub(/,|"/, "") ; print $$2 }')
 GRECHO := $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
 TIDY := $(shell hash tidy-html5 2>/dev/null && echo 'tidy-html5' || (hash tidy 2>/dev/null && echo 'tidy' || exit 1))
 
@@ -50,14 +50,13 @@ update:
 # deploy
 .PHONY: deploy
 deploy: default
-  @echo "VERSION: $(VERSION)"
 	@printf "make: \tDeploy: Checking git diff --name-only as trigger to update gh-pages\n"
 ifeq "$(shell git diff --name-only)" ''
 	@$(GRECHO) "\nmake: \tDeploy: Done. No changed files.\n\n"
 else
-	@echo "git commit -a -m 'revised HTML to v$(VERSION)g'"
-	@echo "git tag $(VERSION)g"
-	@echo "git push --tags origin gh-pages"
+	git commit -a -m 'revised HTML to v$(VERSION)g'
+	git tag $(VERSION)g
+	git push --tags origin gh-pages
 	@$(GRECHO) "\nmake: \tDeploy: Done. Updated gh-pages to v$(VERSION)g. To return to master do:\n\tgit checkout master && make clean\n\n"
 endif
 
