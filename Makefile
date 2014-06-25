@@ -10,20 +10,20 @@ INDEXFILE := index.html
 FYIFIREFOX := fyi-firefox.js
 FYIIE := fyi-ie.js
 FYIWEBKIT := fyi-webkit.js
-VERSIONTXT := VERSION.txt
+PKGFILE := package.json
 
 # urls
-PROJURL := https://raw.github.com/mobilemind/$(PROJ)/master/
+PROJURL := https://raw.githubusercontent.com/mobilemind/$(PROJ)/master
 FYIFIREFOXURL := $(PROJURL)/web/$(FYIFIREFOX)
 FYIIEURL := $(PROJURL)/web/$(FYIIE)
 FYIWEBKITURL := $(PROJURL)/web/$(FYIWEBKIT)
-VERSIONURL := $(PROJURL)/src/$(VERSIONTXT)
+VERSIONURL := $(PROJURL)/src/$(PKGFILE)
 
 # macros/utils
 FYIFIREFOXJS := $(shell curl -s $(FYIFIREFOXURL))
 FYIIEJS := $(shell curl -s $(FYIIEURL))
 FYIWEBKITJS := $(shell curl -s $(FYIWEBKITURL))
-VERSION := $(shell curl -s $(VERSIONURL) | head -n 1)
+VERSION := $(shell curl -s $(VERSIONURL) | awk '/"version"/ { gsub(/,|"/, "") ; print $2 }')
 GRECHO := $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
 TIDY := $(shell hash tidy-html5 2>/dev/null && echo 'tidy-html5' || (hash tidy 2>/dev/null && echo 'tidy' || exit 1))
 
@@ -38,7 +38,7 @@ validate: update
 
 .PHONY: update
 update:
-	@printf "\n\t$(INDEXFILE)\n"
+	@printf "\nRefresh $(INDEXFILE)\n"
 	@echo 'Update Firefox bookmark from GitHub'
 	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-firefox\")#$(FYIFIREFOXJS)#g;" $(INDEXFILE)
 	@echo 'Update IE bookmark from GitHub'
