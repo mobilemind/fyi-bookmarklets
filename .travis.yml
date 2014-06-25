@@ -3,5 +3,6 @@
 branches:
   only:
     - trygrunt
-    - trygulp
-# on this branch (master) this file does nothing.
+language: node_js
+node_js:
+  - "0.10"
