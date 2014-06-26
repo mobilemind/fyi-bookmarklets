@@ -33,13 +33,11 @@
   <a href="http://github.com/mobilemind/fyi-bookmarklets"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
-
-    <h1><a href="http://github.com/mobilemind/fyi-bookmarklets">fyi-bookmarklets</a>
-      <span class="small" style="color: #333">by
-      	<a href="http://github.com/mobilemind">mobilemind</a>
-      </span>
-    </h1>
-
+	<h1 id="fyi-bookmarklets">
+    <a title="fyi-bookmarklets repo on Github.com" href="http://github.com/mobilemind/fyi-bookmarklets">fyi-bookmarklets</a>
+    &nbsp;<a title="fyi-bookmarklets build status on travis-ci.org" href="http://travis-ci.org/mobilemind/fyi-bookmarklets">
+    <img alt="Build status icon" src="https://secure.travis-ci.org/mobilemind/fyi-bookmarklets.png?branch=master"></a>
+	</h1>
     <div class="description">
       bookmarklets to easily create an email from the browser with the current page title,
       url and any selected text in the new email
@@ -53,9 +51,9 @@ that quotes the selection and includes the page title and URL.</p>
 <p>Available versions include:</p>
 
 <ul>
-<li><strong>fyi-webkit</strong> - optimized for iOS (iPhone/iPad/iPod) and Chrome</li>
-<li><strong>fyi-firefox</strong> - optimized for Firefox to support address bar with custom keyword <code>%s</code> argument</li>
-<li><strong>fyi-ie</strong> - works with Internet Explorer and its (odd-to-me) DOM selected text methods</li>
+	<li><strong>fyi-webkit</strong> - optimized for iOS (iPhone/iPad/iPod) and Chrome</li>
+	<li><strong>fyi-firefox</strong> - optimized for Firefox to support address bar with custom keyword <code>%s</code> argument</li>
+	<li><strong>fyi-ie</strong> - works with Internet Explorer and its (odd-to-me) DOM selected text methods</li>
 </ul>
 
 <h2>Install</h2>
@@ -66,9 +64,9 @@ properties so the Name is "fyi email" the custom Keyword is "fyi" for reasons de
 <a href="#usage">Usage</a> below.</p>
 
 <ul>
-<li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a></li>
-<li><strong>fyi-firefox</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%s?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1ff'" title="fyi-firefox">fyi</a></li>
-<li><strong>fyi-ie</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.1ie'" title="fyi-ie">fyi</a></li>
+	<li><strong>fyi-webkit</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a></li>
+	<li><strong>fyi-firefox</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%s?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1ff'" title="fyi-firefox">fyi</a></li>
+	<li><strong>fyi-ie</strong> - <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.1ie'" title="fyi-ie">fyi</a></li>
 </ul>
 
 <p><strong>Mobile browser</strong> <br />
