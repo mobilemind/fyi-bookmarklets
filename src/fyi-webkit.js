@@ -1,4 +1,4 @@
-//  webkit version skips substitution string and void(), but other code is shared with firefox
+//  webkit version skips substitution string, but other code is shared with firefox
 var r = '%0A',
 	t = encodeURIComponent(document.title),
 	g = window.getSelection();
