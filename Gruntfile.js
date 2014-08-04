@@ -92,21 +92,24 @@ module.exports = function(grunt) {
 
   grunt.registerTask('version-suffix', 'add suffix to version', function(bookmarklet, suffix) {
     var jsString = grunt.file.read(bookmarklet).replace(':%25s?', ':%s?');
+    if ('' === jsString) grunt.fail.fatal("Can't read from " + bookmarklet);
     jsString = jsString.replace(grunt.config('pkg.version'), grunt.config('pkg.version') + suffix);
-    grunt.file.write(bookmarklet, jsString);
-    grunt.log.writeln(bookmarklet + ' (' + jsString.length + ' bytes)');
+    if (grunt.file.write(bookmarklet, jsString)) {
+      return grunt.log.writeln(bookmarklet + ' (' + jsString.length + ' bytes)');
+    }
+    else grunt.fail.fatal("Can't write to " + bookmarklet);
   });
 
   grunt.registerTask('firefox', 'process firefox', function() {
-    grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'version-suffix:web/fyi-firefox.js:ff']);
+    return grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'version-suffix:web/fyi-firefox.js:ff']);
   });
 
   grunt.registerTask('ie', 'process IE', function() {
-    grunt.task.run(['uglify:ie', 'js2uri:ie', 'version-suffix:web/fyi-ie.js:ie']);
+    return grunt.task.run(['uglify:ie', 'js2uri:ie', 'version-suffix:web/fyi-ie.js:ie']);
   });
 
   grunt.registerTask('webkit', 'process WebKit', function() {
-    grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'version-suffix:web/fyi-webkit.js:wk']);
+    return grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'version-suffix:web/fyi-webkit.js:wk']);
   });
 
   // test task
