@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('version-suffix', 'add suffix to version', function(bookmarklet, suffix) {
     var jsString = grunt.file.read(bookmarklet).replace(':%25s?', ':%s?');
-    if ('' === jsString) grunt.fail.fatal("Can't read from " + bookmarklet);
+    if (!jsString || 0 === jsString.length) grunt.fail.fatal("Can't read from " + bookmarklet);
     jsString = jsString.replace(grunt.config('pkg.version'), grunt.config('pkg.version') + suffix);
     if (grunt.file.write(bookmarklet, jsString)) {
       return grunt.log.writeln(bookmarklet + ' (' + jsString.length + ' bytes)');
