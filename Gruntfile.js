@@ -6,9 +6,6 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     clean: ['web/'],
     uglify: {
-      firefox: { src: ['src/fyi-firefox.js'], dest: 'web/fyi-firefox.js' },
-      ie: { src: ['src/fyi-ie.js'], dest: 'web/fyi-ie.js' },
-      webkit: { src: ['src/fyi-webkit.js'], dest: 'web/fyi-webkit.js' },
       options: {
         stats: true,
         mangle: true,
@@ -45,7 +42,13 @@ module.exports = function(grunt) {
           semicolons: true
         },
         report: 'min'
-      }
+      },
+      sourceFiles: { files: [{
+        expand: true,
+        cwd: 'src',
+        src: '*.js',
+        dest: 'web'
+      }]}
     },
     jshint: {
       files: ['Gruntfile.js', 'src/fyi-*.js'],
@@ -72,13 +75,17 @@ module.exports = function(grunt) {
       options: {
         useNewlineEOL: true,
         useSingleQuote: true,
-        noLastSemicolon: true,
         appendVoid: true,
-        appendVersion: true
-      },
-      firefox: { src: ['web/fyi-firefox.js'], dest: 'web/fyi-firefox.js' },
-      ie: { src: ['web/fyi-ie.js'], dest: 'web/fyi-ie.js' },
-      webkit: { src: ['web/fyi-webkit.js'], dest: 'web/fyi-webkit.js' }
+        customVersion: '',
+        appendVersion: true,
+        noLastSemicolon: true,
+        forceLastSemicolon: false
+      }
+    },
+    addsuffix: {
+      ff: 'fyi-firefox.js',
+      ie: 'fyi-ie.js',
+      wk: 'fyi-webkit.js'
     }
   });
 
@@ -90,32 +97,21 @@ module.exports = function(grunt) {
 
   grunt.log.writeln('\n' + grunt.config('pkg.name') + ' ' + grunt.config('pkg.version'));
 
-  grunt.registerTask('version-suffix', 'add suffix to version', function(bookmarklet, suffix) {
-    var jsString = grunt.file.read(bookmarklet).replace(':%25s?', ':%s?');
-    if (!jsString || 0 === jsString.length) grunt.fail.fatal("Can't read from " + bookmarklet);
-    jsString = jsString.replace(grunt.config('pkg.version'), grunt.config('pkg.version') + suffix);
-    if (grunt.file.write(bookmarklet, jsString)) {
-      return grunt.log.writeln(bookmarklet + ' (' + jsString.length + ' bytes)');
-    }
-    else grunt.fail.fatal("Can't write to " + bookmarklet);
-  });
-
-  grunt.registerTask('firefox', 'process firefox', function() {
-    return grunt.task.run(['uglify:firefox', 'js2uri:firefox', 'version-suffix:web/fyi-firefox.js:ff']);
-  });
-
-  grunt.registerTask('ie', 'process IE', function() {
-    return grunt.task.run(['uglify:ie', 'js2uri:ie', 'version-suffix:web/fyi-ie.js:ie']);
-  });
-
-  grunt.registerTask('webkit', 'process WebKit', function() {
-    return grunt.task.run(['uglify:webkit', 'js2uri:webkit', 'version-suffix:web/fyi-webkit.js:wk']);
+  grunt.registerMultiTask('addsuffix', 'add suffix to version', function() {
+    grunt.config.set('js2uri.options.customVersion', grunt.config('pkg.version') + this.target);
+    grunt.config.set('js2uri.files.src', [ 'web/' + this.data ]);
+    grunt.config.set('js2uri.files.dest', 'web/' + this.data );
+    if (! grunt.task.run([ "js2uri" ]) ) grunt.fail.fatal("Failed to js2uri() web/" + this.data);
+    var jsString = grunt.file.read('web/'+this.data).replace(':%25s?', ':%s?');
+    if (!jsString || 0 === jsString.length) grunt.fail.fatal("Can't read from web/" + this.data);
+    if (!grunt.file.write('web/'+this.data, jsString)) grunt.fail.fatal("Can't write to web/" + this.data);
+    return grunt.log.writeln(this.data + ' (' + jsString.length + ' bytes)');
   });
 
   // test task
-  grunt.registerTask('test', ['jshint', 'firefox', 'ie', 'webkit']);
+  grunt.registerTask('test', ['jshint', 'uglify:sourceFiles', 'addsuffix']);
 
   // Default task
-  grunt.registerTask('default', ['clean', 'jshint', 'firefox', 'ie', 'webkit']);
+  grunt.registerTask('default', ['clean', 'test']);
 
 };
