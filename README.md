@@ -72,7 +72,7 @@ is as follows: when you return to the browser, click in the address bar and pres
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-30.x, Safari 5.0-7.0.x, Mobile Safari 4.x-7.0.x, and IE 8.
+Tested with Firefox 3.x-35.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x, and IE 8.
 
 ## License
 MIT License - <http://www.opensource.org/licenses/mit-license.php>
@@ -110,3 +110,6 @@ _e.g.,_&nbsp;<code>javascript:… void'<b>2.0ff</b>'</code> for Firefox fyi-book
 
 Version 2.6.1 - June 10, 2014
 switched build system to grunt; use "semver-like" versioning, update README.md
+
+Version 2.6.2 - January 16, 2015
+update to grunt-contrib-uglify 0.7.x; rebuild, update README.md
