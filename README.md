@@ -72,7 +72,7 @@ is as follows: when you return to the browser, click in the address bar and pres
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-35.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x, and IE 8.
+Tested with Firefox 3.x-36.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x, and IE 8.
 
 ## License
 MIT License - <http://www.opensource.org/licenses/mit-license.php>
@@ -113,3 +113,9 @@ switched build system to grunt; use "semver-like" versioning, update README.md
 
 Version 2.6.2 - January 16, 2015
 update to grunt-contrib-uglify 0.7.x; rebuild, update README.md
+
+Version 2.6.4 - March 28, 2015
+update to grunt-contrib-uglify 0.8.x; better specify node & grunt versions; rebuild, update README.md
+
+Version 2.6.5 - April 4, 2015
+work with `node` engine 0.10.x - 0.12.x and `grunt-cli` > 0.1.0,; use `grunt-contrib-uglify` 0.8.x
