@@ -117,5 +117,5 @@ update to grunt-contrib-uglify 0.7.x; rebuild, update README.md
 Version 2.6.4 - March 28, 2015
 update to grunt-contrib-uglify 0.8.x; better specify node & grunt versions; rebuild, update README.md
 
-Version 2.6.5 - April 4, 2015
+Version 2.6.5 - April 26, 2015
 work with `node` engine 0.10.x - 0.12.x and `grunt-cli` > 0.1.0,; use `grunt-contrib-uglify` 0.8.x

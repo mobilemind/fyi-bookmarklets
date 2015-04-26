@@ -1,1 +1,1 @@
-javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&body='+t+r+location.href+r+(g&&g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.4ie'
+javascript:var%20a='%250A',c=encodeURIComponent(document.title),b=document.selection;location.href='mailto:?subject=fyi:%20'+c+'&body='+c+a+location.href+a+(b&&b.createRange().text?'---'+a+encodeURIComponent(b.createRange().text)+a+a:a);void'2.6.5ie'

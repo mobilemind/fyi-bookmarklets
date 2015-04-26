@@ -8,7 +8,11 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         stats: true,
-        mangle: true,
+        maxLineLen: 32766,
+        mangle: {
+          sort: true,
+          toplevel: true
+        },
         compress: {
           sequences: true,
           properties: true,
@@ -27,11 +31,11 @@ module.exports = function(grunt) {
           if_return: true,
           join_vars: true,
           cascade: true,
+          warnings: true,
           negate_iife: true,
           side_effects: true,
-          warnings: true,
           global_defs: {}
-          },
+        },
         codegen: {
           quote_keys: false,
           space_colon: false,
