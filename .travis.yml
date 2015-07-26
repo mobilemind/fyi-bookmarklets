@@ -2,6 +2,7 @@
 branches:
   except:
     - gh-pages
+sudo: false
 language: node_js
 node_js:
   - "0.12"
