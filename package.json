@@ -30,7 +30,7 @@
  "dependencies": {
   },
   "scripts": {
-    "preinstall": "npm install -g grunt-cli"
+    "preinstall": "npm install -g grunt-cli",
     "test": "grunt test"
   },
  "keywords": [
