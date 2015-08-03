@@ -72,10 +72,10 @@ is as follows: when you return to the browser, click in the address bar and pres
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-38.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x, and IE 8.
+Tested with Firefox 3.x-39.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x, and IE 8.
 
 ## License
-MIT License - <http://www.opensource.org/licenses/mit-license.php>
+MIT License - <http://opensource.org/licenses/mit-license.php>
 
 ## Source Code Notes
 Source code is available as text files for each bookmarklet. The JavaScript was written to
