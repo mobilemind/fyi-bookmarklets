@@ -1,1 +1,1 @@
-javascript:var%20a='%250A',b=encodeURIComponent(document.title),c=window.getSelection();location.href='mailto:%25s?subject=fyi:%20'+b+'&body='+b+a+location.href+a+(c?'---'+a+encodeURIComponent(c)+a+a:a);void'2.6.5ff'
+javascript:var%20e='user@domain.tld',a='%250A',c=encodeURIComponent(document.title),d=window.getSelection(),b='%s';b.length%3C3&&(b=window.prompt('Send%20link%20to%20email%20address(es):',e)),''!==b&&(location.href='mailto:'+b+'?subject=fyi:%20'+c+'&body='+c+a+location.href+a+(d?'---'+a+encodeURIComponent(d)+a+a:a));void'2.6.5ff'
