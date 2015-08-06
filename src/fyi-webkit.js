@@ -1,5 +1,7 @@
 //  webkit version skips substitution string, but other code is shared with firefox
-var r = '%0A',
-	t = encodeURIComponent(document.title),
-	g = window.getSelection();
-	location.href = 'mailto:?subject=fyi: ' + t + '&body=' + t + r + location.href + r + (g ? '---' + r + encodeURIComponent(g) + r  + r : r);
+var defaultEmail = 'user@domain.tld',
+	returnChar = '%0A',
+	pageTitle = encodeURIComponent(document.title),
+	selectedText = window.getSelection(),
+	emailAddress = window.prompt('Send link to email address(es):', defaultEmail);
+	if ('' !== emailAddress) location.href = 'mailto:' + emailAddress + '?subject=fyi: ' + pageTitle + '&body=' + pageTitle + returnChar + location.href + returnChar + (selectedText ? '---' + returnChar + encodeURIComponent(selectedText) + returnChar + returnChar : returnChar);

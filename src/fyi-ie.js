@@ -1,5 +1,7 @@
 // ie version uses weird MS createRange() instead of standard getSelection()
-var r = '%0A',
-	t = encodeURIComponent(document.title),
-	g = document.selection;
-	location.href = 'mailto:?subject=fyi: ' + t + '&body=' + t + r + location.href + r + (g && g.createRange().text ? '---' + r + encodeURIComponent(g.createRange().text) + r  + r : r);
+var defaultEmail = 'user@domain.tld',
+	returnChar = '%0A',
+	pageTitle = encodeURIComponent(document.title),
+	selectedText = document.selection,
+	emailAddress = window.prompt('Send link to email address(es):', defaultEmail);
+	if ('' !== emailAddress) location.href = 'mailto:' + emailAddress + '?subject=fyi: ' + pageTitle + '&body=' + pageTitle + returnChar + location.href + returnChar + (selectedText && selectedText.createRange().text ? '---' + returnChar + encodeURIComponent(selectedText.createRange().text) + returnChar  + returnChar : returnChar);
