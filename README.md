@@ -82,8 +82,8 @@ Historical use of `fyi` with _Custom Keywords_ is included below.
 
 ## Requirements
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-39.x, Safari 5.0-8.0.x, Mobile Safari 4.x-8.0.x.
-Absolutely clueless if Internet Explorer version still works; I stopped using Windows.
+Tested with Firefox 3.x-41.x, Safari 5.0-9.x, Mobile Safari 4.x-9.x.
+Delightfully clueless if Internet Explorer version still works; I stopped using Windows.
 
 ## License
 MIT License - <http://opensource.org/licenses/mit-license.php>
@@ -101,6 +101,9 @@ number is embedded in the `void'code'` call at the end of the code in version 1.
 
 ## Version Notes
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
+
+Version 2.7.0 - October 29, 2015 -
+no code changes; just updates to README.md, build and integration testing
 
 Version 2.7.0 - August 5, 2015 -
 streamline to node 0.12.x; rewrite for all platforms to prompt for email address(es)
