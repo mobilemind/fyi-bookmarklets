@@ -102,6 +102,9 @@ number is embedded in the `void'code'` call at the end of the code in version 1.
 ## Version Notes
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
+Version 2.7.1 - March 11, 2015 -
+updates to README.md, and build/integration testing using contemporary versions of node only (4.4 & 5.8)
+
 Version 2.7.0 - October 29, 2015 -
 no code changes; just updates to README.md, build and integration testing
 
