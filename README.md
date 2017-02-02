@@ -23,7 +23,7 @@ methods
 Drag the desired bookmark to the bookmark bar or add bookmark/favorite. Optionally
 edit or rename the bookmark/favorite. Firefox users may want to set bookmark
 properties so the **Name** is "fyi email" and the custom **Keyword** is "fyi"
-for reasons detailed in [Usage](#usage).
+for reasons detailed in [Usage](#Usage).
 
 + `fyi-webkit` -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a>
 
@@ -38,7 +38,7 @@ page to turn the followed bookmark into a JavaScript bookmarklet.
 
 + **Mobile browser** -- <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="Setup fyi-webkit">Setup fyi</a>
 
-## Usage<a id="usage"></a>
+## Usage
 
 ### General Use
 
@@ -169,8 +169,7 @@ Version 1.1 ~ April 15, 2011 -
 Optimized for shorter emails if no text was selected.
 Adds version for IE to accommodate IE DOM method weirdness.
 
-Version 1.0 ~ April 5, 2011 -
-First release
+Version 1.0 ~ April 5, 2011 - First release
 
 <!-- Reference URLs -->
 [built-with-grunt-img]: https://cdn.gruntjs.com/builtwith.png
