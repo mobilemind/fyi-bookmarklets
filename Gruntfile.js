@@ -110,14 +110,20 @@ module.exports = function(grunt) {
     grunt.config.set('js2uri.options.customVersion', grunt.config('pkg.version') + this.target);
     grunt.config.set('js2uri.files.src', [ 'web/' + this.data ]);
     grunt.config.set('js2uri.files.dest', 'web/' + this.data );
-    if (! grunt.task.run([ "js2uri" ]) ) grunt.fail.fatal("Failed to js2uri() web/" + this.data);
+    if (! grunt.task.run([ "js2uri" ]) ) {
+    	grunt.fail.fatal("Failed to js2uri() web/" + this.data);
+    }
     return grunt.log.writeln(this.data + ' (' + grunt.file.read('web/'+this.data).length + ' bytes)');
   });
 
   grunt.registerTask('fixfirefoxjs', 'fix %s encoding in firefox script', function() {
     var foxjs = 'web/fyi-firefox.js', jsString = grunt.file.read(foxjs).replace(/%25s/g, '%s');
-    if (!jsString || 0 === jsString.length) grunt.fail.fatal("Can't read from " + foxjs);
-    if (!grunt.file.write(foxjs, jsString)) grunt.fail.fatal("Can't write to " + foxjs);
+    if (!jsString || 0 === jsString.length) {
+    	grunt.fail.fatal("Can't read from " + foxjs);
+    }
+    if (!grunt.file.write(foxjs, jsString)) {
+    	grunt.fail.fatal("Can't write to " + foxjs);
+    }
     return grunt.log.writeln(foxjs + ' (' + jsString.length + ' bytes)');
 	});
 
