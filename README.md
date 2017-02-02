@@ -1,57 +1,73 @@
 # FYI Bookmarklets
 
-The "fyi" bookmarklets make it easy to select text on a web page and fire off an email
-that quotes the selection and includes the page title and URL.
+The "fyi" bookmarklets make it easy to select text on a web page and fire off
+an email that quotes the selection and includes the page title and URL.
 
-All of that is done without you doing copy-and-paste work or back-and-forth app switching.
+All of that is done without you doing copy-and-paste work or back-and-forth app
+switching.
 
 Available versions include:
 
-+ **fyi-webkit** -- optimized for iOS (iPhone/iPad/iPod) and Chrome
-+ **fyi-firefox** -- optimized for Firefox to support address bar with custom keyword %s argument
-+ **fyi-ie** -- works with Internet Explorer and its (odd-to-me) DOM selected text methods
++ `fyi-webkit` -- optimized for iOS (iPhone/iPad/iPod) and Chrome
+
++ `fyi-firefox` -- optimized for Firefox to support address bar with custom keyword
+%s argument
+
++ `fyi-ie` -- works with Internet Explorer and its (odd-to-me) DOM selected text
+methods
 
 ## Install
-### Desktop browser
-Drag the desired bookmark to the bookmark bar or add bookmark/favorite. Optionally edit
-or rename the bookmark/favorite. Firefox users may want to set bookmark properties so the
-**Name** is "fyi email" and the custom **Keyword** is "fyi" for reasons detailed in
-[Usage](#usage).
 
-+ **fyi-webkit** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a>
-+ **fyi-firefox** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1ff'" title="fyi-firefox">fyi</a>
-+ **fyi-ie** -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.1ie'" title="fyi-ie">fyi</a>
+### Desktop browser
+
+Drag the desired bookmark to the bookmark bar or add bookmark/favorite. Optionally
+edit or rename the bookmark/favorite. Firefox users may want to set bookmark
+properties so the **Name** is "fyi email" and the custom **Keyword** is "fyi"
+for reasons detailed in [Usage](#usage).
+
++ `fyi-webkit` -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="fyi-webkit">fyi</a>
+
++ `fyi-firefox` -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:'+(String('%s')==='%25s'?'%20':'%s')+'?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1ff'" title="fyi-firefox">fyi</a>
+
++ `fyi-ie` -- <a href="javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=document.selection;location.href='mailto:?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g&amp;&amp;g.createRange().text?'---'+r+encodeURIComponent(g.createRange().text)+r+r:r);void'2.6.1ie'" title="fyi-ie">fyi</a>
 
 ### Mobile browser
-Tap the link below, bookmark the new page and follow the instructions on the page to turn
-the followed bookmark into a JavaScript bookmarklet.
+
+Tap the link below, bookmark the new page and follow the instructions on the
+page to turn the followed bookmark into a JavaScript bookmarklet.
 
 + **Mobile browser** -- <a href="http://mmind.me/_?javascript:var%20r='%250A',t=encodeURIComponent(document.title),g=window.getSelection();location.href='mailto:%20?subject=fyi:%20'+t+'&amp;body='+t+r+location.href+r+(g?'---'+r+encodeURIComponent(g)+r+r:r);void'2.6.1wk'" title="Setup fyi-webkit">Setup fyi</a>
 
 ## Usage<a id="usage"></a>
+
 ### General Use
+
 Visit a web page. Activate the fyi bookmarklet (click it on bookmark bar or use
 the Bookmarks/Favorites menu).
 
 The fyi bookmarklet will open a new email with the page title in the subject line,
-the page title repeated again in the body, along with the selected text (if any text
-was selected), and the URL of the original page.
+the page title repeated again in the body, along with the selected text (if any
+text was selected), and the URL of the original page.
 
 ### Quick Use
 
 #### PREFERRED TECHNIQUE
+
 The preferred technique is now to use a bookmark (favorites) button for `fyi`.
-The bookmark will display a default email address that you can replace. Edit the default
-address found at the beginning of the bookmarklet _or_ edit the source and rebuild it.
+The bookmark will display a default email address that you can replace. Edit
+the default address found at the beginning of the bookmarklet _or_ edit the
+source and rebuild it.
 
 #### Firefox Custom Keywords
-With **[Firefox Custom Keywords][firefox-keywords-url]** you _were_ able to do something
-like:
+
+With **[Firefox Custom Keywords][firefox-keywords-url]** you _were_ able to do
+something like:
 
 _Cmd-L/Ctr-L_ `fyi user@domain.com` _Enter_
 
-**NOTE**: Custom Keywords is a bit flakey as of 2014 due to Firefox security precautions for
-redirects-- it seems to consider opening a `mailto:` from the address bar to be a redirect.
+**NOTE**: Custom Keywords is a bit flakey as of 2014 due to Firefox security
+precautions for redirects-- it seems to consider opening a `mailto:` from the
+address bar to be a redirect.
 
 Historical use of `fyi` with _Custom Keywords_ is included below.
 
@@ -71,24 +87,28 @@ Historical use of `fyi` with _Custom Keywords_ is included below.
 > <code><b>fyi</b> [<i>emailAddress(es)</i>]</code>
 >
 > The optional argument is one or more email addresses, separated by semicolons.
-> The email address(es) will be put in the TO field of the new email. Outlook users
-> can include multiple recpients using syntax like:
+> The email address(es) will be put in the TO field of the new email. Outlook
+> users can include multiple recpients using syntax like:
 >
 > <code><b>fyi</b> <i>Lastname1,Firstname1<b>;</b>Lastname2,Firstname2<b>;</b>&hellip;</i></code>
 >
-> There is a **Known Issue** with using Custom Keywords--- the current page URL appears
-> properly in the email, but is over-written in the browser's address bar. The work-around
-> is as follows: when you return to the browser, click in the address bar and press `Esc`.
+> There is a **Known Issue** with using Custom Keywords--- the current page URL
+> appears properly in the email, but is over-written in the browser's address
+> bar. The work-around is as follows: when you return to the browser, click in
+> the address bar and press `Esc`.
 
 ## Requirements
+
 Web browser that supports `javascript:…` bookmarks/favorites.
 Tested with Firefox 3.x-41.x, Safari 5.0-9.x, Mobile Safari 4.x-9.x.
 Delightfully clueless if Internet Explorer version still works; I stopped using Windows.
 
 ## License
+
 MIT License - <http://opensource.org/licenses/mit-license.php>
 
 ## Source Code Notes
+
 [![Built with Grunt][built-with-grunt-img]][built-with-grunt-url]
 [![Tag][tag-image]][tag-url]
 [![Build Status][build-image]][build-url]
@@ -100,13 +120,15 @@ be as small as practical when URL-encoded. Sorry if it isn't easy to read. The v
 number is embedded in the `void'code'` call at the end of the code in version 1.9 and later.
 
 ## Version Notes
+
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
 Version 2.7.2 - March 17, 2016 -
 update to current LTS release of node 5.9
 
 Version 2.7.1 - March 11, 2016 -
-updates to README.md, and build/integration testing using contemporary versions of node only (4.4 & 5.8)
+updates to README.md, and build/integration testing using contemporary versions
+of node only (4.4 & 5.8)
 
 Version 2.7.0 - October 29, 2015 -
 no code changes; just updates to README.md, build and integration testing
@@ -115,31 +137,33 @@ Version 2.7.0 - August 5, 2015 -
 streamline to node 0.12.x; rewrite for all platforms to prompt for email address(es)
 
 Version 2.6.5 - April 26, 2015 -
-work with `node` engine 0.10.x - 0.12.x and `grunt-cli` > 0.1.0,; use `grunt-contrib-uglify` 0.8.x
+work with `node` engine 0.10.x - 0.12.x and `grunt-cli` > 0.1.0,; use
+`grunt-contrib-uglify` 0.8.x
 
 Version 2.6.4 - March 28, 2015 -
-update to grunt-contrib-uglify 0.8.x; better specify node & grunt versions; rebuild, update README.md
+update to `grunt-contrib-uglify` 0.8.x; better specify node & grunt versions;
+rebuild, update README.md
 
 Version 2.6.2 - January 16, 2015 -
-update to grunt-contrib-uglify 0.7.x; rebuild, update README.md
+update to `grunt-contrib-uglify` 0.7.x; rebuild, update README.md
 
 Version 2.6.1 - June 10, 2014 -
 switched build system to grunt; use "semver-like" versioning, update README.md
 
 Version 2.0 - June 10, 2012 -
 add code in embedded version number to identify associated browser,
-_e.g.,_&nbsp;<code>javascript:… void'<b>2.0ff</b>'</code> for Firefox fyi-bookmarklet 2.0
+_e.g.,_ `javascript:… void('2.0ff')` for Firefox fyi-bookmarklet 2.0
 
 Version 1.9 ~ January 3, 2012 -
 Streamlined message body of resulting email
 Embed version number of bookmarklet in bookmarklet itself,
-_e.g.,_&nbsp;<code>javascript:… void('<b>1.9</b>')</code> for version 1.9
+_e.g.,_ `javascript:… void('>1.9')` for version 1.9
 
 Versions 1.2-1.8 ~ April 2011 - December 2011 -
 Numerous encoding tweaks.
 Attempts to make each bookmarklet even 1 character shorter.
-Makefile automation for use of HTML Tidy validation, jsl (JavaScript Lint) check, and
-yuicompressor.
+Makefile automation for use of HTML Tidy validation, jsl (JavaScript Lint) check,
+and yuicompressor.
 
 Version 1.1 ~ April 15, 2011 -
 Optimized for shorter emails if no text was selected.
