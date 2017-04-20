@@ -4,9 +4,10 @@ branches:
 sudo: false
 language: node_js
 node_js:
-- '5.9'
+- '6'
+- '7'
 before_script:
-- npm install -g npm@latest && npm install -g grunt-cli
+- npm install -g grunt-cli
 notifications:
   slack:
     secure: LkCy1eGNvZ6hLFTk5m/Tw0LFRgFYBHEieDaOlWAjaU4gi2qIRcPFwubHH/Lo/hFTr+UY0ietgGvr7XP82UKa+1KTX7802YjhKDwhFUf9jHYeJS9GghT8FNBJIiU+4zDbDT7k7qhrGsEWxW3gnhmdvUm25yuk2IKFyZnYC3IbKmI=
