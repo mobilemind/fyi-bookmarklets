@@ -42,8 +42,8 @@ test:
 	@echo '  Validating that "$(INDEXFILE)" and "fyi.ico" exist'
 	@[ -s "$(INDEXFILE)" ]
 	@[ -s 'fyi.ico' ]
-	@echo '  Validating version in "index.html" against GitHub'
-	@[ " v$(VERSION) " = "$(shell grep -Eo ' v\d+\.\d+\.\d+ ' "$(INDEXFILE)")" ]
+	@echo '  Validating "Available version ..." in "index.html" against GitHub "v$(VERSION)"'
+	@perl -e 'while(<>){exit(0)if(/ v$(subst .,\.,$(VERSION)) /o);};exit(1);' "$(INDEXFILE)"
 	@echo 'OK.'
 	@echo
 
