@@ -7,6 +7,7 @@ sudo: false
 language: perl
 perl:
 - "5.18"
+install: true
 notifications:
   slack:
     secure: LkCy1eGNvZ6hLFTk5m/Tw0LFRgFYBHEieDaOlWAjaU4gi2qIRcPFwubHH/Lo/hFTr+UY0ietgGvr7XP82UKa+1KTX7802YjhKDwhFUf9jHYeJS9GghT8FNBJIiU+4zDbDT7k7qhrGsEWxW3gnhmdvUm25yuk2IKFyZnYC3IbKmI=
