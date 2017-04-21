@@ -1,4 +1,4 @@
-#!/usr/bin/make -f
+#!/usr/bin/env make
 
 ##
 # FYI-BOOKMARKLETS GH-PAGES
@@ -28,7 +28,7 @@ GRECHO := $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
 TIDY := $(shell hash tidy-html5 2>/dev/null && echo 'tidy-html5' || (hash tidy 2>/dev/null && echo 'tidy' || exit 1))
 
 
-default: validate
+default: validate test
 	@printf "make: Done. Remember to- make deploy.\n\n"
 
 .PHONY:	validate
@@ -36,16 +36,29 @@ validate: update
 	@echo 'Validate $(INDEXFILE)'
 	@$(TIDY) -eq $(INDEXFILE) || [ $$? -lt 2 ]
 
+# test
+.PHONY: test
+test:
+	@echo '  Validating that "$(INDEXFILE)" and "fyi.ico" exist'
+	@[ -s "$(INDEXFILE)" ]
+	@[ -s 'fyi.ico' ]
+	@echo '  Validating version in "index.html" against GitHub'
+	@[ " v$(VERSION) " = "$(shell grep -Eo ' v\d+\.\d+\.\d+ ' "$(INDEXFILE)")" ]
+	@echo 'OK.'
+	@echo
+
 .PHONY: update
 update:
 	@printf "\nRefresh $(INDEXFILE)\n"
 	@echo 'Update Firefox bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-firefox\")#$(FYIFIREFOXJS)#g;" $(INDEXFILE)
+	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-firefox\")#$(FYIFIREFOXJS)#g;" "$(INDEXFILE)"
 	@echo 'Update IE bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-ie\")#$(FYIIEJS)#g;" $(INDEXFILE)
+	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-ie\")#$(FYIIEJS)#g;" "$(INDEXFILE)"
 	@echo 'Update Webkit bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#$(FYIWEBKITJS)#g;" $(INDEXFILE)
-	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' $(INDEXFILE)
+	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#$(FYIWEBKITJS)#g;" "$(INDEXFILE)"
+	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' "$(INDEXFILE)"
+	@echo 'Update "Available v#.#.# versions" with GitHub version'
+	@perl -pi -e "s/Available v\d+\.\d+\.\d+ versions/Available v$(VERSION) versions/;" "$(INDEXFILE)"
 
 # deploy
 .PHONY: deploy
