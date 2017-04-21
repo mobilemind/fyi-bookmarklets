@@ -64,9 +64,9 @@ that quotes the selection and includes the page title and URL.</p>
 		<a href="#usage">Usage</a> below.</p>
 
 		<ul>
-			<li><strong>fyi-webkit</strong> - <a href="javascript:var%20e='user.tld',a='%250A',b=encodeURIComponent(document.title),c=window.getSelection(),d=window.prompt('Send%20link%20to%20email%20address(es):',e);''!==d&amp;&amp;(location.href='mailto:'+d+'?subject=fyi:%20'+b+'&amp;body='+b+a+location.href+a+(c?'---'+a+encodeURIComponent(c)+a+a:a));void'2.7.0wk'" title="fyi-webkit">fyi</a></li>
-			<li><strong>fyi-firefox</strong> - <a href="javascript:var%20e='user.tld',a='%250A',c=encodeURIComponent(document.title),d=window.getSelection(),b='%s';b.length%3C3&amp;&amp;(b=window.prompt('Send%20link%20to%20email%20address(es):',e)),''!==b&amp;&amp;(location.href='mailto:'+b+'?subject=fyi:%20'+c+'&amp;body='+c+a+location.href+a+(d?'---'+a+encodeURIComponent(d)+a+a:a));void'2.7.0ff'" title="fyi-firefox">fyi</a></li>
-			<li><strong>fyi-ie</strong> - <a href="javascript:var%20e='user.tld',a='%250A',c=encodeURIComponent(document.title),b=document.selection,d=window.prompt('Send%20link%20to%20email%20address(es):',e);''!==d&amp;&amp;(location.href='mailto:'+d+'?subject=fyi:%20'+c+'&amp;body='+c+a+location.href+a+(b&amp;&amp;b.createRange().text?'---'+a+encodeURIComponent(b.createRange().text)+a+a:a));void'2.7.0ie'" title="fyi-ie">fyi</a></li>
+			<li><strong>fyi-webkit</strong> - <a href="javascript:let%20a='user.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&amp;&amp;(location.href=%60mailto:07Bb%7D?subject=fyi:%2007Bc%7D&amp;body=07Bc%7D%250A07Blocation.href%7D%250A07Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0wk'" title="fyi-webkit">fyi</a></li>
+			<li><strong>fyi-firefox</strong> - <a href="javascript:let%20a='user.tld',b='%s';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();b.length%3C3&amp;&amp;(b=window.prompt('Send%20link%20to%20email%20address(es):',a)),''!==b&amp;&amp;(location.href=%60mailto:07Bb%7D?subject=fyi:%2007Bc%7D&amp;body=07Bc%7D%250A07Blocation.href%7D%250A07Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0ff'" title="fyi-firefox">fyi</a></li>
+			<li><strong>fyi-ie</strong> - <a href="javascript:let%20a='user.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=document.selection;''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&amp;&amp;(location.href=%60mailto:07Bb%7D?subject=fyi:%2007Bc%7D&amp;body=07Bc%7D%250A07Blocation.href%7D%250A07Be&amp;&amp;e.createRange().text?'---%250A'+encodeURIComponent(e.createRange().text)+'%250A%250A':'%250A'%7D%60);void'2.8.0ie'" title="fyi-ie">fyi</a></li>
 		</ul>
 
 		<p><strong>Mobile browser</strong> <br />
@@ -74,7 +74,7 @@ that quotes the selection and includes the page title and URL.</p>
 		a saved bookmark into a JavaScript bookmarklet.</p>
 
 		<ul>
-			<li><strong>Setup fyi-webkit</strong> - <a href="http://mmind.me/_?javascript:var%20e='user.tld',a='%250A',b=encodeURIComponent(document.title),c=window.getSelection(),d=window.prompt('Send%20link%20to%20email%20address(es):',e);''!==d&amp;&amp;(location.href='mailto:'+d+'?subject=fyi:%20'+b+'&amp;body='+b+a+location.href+a+(c?'---'+a+encodeURIComponent(c)+a+a:a));void'2.7.0wk'" title="fyi-webkit setup">Setup fyi</a></li>
+			<li><strong>Setup fyi-webkit</strong> - <a href="http://mmind.me/_?javascript:let%20a='user.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&amp;&amp;(location.href=%60mailto:07Bb%7D?subject=fyi:%2007Bc%7D&amp;body=07Bc%7D%250A07Blocation.href%7D%250A07Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0wk'" title="fyi-webkit setup">Setup fyi</a></li>
 		</ul>
 
 		<h2 id="usage">Usage</h2>
