@@ -24,8 +24,8 @@ FYIFIREFOXJS := $(shell curl -s $(FYIFIREFOXURL))
 FYIIEJS := $(shell curl -s $(FYIIEURL))
 FYIWEBKITJS := $(shell curl -s $(FYIWEBKITURL))
 VERSION := $(shell curl -s $(VERSIONURL) | awk '/"version"/ { gsub(/,|"/, "") ; print $$2 }')
-GRECHO := $(shell hash grecho &> /dev/null && echo 'grecho' || echo 'printf')
-TIDY := $(shell hash tidy-html5 2>/dev/null && echo 'tidy-html5' || (hash tidy 2>/dev/null && echo 'tidy' || exit 1))
+GRECHO := $(shell hash grecho >/dev/null 2>&1 && echo 'grecho' || echo 'printf')
+TIDY := $(shell hash tidy-html5 >/dev/null 2>&1 && echo 'tidy-html5' || (hash tidy >/dev/null 2>&1 && echo 'tidy' || echo 'echo "WARNING unable to: tidy"'))
 
 
 default: validate test
