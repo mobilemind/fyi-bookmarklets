@@ -1,5 +1,7 @@
+# required for Travis-CI
 branches:
-  except:
+  only:
+  - master
   - gh-pages
 sudo: false
 language: node_js
