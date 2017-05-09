@@ -125,6 +125,9 @@ end of the code in version 1.9 and later.
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
+Version 2.8.1 - May 9, 2017 -
+sigh. revert bookmarklet code from ES6 until UglifyJS 3 is ES6-friendly
+
 Version 2.8.0 - April 20, 2017 -
 update bookmarklet code to ES6; update build process to use eslint, yamllint,
 and to provide support files for `mdl` (ruby gem ) or `markdownlint` (npm).
