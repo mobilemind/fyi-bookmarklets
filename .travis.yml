@@ -1,4 +1,3 @@
-# required for Travis-CI
 branches:
   only:
   - master
@@ -12,4 +11,4 @@ before_script:
 - npm install -g grunt-cli
 notifications:
   slack:
-    secure: LkCy1eGNvZ6hLFTk5m/Tw0LFRgFYBHEieDaOlWAjaU4gi2qIRcPFwubHH/Lo/hFTr+UY0ietgGvr7XP82UKa+1KTX7802YjhKDwhFUf9jHYeJS9GghT8FNBJIiU+4zDbDT7k7qhrGsEWxW3gnhmdvUm25yuk2IKFyZnYC3IbKmI=
+    secure: apFPFTkdEogWBDyJNasWPF6NG/lvnp6ink0bofbrpLAbIRYpZmRUzLQoVvW/NuJcasEFyOfKE3Uf4dH54vz093uAHaok/gDRi3GltWC3A2IsCyxlJ5kQpdZmp5VcDHauxo2e0iwinouCZnrDSqJzXe/bqEvQ9Cby9r4EMlBIm38=
