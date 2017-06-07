@@ -1,2 +1,4 @@
 node_modules/*
 npm-debug.log
+# package-lock is an issue w/node 8.0.0 / npm 5.0.1 on Travis-CI
+package-lock.json
