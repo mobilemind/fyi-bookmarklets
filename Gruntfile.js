@@ -10,70 +10,67 @@ module.exports = function(grunt) {
             "wk": "fyi-webkit.js"
         },
         "clean": ['web/'],
-    "eslint": {
-      "options": {"configFile": ".eslintrc.yml"},
-      "target": ["Gruntfile.js", "src/*.js"]
-    },
+        "eslint": {
+            "options": {"configFile": ".eslintrc.yml"},
+            "target": ["Gruntfile.js", "src/*.js"]
+        },
         "js2uri": {
             "options": {
-                "useNewlineEOL": true,
-                "useSingleQuote": true,
+                "appendVersion": true,
                 "appendVoid": true,
                 "customVersion": '',
-                "appendVersion": true,
+                "forceLastSemicolon": false,
                 "noLastSemicolon": true,
-                "forceLastSemicolon": false
+                "useNewlineEOL": true,
+                "useSingleQuote": true
             }
         },
         "pkg": grunt.file.readJSON("package.json"),
         "uglify": {
             "options": {
-                "stats": true,
-                "maxLineLen": 32766,
-                "mangle": {
-                    "sort": true,
-                    "toplevel": true
+                "codegen": {
+                    "bracketize": false,
+                    "comments": false,
+                    "ie_proof": false,
+                    "max_line_len": 32766,
+                    "quote_keys": false,
+                    "semicolons": true,
+                    "space_colon": false
                 },
                 "compress": {
-                    "sequences": true,
-                    "properties": true,
+                    "booleans": true,
+                    "cascade": true,
+                    "comparisons": true,
+                    "conditionals": true,
                     "dead_code": true,
                     "drop_console": true,
                     "drop_debugger": true,
-                    "unsafe": true,
-                    "conditionals": true,
-                    "comparisons": true,
                     "evaluate": true,
-                    "booleans": true,
-                    "loops": true,
-                    "unused": true,
+                    "global_defs": {},
                     "hoist_funs": false,
                     "hoist_vars": false,
                     "if_return": true,
                     "join_vars": true,
-                    "cascade": true,
-                    "warnings": true,
+                    "loops": true,
                     "negate_iife": true,
+                    "properties": true,
+                    "sequences": true,
                     "side_effects": true,
-                    "global_defs": {}
+                    "unsafe": true,
+                    "unused": true,
+                    "warnings": true
                 },
-                "codegen": {
-                    "quote_keys": false,
-                    "space_colon": false,
-                    "max_line_len": 32766,
-                    "ie_proof": false,
-                    "bracketize": false,
-                    "comments": false,
-                    "semicolons": true
-                },
-                "report": "min"
+                "mangle": {"toplevel": true},
+                "maxLineLen": 32766,
+                "report": "min",
+                "stats": true
             },
             "sourceFiles": {
                 "files": [{
-                    "expand": true,
                     "cwd": "src",
-                    "src": "*.js",
-                    "dest": "web"
+                    "dest": "web",
+                    "expand": true,
+                    "src": "*.js"
                 }]
             }
         },
