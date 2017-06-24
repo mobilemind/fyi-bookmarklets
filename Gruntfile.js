@@ -1,4 +1,4 @@
-/*global module:false*/
+/* global module:false */
 module.exports = function(grunt) {
     "use strict";
 
@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             "ie": "fyi-ie.js",
             "wk": "fyi-webkit.js"
         },
-        "clean": ['web/'],
+        "clean": ["web/"],
         "eslint": {
             "options": {"configFile": ".eslintrc.yml"},
             "target": ["Gruntfile.js", "src/*.js"]
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             "options": {
                 "appendVersion": true,
                 "appendVoid": true,
-                "customVersion": '',
+                "customVersion": "",
                 "forceLastSemicolon": false,
                 "noLastSemicolon": true,
                 "useNewlineEOL": true,
@@ -84,28 +84,29 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("js2uri");
     grunt.loadNpmTasks("grunt-yamllint");
 
-    grunt.log.writeln("\n" + grunt.config("pkg.name") + ' ' + grunt.config("pkg.version"));
+    grunt.log.writeln(`\n${grunt.config("pkg.name")} ${grunt.config("pkg.version")}`);
 
     grunt.registerMultiTask("addsuffix", "add suffix to version", function() {
         grunt.config.set("js2uri.options.customVersion", grunt.config("pkg.version") + this.target);
-        grunt.config.set("js2uri.files.src", ["web/" + this.data]);
-        grunt.config.set("js2uri.files.dest", "web/" + this.data);
+        const thisPath = `web/${this.data}`;
+        grunt.config.set("js2uri.files.src", [thisPath]);
+        grunt.config.set("js2uri.files.dest", thisPath);
         if (!grunt.task.run(["js2uri"])) {
-            grunt.fail.fatal("Failed to js2uri() web/" + this.data);
+            grunt.fail.fatal(`Failed to js2uri() ${thisPath}`);
         }
-        return grunt.log.writeln(this.data + " (" + grunt.file.read("web/" + this.data).length + " bytes)");
+        return grunt.log.writeln(`${this.data} (${grunt.file.read(thisPath).length} bytes)`);
     });
 
     grunt.registerTask("fixfirefoxjs", "fix %s encoding in firefox script", function() {
         const foxjs = "web/fyi-firefox.js",
             jsString = grunt.file.read(foxjs).replace(/%25s/g, "%s");
         if (!jsString || 0 === jsString.length) {
-            grunt.fail.fatal("Can't read from " + foxjs);
+            grunt.fail.fatal(`Can't read from ${foxjs}`);
         }
         if (!grunt.file.write(foxjs, jsString)) {
-            grunt.fail.fatal("Can't write to " + foxjs);
+            grunt.fail.fatal(`Can't write to ${foxjs}`);
         }
-        return grunt.log.writeln(foxjs + " (" + jsString.length + " bytes)");
+        return grunt.log.writeln(`${foxjs} (${jsString.length} bytes)`);
     });
 
     // test task
