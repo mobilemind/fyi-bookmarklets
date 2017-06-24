@@ -11,10 +11,10 @@ Available versions include:
 + `fyi-webkit` -- optimized for iOS (iPhone/iPad/iPod) and Chrome
 
 + `fyi-firefox` -- optimized for Firefox to support address bar with custom
-keyword %s argument
+  keyword %s argument
 
 + `fyi-ie` -- works with Internet Explorer and its (odd-to-me) DOM selected
-text methods
+  text methods
 
 ## Install
 
@@ -27,16 +27,9 @@ is "fyi" for reasons detailed in [Usage](#Usage).
 
 + `fyi-webkit` -- <a href="javascript:let%20a='user@domain.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&&(location.href=%60mailto:$%7Bb%7D?subject=fyi:%20$%7Bc%7D&body=$%7Bc%7D%250A$%7Blocation.href%7D%250A$%7Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0wk'" title="fyi-webkit">fyi</a>
 
-+ `fyi-firefox` -- <a href="javascript:let%20a='user@domain.tld',b='%s';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();b.length%3C3&&(b=window.prompt('Send%20link%20to%20email%20address(es):',a)),''!==b&&(location.href=%60mailto:$%7Bb%7D?subject=fyi:%20$%7Bc%7D&body=$%7Bc%7D%250A$%7Blocation.href%7D%250A$%7Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0ff'" title="fyi-firefox">fyi</a>
++ `fyi-firefox` -- <a href="javascript:var%20a='user@domain.tld',b='%s';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();b.length%3C3&&(b=window.prompt('Send%20link%20to%20email%20address(es):',a)),''!==b&&(location.href='mailto:'+b+'?subject=fyi:'+c+'&body='+c+'%250A'+location.href+'%250A'+(e?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'));void'2.8.2ff'" title="fyi-firefox">fyi</a>
 
-+ `fyi-ie` -- <a href="javascript:let%20a='user@domain.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=document.selection;''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&&(location.href=%60mailto:$%7Bb%7D?subject=fyi:%20$%7Bc%7D&body=$%7Bc%7D%250A$%7Blocation.href%7D%250A$%7Be&&e.createRange().text?'---%250A'+encodeURIComponent(e.createRange().text)+'%250A%250A':'%250A'%7D%60);void'2.8.0ie'" title="fyi-ie">fyi</a>
-
-### Mobile browser
-
-Tap the link below, bookmark the new page and follow the instructions on the
-page to turn the followed bookmark into a JavaScript bookmarklet.
-
-+ **Mobile browser** -- <a href="http://mmind.me/_?javascript:let%20a='user@domain.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=window.getSelection();''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&&(location.href=%60mailto:$%7Bb%7D?subject=fyi:%20$%7Bc%7D&body=$%7Bc%7D%250A$%7Blocation.href%7D%250A$%7Be?'---%250A'+encodeURIComponent(e)+'%250A%250A':'%250A'%7D%60);void'2.8.0wk'" title="Setup fyi-webkit">Setup fyi</a>
++ `fyi-ie` -- <a href="javascript:var%20a='user@domain.tld',b='';const%20c=encodeURIComponent(document.title),d='%250A',e=document.selection;''!==(b=window.prompt('Send%20link%20to%20email%20address(es):',a))&&(location.href='mailto:'+b+'?subject=fyi:'+c+'&body='+c+'%250A'+location.href+'%250A'+(e&&e.createRange().text?'---%250A'+encodeURIComponent(e.createRange().text)+'%250A%250A':'%250A'));void'2.8.2ie'" title="fyi-ie">fyi</a>
 
 ## Usage
 
@@ -100,8 +93,8 @@ Historical use of `fyi` with _Custom Keywords_ is included below.
 ## Requirements
 
 Web browser that supports `javascript:…` bookmarks/favorites.
-Tested with Firefox 3.x-41.x, Safari 5.0-9.x, Mobile Safari 4.x-9.x.
-Delightfully clueless if Internet Explorer version still works; I stopped
+Tested with Firefox 3.x - 41.x, Safari 5.0 - 10.x, Mobile Safari 4.x - 10.x.
+I am delightfully clueless if Internet Explorer version still works; I stopped
 using Windows.
 
 ## License
@@ -124,6 +117,9 @@ end of the code in version 1.9 and later.
 ## Version Notes
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
+
+Version 2.8.2 - June 23, 2017 -
+Bump up versions of dependencies & node; stricter eslint rules
 
 Version 2.8.1 - May 9, 2017 -
 sigh. revert bookmarklet code from ES6 until UglifyJS 3 is ES6-friendly
