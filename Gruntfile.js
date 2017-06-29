@@ -9,84 +9,31 @@ module.exports = function(grunt) {
             "ie": "fyi-ie.js",
             "wk": "fyi-webkit.js"
         },
-        "clean": ["web/"],
+        "clean": {
+            "web": ["web/*.js"],
+            "web_maps": ["web/*.map"]
+        },
         "eslint": {
             "options": {"configFile": ".eslintrc.yml"},
             "target": ["Gruntfile.js", "src/*.js"]
         },
-        "js2uri": {
-            "options": {
-                "appendVersion": true,
-                "appendVoid": true,
-                "customVersion": "",
-                "forceLastSemicolon": false,
-                "noLastSemicolon": true,
-                "useNewlineEOL": true,
-                "useSingleQuote": true
-            }
-        },
         "pkg": grunt.file.readJSON("package.json"),
-        "uglify": {
-            "options": {
-                "codegen": {
-                    "bracketize": false,
-                    "comments": false,
-                    "ie_proof": false,
-                    "max_line_len": 32766,
-                    "quote_keys": false,
-                    "semicolons": true,
-                    "space_colon": false
-                },
-                "compress": {
-                    "booleans": true,
-                    "cascade": true,
-                    "comparisons": true,
-                    "conditionals": true,
-                    "dead_code": true,
-                    "drop_console": true,
-                    "drop_debugger": true,
-                    "evaluate": true,
-                    "global_defs": {},
-                    "hoist_funs": false,
-                    "hoist_vars": false,
-                    "if_return": true,
-                    "join_vars": true,
-                    "loops": true,
-                    "negate_iife": true,
-                    "properties": true,
-                    "sequences": true,
-                    "side_effects": true,
-                    "unsafe": true,
-                    "unused": true,
-                    "warnings": true
-                },
-                "mangle": {"toplevel": true},
-                "maxLineLen": 32766,
-                "report": "min",
-                "stats": true
-            },
-            "sourceFiles": {
-                "files": [{
-                    "cwd": "src",
-                    "dest": "web",
-                    "expand": true,
-                    "src": "*.js"
-                }]
-            }
+        "shell": {
+            "mkdir_web": {"command": "[[ -d web ]] || mkdir web"},
+            "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
         },
         "yamllint": {"files": {"src": [".*.yml", "*.yml", "*.yaml"]}}
     });
 
     // Load plugins
     grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-eslint");
-    grunt.loadNpmTasks("js2uri");
     grunt.loadNpmTasks("grunt-yamllint");
+    grunt.loadNpmTasks("grunt-shell");
 
     grunt.log.writeln(`\n${grunt.config("pkg.name")} ${grunt.config("pkg.version")}`);
 
-    grunt.registerMultiTask("addsuffix", "add suffix to version", function() {
+    grunt.registerMultiTask("shelluglifyes", "shell to uglify-es", () => {
         grunt.config.set("js2uri.options.customVersion", grunt.config("pkg.version") + this.target);
         const thisPath = `web/${this.data}`;
         grunt.config.set("js2uri.files.src", [thisPath]);
@@ -97,7 +44,18 @@ module.exports = function(grunt) {
         return grunt.log.writeln(`${this.data} (${grunt.file.read(thisPath).length} bytes)`);
     });
 
-    grunt.registerTask("fixfirefoxjs", "fix %s encoding in firefox script", function() {
+    grunt.registerMultiTask("addsuffix", "add suffix to version", () => {
+        grunt.config.set("js2uri.options.customVersion", grunt.config("pkg.version") + this.target);
+        const thisPath = `web/${this.data}`;
+        grunt.config.set("js2uri.files.src", [thisPath]);
+        grunt.config.set("js2uri.files.dest", thisPath);
+        if (!grunt.task.run(["js2uri"])) {
+            grunt.fail.fatal(`Failed to js2uri() ${thisPath}`);
+        }
+        return grunt.log.writeln(`${this.data} (${grunt.file.read(thisPath).length} bytes)`);
+    });
+
+    grunt.registerTask("fixfirefoxjs", "fix %s encoding in firefox script", () => {
         const foxjs = "web/fyi-firefox.js",
             jsString = grunt.file.read(foxjs).replace(/%25s/g, "%s");
         if (!jsString || 0 === jsString.length) {
@@ -110,7 +68,7 @@ module.exports = function(grunt) {
     });
 
     // test task
-    grunt.registerTask("test", ["yamllint", "eslint", "uglify:sourceFiles", "addsuffix", "fixfirefoxjs"]);
+    grunt.registerTask("test", ["yamllint", "eslint", "shell:mkdir_web", "shell:uglify_es", "clean:web_maps"]);
 
     // Default task
     grunt.registerTask("default", ["clean", "test"]);
