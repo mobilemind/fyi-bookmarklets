@@ -1,0 +1,46 @@
+{
+    "compress": {
+        "booleans": true,
+        "cascade": true,
+        "collapse_vars": true,
+        "comparisons": true,
+        "conditionals": true,
+        "dead_code": true,
+        "drop_console": true,
+        "drop_debugger": true,
+        "evaluate": true,
+        "hoist_vars": true,
+        "ie8": false,
+        "if_return": true,
+        "join_vars": true,
+        "loops": true,
+        "negate_iife": true,
+        "passes": 2,
+        "properties": true,
+        "reduce_vars": false,
+        "sequences": true,
+        "side_effects": true,
+        "switches": true,
+        "toplevel": true,
+        "unsafe": true,
+        "unsafe_comps": true,
+        "unused": true,
+        "warnings": true
+    },
+    "ie8": false,
+    "mangle": {
+        "ie8": false,
+        "toplevel": true,
+        "properties": {}
+    },
+    "output": {
+        "ecma": 6,
+        "ie8": false,
+        "indent_level": 0,
+        "quote_style": 1
+    },
+    "parse": {},
+    "sourceMap": {},
+    "toplevel": true,
+    "warnings": true
+}
