@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        "addsuffix": {
+        "bookmarkletize": {
             "ff": "fyi-firefox.js",
             "ie": "fyi-ie.js",
             "wk": "fyi-webkit.js"
@@ -33,44 +33,26 @@ module.exports = function(grunt) {
 
     grunt.log.writeln(`\n${grunt.config("pkg.name")} ${grunt.config("pkg.version")}`);
 
-    grunt.registerMultiTask("shelluglifyes", "shell to uglify-es", () => {
-        grunt.config.set("js2uri.options.customVersion", grunt.config("pkg.version") + this.target);
-        const thisPath = `web/${this.data}`;
-        grunt.config.set("js2uri.files.src", [thisPath]);
-        grunt.config.set("js2uri.files.dest", thisPath);
-        if (!grunt.task.run(["js2uri"])) {
-            grunt.fail.fatal(`Failed to js2uri() ${thisPath}`);
+    grunt.registerMultiTask("bookmarkletize", "make a simple javascript url",
+        function() {
+            const origFile = `src/${this.data}`,
+                thisFile = `web/${this.data}`;
+            let theCode = grunt.file.read(thisFile);
+            theCode = `javascript:${theCode.replace(/\+/g,"%2B")}`;
+            theCode += `void'${grunt.config("pkg.version")}${this.target}'`;
+            grunt.file.write(thisFile, theCode);
+            grunt.log.writeln(`${origFile}: ${grunt.file.read(origFile).length} bytes`);
+            grunt.log.writeln(`${thisFile}: ${grunt.file.read(thisFile).length} bytes`);
         }
-        return grunt.log.writeln(`${this.data} (${grunt.file.read(thisPath).length} bytes)`);
-    });
+    );
 
-    grunt.registerMultiTask("addsuffix", "add suffix to version", () => {
-        grunt.config.set("js2uri.options.customVersion", grunt.config("pkg.version") + this.target);
-        const thisPath = `web/${this.data}`;
-        grunt.config.set("js2uri.files.src", [thisPath]);
-        grunt.config.set("js2uri.files.dest", thisPath);
-        if (!grunt.task.run(["js2uri"])) {
-            grunt.fail.fatal(`Failed to js2uri() ${thisPath}`);
-        }
-        return grunt.log.writeln(`${this.data} (${grunt.file.read(thisPath).length} bytes)`);
-    });
-
-    grunt.registerTask("fixfirefoxjs", "fix %s encoding in firefox script", () => {
-        const foxjs = "web/fyi-firefox.js",
-            jsString = grunt.file.read(foxjs).replace(/%25s/g, "%s");
-        if (!jsString || 0 === jsString.length) {
-            grunt.fail.fatal(`Can't read from ${foxjs}`);
-        }
-        if (!grunt.file.write(foxjs, jsString)) {
-            grunt.fail.fatal(`Can't write to ${foxjs}`);
-        }
-        return grunt.log.writeln(`${foxjs} (${jsString.length} bytes)`);
-    });
+    // preflight task
+    grunt.registerTask("preflight", ["yamllint", "eslint", "shell:mkdir_web"]);
 
     // test task
-    grunt.registerTask("test", ["yamllint", "eslint", "shell:mkdir_web", "shell:uglify_es", "clean:web_maps"]);
+    grunt.registerTask("test", ["preflight", "shell:uglify_es", "bookmarkletize"]);
 
     // Default task
-    grunt.registerTask("default", ["clean", "test"]);
+    grunt.registerTask("default", ["clean", "test", "clean:web_maps"]);
 
 };
