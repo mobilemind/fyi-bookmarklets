@@ -30,8 +30,7 @@
     "ie8": false,
     "mangle": {
         "ie8": false,
-        "toplevel": true,
-        "properties": {}
+        "toplevel": true
     },
     "output": {
         "ecma": 6,
