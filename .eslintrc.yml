@@ -218,7 +218,7 @@ rules:
   no-useless-rename: 2
   no-var: 0
   object-shorthand: 2
-  prefer-arrow-callback: 0
+  prefer-arrow-callback: 2
   prefer-const: 0
   prefer-destructuring: 2
   prefer-numeric-literals: 2
