@@ -10,6 +10,6 @@
         emailAddress = window.prompt("Send link to email address(es):", defaultEmail);
     }
     if ("" !== emailAddress) {
-        location.href = `mailto:${emailAddress}?subject=fyi:${pageTitle}&body=${pageTitle}${returnChar}${location.href}${returnChar}---${returnChar}${encodeURIComponent(selectedText)}${returnChar}${returnChar}`;
+        location.href = `mailto:${emailAddress}?subject=fyi:${pageTitle}&body=${pageTitle}${returnChar}${encodeURIComponent(location.href)}${returnChar}---${returnChar}${encodeURIComponent(selectedText)}${returnChar}${returnChar}`;
     }
 })();
