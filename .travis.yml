@@ -1,6 +1,5 @@
 branches:
-  only:
-  - master
+  except:
   - gh-pages
 sudo: false
 language: node_js
