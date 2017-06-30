@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         },
         "pkg": grunt.file.readJSON("package.json"),
         "shell": {
-            "mkdir_web": {"command": "[[ -d web ]] || mkdir web"},
+            "mkdir_web": {"command": "test -d 'web' || mkdir 'web'"},
             "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
         },
         "yamllint": {"files": {"src": [".*.yml", "*.yml", "*.yaml"]}}
@@ -53,6 +53,6 @@ module.exports = function(grunt) {
     grunt.registerTask("test", ["preflight", "shell:uglify_es", "bookmarkletize"]);
 
     // Default task
-    grunt.registerTask("default", ["clean", "test", "clean:web_maps"]);
+    grunt.registerTask("default", ["clean:web", "test", "clean:web_maps"]);
 
 };
