@@ -48,7 +48,7 @@ that quotes the selection and includes the page title and URL.</p>
 
 		<p>All of that is done without you doing copy-and-paste work or back-and-forth app switching.</p>
 
-		<p>Available v2.9.0 versions include:</p>
+		<p>Available v2.9.2 versions include:</p>
 
 		<ul>
 			<li><strong>fyi-webkit</strong> - optimized for iOS (iPhone/iPad/iPod) and Chrome.</li>
@@ -68,9 +68,9 @@ that quotes the selection and includes the page title and URL.</p>
 		<a href="#usage">Usage</a> below.</p>
 
 		<ul>
-			<li><strong>fyi-webkit</strong> - <a href="javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.0wk%27" title="fyi-webkit">fyi</a></li>
-			<li><strong>fyi-firefox</strong> - <a href="javascript:%28%28%29%3D%3E%7Blet%20e%3D%27user%40domain.tld%27%2Cn%3D%27%2525s%27%3Bconst%20o%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B3%3En.length%26%26%28n%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Ce%29%29%3B%27%27%21%3D%3Dn%26%26%28location.href%3D%60mailto%3A%24%7Bn%7D%3Fsubject%3Dfyi%3A%24%7Bo%7D%26body%3D%24%7Bo%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.0ff%27" title="fyi-firefox">fyi</a></li>
-			<li><strong>fyi-ie</strong> - <a href="javascript:%21function%28%29%7Bvar%20e%3D%27user%40domain.tld%27%2Co%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cc%3Ddocument.selection%3B%27%27%21%3D%3D%28o%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Ce%29%29%26%26%28location.href%3D%27mailto%3A%27%2Bo%2B%27%3Fsubject%3Dfyi%3A%27%2Bn%2B%27%26body%3D%27%2Bn%2Bt%2BencodeURIComponent%28location.href%29%2Bt%2B%28c%26%26c.createRange%28%29.text%3F%27---%27%2Bt%2BencodeURIComponent%28c.createRange%28%29.text%29%2Bt%2Bt%3At%29%29%7D%28%29%3Bvoid%272.9.0ie%27" title="fyi-ie">fyi</a></li>
+			<li><strong>fyi-webkit</strong> - <a href="javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.2wk%27" title="fyi-webkit">fyi</a></li>
+			<li><strong>fyi-firefox</strong> - <a href="javascript:%28%28%29%3D%3E%7Blet%20e%3D%27user%40domain.tld%27%2Cn%3D%27%2525s%27%3Bconst%20o%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B3%3En.length%26%26%28n%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Ce%29%29%3B%27%27%21%3D%3Dn%26%26%28location.href%3D%60mailto%3A%24%7Bn%7D%3Fsubject%3Dfyi%3A%24%7Bo%7D%26body%3D%24%7Bo%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.2ff%27" title="fyi-firefox">fyi</a></li>
+			<li><strong>fyi-ie</strong> - <a href="javascript:%21function%28%29%7Bvar%20e%3D%27user%40domain.tld%27%2Co%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cc%3Ddocument.selection%3B%27%27%21%3D%3D%28o%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Ce%29%29%26%26%28location.href%3D%27mailto%3A%27%2Bo%2B%27%3Fsubject%3Dfyi%3A%27%2Bn%2B%27%26body%3D%27%2Bn%2Bt%2BencodeURIComponent%28location.href%29%2Bt%2B%28c%26%26c.createRange%28%29.text%3F%27---%27%2Bt%2BencodeURIComponent%28c.createRange%28%29.text%29%2Bt%2Bt%3At%29%29%7D%28%29%3Bvoid%272.9.2ie%27" title="fyi-ie">fyi</a></li>
 		</ul>
 
 		<p><strong>Mobile browser</strong> <br />
@@ -78,7 +78,7 @@ that quotes the selection and includes the page title and URL.</p>
 		a saved bookmark into a JavaScript bookmarklet.</p>
 
 		<ul>
-			<li><strong>Setup fyi-webkit</strong> - <a href="http://mmind.me/_?javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.0wk%27" title="fyi-webkit setup">Setup fyi</a></li>
+			<li><strong>Setup fyi-webkit</strong> - <a href="http://mmind.me/_?javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.2wk%27" title="fyi-webkit setup">Setup fyi</a></li>
 		</ul>
 
 		<h2 id="usage">Usage</h2>
