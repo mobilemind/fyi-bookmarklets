@@ -9,10 +9,6 @@ module.exports = function(grunt) {
             "ie": "fyi-ie.js",
             "wk": "fyi-webkit.js"
         },
-        "clean": {
-            "web": ["web/*.js"],
-            "web_maps": ["web/*.map"]
-        },
         "eslint": {
             "options": {"configFile": ".eslintrc.yml"},
             "target": ["Gruntfile.js", "src/*.js"]
@@ -38,11 +34,14 @@ module.exports = function(grunt) {
             const origFile = `src/${this.data}`,
                 thisFile = `web/${this.data}`;
             let theCode = grunt.file.read(thisFile);
-            theCode = `javascript:${theCode.replace(/\+/g,"%2B")}`;
-            theCode += `void'${grunt.config("pkg.version")}${this.target}'`;
+            // minimal URL encoding
+            theCode = theCode.replace(/\+/g,"%2B");
+            // prepend + append & write results
+            theCode = `javascript:${theCode}void'${grunt.config("pkg.version")}${this.target}'`;
             grunt.file.write(thisFile, theCode);
+            // show some stats
             grunt.log.writeln(`${origFile}: ${grunt.file.read(origFile).length} bytes`);
-            grunt.log.writeln(`${thisFile}: ${grunt.file.read(thisFile).length} bytes`);
+            grunt.log.writeln(`${thisFile}: ${theCode.length} bytes`);
         }
     );
 
@@ -53,6 +52,6 @@ module.exports = function(grunt) {
     grunt.registerTask("test", ["preflight", "shell:uglify_es", "bookmarkletize"]);
 
     // Default task
-    grunt.registerTask("default", ["clean:web", "test", "clean:web_maps"]);
+    grunt.registerTask("default", ["test"]);
 
 };
