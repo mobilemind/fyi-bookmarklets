@@ -37,5 +37,5 @@
     "install": "npm install -g uglify-es@latest",
     "test": "grunt test --verbose"
   },
-  "version": "2.9.1"
+  "version": "2.9.2"
 }
