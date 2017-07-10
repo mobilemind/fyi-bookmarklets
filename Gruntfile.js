@@ -22,7 +22,6 @@ module.exports = function(grunt) {
     });
 
     // Load plugins
-    grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-eslint");
     grunt.loadNpmTasks("grunt-yamllint");
     grunt.loadNpmTasks("grunt-shell");
