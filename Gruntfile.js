@@ -18,7 +18,10 @@ module.exports = function(grunt) {
             "mkdir_web": {"command": "test -d 'web' || mkdir 'web'"},
             "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
         },
-        "yamllint": {"files": {"src": [".*.yml", "*.yml", "*.yaml"]}}
+        "yamllint": {
+             "files": {"src": [".*.yml", "*.yml", "*.yaml"]},
+             "options": {"schema": "FAILSAFE_SCHEMA"}
+        }
     });
 
     // Load plugins
