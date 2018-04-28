@@ -21,7 +21,7 @@ plugins:
 - security
 - xss
 
-extends: [eslint:recommended, plugini:security/recommended]
+extends: [eslint:recommended, plugin:security/recommended]
 # http://eslint.org/docs/rules/
 rules:
   # Possible Errors
