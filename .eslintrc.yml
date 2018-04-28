@@ -21,7 +21,7 @@ plugins:
 - security
 - xss
 
-extends: eslint:recommended
+extends: [eslint:recommended, plugini:security/recommended]
 # http://eslint.org/docs/rules/
 rules:
   # Possible Errors
@@ -239,18 +239,7 @@ rules:
   no-unsanitized/property: 2
 
   # security
-  security/detect-unsafe-regex: 2
-  security/detect-buffer-noassert: 2
-  security/detect-child-process: 2
-  security/detect-disable-mustache-escape: 2
-  security/detect-eval-with-expression: 2
-  security/detect-no-csrf-before-method-override: 2
-  security/detect-non-literal-fs-filename: 2
   security/detect-non-literal-regexp: 0
-  security/detect-non-literal-require: 2
-  security/detect-object-injection: 2
-  security/detect-possible-timing-attacks: 2
-  security/detect-pseudoRandomBytes: 2
 
   # xss
   xss/no-location-href-assign: 0
