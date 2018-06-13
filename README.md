@@ -124,6 +124,9 @@ end of the code in version 1.9 and later.
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
+Version 2.9.3 - June 13, 2018 - Update to build process to use contemporary
+packages
+
 Version 2.9.2 - June 30, 2017 - Minor update to build process.
 
 Version 2.9.0 - June 29, 2017 -

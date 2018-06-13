@@ -11,16 +11,16 @@
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
     "eslint-plugin-no-storage": ">=1.0.2",
-    "eslint-plugin-no-unsanitized": ">=3.0.0",
+    "eslint-plugin-no-unsanitized": ">=3.0.2",
     "eslint-plugin-security": ">=1.4.0",
     "eslint-plugin-xss": ">=0.1.9",
-    "grunt": ">=1.0.1",
-    "grunt-eslint": ">=20.1.0",
+    "grunt": ">=1.0.3",
+    "grunt-eslint": ">=20.2.0",
     "grunt-shell": ">=2.1.0",
     "grunt-yamllint": ">=0.3.0"
   },
   "engines": {
-    "node": ">8.0.0"
+    "node": ">=10.4.0"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
@@ -37,5 +37,5 @@
     "install": "npm install -g uglify-es@latest",
     "test": "grunt test --verbose"
   },
-  "version": "2.9.2"
+  "version": "2.9.3"
 }
