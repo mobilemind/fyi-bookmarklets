@@ -28,7 +28,7 @@ GRECHO := $(shell hash grecho >/dev/null 2>&1 && echo 'grecho' || echo 'printf')
 TIDY := $(shell hash tidy-html5 >/dev/null 2>&1 && echo 'tidy-html5' || (hash tidy >/dev/null 2>&1 && echo 'tidy' || echo 'echo "WARNING unable to: tidy"'))
 
 
-default: validate test
+default: validate test clean
 	@printf "make: Done. Remember to- make deploy.\n\n"
 
 .PHONY:	validate
@@ -49,16 +49,17 @@ test:
 
 .PHONY: update
 update:
-	@printf "\nRefresh $(INDEXFILE)\n"
+	@printf "\nRefresh $(INDEXFILE) with versions from Github(master)\n"
+	curl --remote-name-all $(PROJURL)/web/fyi-{firefox,ie,webkit}.js
 	@echo 'Update Firefox bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-firefox\")#$(FYIFIREFOXJS)#g;" "$(INDEXFILE)"
+	perl -p -e "BEGIN{open F,'$(CURDIR)/$(FYIFIREFOX)';@f=<F>}s#javascript:.*(?=\" title=\"fyi-firefox\")#@f#g;" -i "$(INDEXFILE)"
 	@echo 'Update IE bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-ie\")#$(FYIIEJS)#g;" "$(INDEXFILE)"
+	perl -p -e "BEGIN{open F,'$(CURDIR)/$(FYIIE)';@f=<F>}s#javascript:.*(?=\" title=\"fyi-ie\")#@f#g;" -i "$(INDEXFILE)"
 	@echo 'Update Webkit bookmark from GitHub'
-	@perl -pi -e "s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#$(FYIWEBKITJS)#g;" "$(INDEXFILE)"
-	@perl -pi -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' "$(INDEXFILE)"
+	perl -p -e "BEGIN{open F,'$(CURDIR)/$(FYIWEBKIT)';@f=<F>}s#javascript:.*(?=\" title=\"fyi-webkit( |\"))#@f#g;" -i "$(INDEXFILE)"
+	perl -p -e 's/&body/&amp;body/g;s/&&/&amp;&amp;/g;' -i "$(INDEXFILE)"
 	@echo 'Update "Available v#.#.# versions" with GitHub version'
-	@perl -pi -e "s/Available v\d+\.\d+\.\d+ versions/Available v$(VERSION) versions/;" "$(INDEXFILE)"
+	perl -p -e "s/Available v\d+\.\d+\.\d+ versions/Available v$(VERSION) versions/;" -i "$(INDEXFILE)"
 
 # deploy
 .PHONY: deploy
@@ -76,4 +77,4 @@ endif
 # clean
 .PHONY: clean
 clean:
-	@echo 'Nothing to do. (default updates index.html in-place)'
+	rm -fv fyi-*.js
