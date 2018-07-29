@@ -89,7 +89,8 @@ Historical use of `fyi` with _Custom Keywords_ is included below.
 > semicolons. The email address(es) will be put in the TO field of the new
 > email. Outlook users can include multiple recpients using syntax like:
 >
-> <code><b>fyi</b> <i>Lastname1,Firstname1<b>;</b>Lastname2,Firstname2<b>;</b>&hellip;</i></code>
+> <code><b>fyi</b> <i>Lastname1,Firstname1<b>;</b>Lastname2,Firstname2<b>;
+</b>&hellip;</i></code>
 >
 > There is a **Known Issue** with using Custom Keywords--- the current page
 > URL appears properly in the email, but is over-written in the browser's
