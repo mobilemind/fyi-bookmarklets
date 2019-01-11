@@ -8,7 +8,7 @@
   ],
   "major": {
     "automerge": false
-  }
+  },
   "node": {
     "supportPolicy": ["current"]
   },
