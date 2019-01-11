@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "baseBranches": [
+    "master"
+  ],
+  "node": {
+    "supportPolicy": ["current"]
+  },
+  "schedule": [
+    "after 11pm and before 4am on every friday"
+  ],
+  "travis": {
+    "enabled": true
+  }
+}
