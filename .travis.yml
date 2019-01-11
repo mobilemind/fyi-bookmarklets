@@ -1,6 +1,9 @@
 branches:
   except:
   - gh-pages
+git:
+  depth: 9
+  submodules: false
 language: node_js
 node_js:
 - '10'
