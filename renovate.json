@@ -2,14 +2,18 @@
   "extends": [
     "config:base"
   ],
+  "automerge": true,
   "baseBranches": [
     "master"
   ],
+  "major": {
+    "automerge": false
+  }
   "node": {
     "supportPolicy": ["current"]
   },
   "schedule": [
-    "after 11pm and before 4am on every friday"
+    "on friday after 11pm"
   ],
   "travis": {
     "enabled": true
