@@ -13,7 +13,7 @@
     "supportPolicy": ["current"]
   },
   "schedule": [
-    "before 6am on weekends"
+    "before 6am every weekend"
   ],
   "travis": {
     "enabled": true
