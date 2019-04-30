@@ -1,5 +1,10 @@
 # FYI Bookmarklets
 
+[![Tag][tag-image]][tag-url]
+[![Build Status][build-image]][build-url]
+[![Dependency Status][dep-image]][dep-url]
+[![devDependency Status][devDep-image]][devDep-url]
+
 The "fyi" bookmarklets make it easy to select text on a web page and fire off
 an email that quotes the selection and includes the page title and URL.
 
@@ -116,12 +121,6 @@ MIT License - <http://opensource.org/licenses/mit-license.php>
 
 ## Source Code Notes
 
-[![Built with Grunt][built-with-grunt-img]][built-with-grunt-url]
-[![Tag][tag-image]][tag-url]
-[![Build Status][build-image]][build-url]
-[![Dependency Status][dep-image]][dep-url]
-[![devDependency Status][devDep-image]][devDep-url]
-
 Source code is available as text files for each bookmarklet. The JavaScript
 was written to be as small as practical when URL-encoded. Sorry if it isn't
 easy to read. The version number is embedded in the `void'code'` call at the
@@ -201,10 +200,8 @@ accommodate IE DOM method weirdness.
 Version 1.0 ~ April 5, 2011 - First release
 
 <!-- Reference URLs -->
-[built-with-grunt-img]: https://cdn.gruntjs.com/builtwith.png
-[built-with-grunt-url]: http://gruntjs.com/
-[build-image]: https://secure.travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=master
-[build-url]: https://secure.travis-ci.com/mobilemind/fyi-bookmarklets
+[build-image]: https://travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=master
+[build-url]: https://travis-ci.com/mobilemind/fyi-bookmarklets
 [tag-image]: https://img.shields.io/github/tag/mobilemind/fyi-bookmarklets.svg
 [tag-url]: https://github.com/mobilemind/fyi-bookmarklets/tags
 [dep-image]: https://david-dm.org/mobilemind/fyi-bookmarklets.svg
