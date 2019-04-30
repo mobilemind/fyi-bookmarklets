@@ -203,8 +203,8 @@ Version 1.0 ~ April 5, 2011 - First release
 <!-- Reference URLs -->
 [built-with-grunt-img]: https://cdn.gruntjs.com/builtwith.png
 [built-with-grunt-url]: http://gruntjs.com/
-[build-image]: https://secure.travis-ci.org/mobilemind/fyi-bookmarklets.png?branch=master
-[build-url]: https://secure.travis-ci.org/mobilemind/fyi-bookmarklets
+[build-image]: https://secure.travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=master
+[build-url]: https://secure.travis-ci.com/mobilemind/fyi-bookmarklets
 [tag-image]: https://img.shields.io/github/tag/mobilemind/fyi-bookmarklets.svg
 [tag-url]: https://github.com/mobilemind/fyi-bookmarklets/tags
 [dep-image]: https://david-dm.org/mobilemind/fyi-bookmarklets.svg
