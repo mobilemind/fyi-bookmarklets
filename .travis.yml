@@ -12,4 +12,4 @@ before_script:
 - npm install -g grunt-cli@latest
 notifications:
   slack:
-    secure: apFPFTkdEogWBDyJNasWPF6NG/lvnp6ink0bofbrpLAbIRYpZmRUzLQoVvW/NuJcasEFyOfKE3Uf4dH54vz093uAHaok/gDRi3GltWC3A2IsCyxlJ5kQpdZmp5VcDHauxo2e0iwinouCZnrDSqJzXe/bqEvQ9Cby9r4EMlBIm38=
+    secure: D9TPn3ca3o5TgTkx0udmoNT3c7x4jA2OEwG37Wt3qD3U59bGYfUKbD3sz773jAihksCFG12kaByGfQkdxneMGJysE5B+6GOJIo0R2FadaLdWDXpxpG8TGEaoIGEGLk1IucUxGnFiwXaNJgZdSKYe98XG3yM741wrRWfamPrgmsk=
