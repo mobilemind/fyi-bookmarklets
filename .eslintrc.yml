@@ -74,6 +74,7 @@ rules:
   no-octal-escape: 2
   no-param-reassign: 2
   no-proto: 2
+  no-redeclare: [2, builtinGlobals: false]
   no-restricted-properties: 2
   no-return-assign: 2
   no-return-await: 2
