@@ -8,7 +8,7 @@
     "master"
   ],
   "major": {
-    "automerge": false
+    "automerge": true
   },
   "node": {
     "supportPolicy": ["current"]
