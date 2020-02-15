@@ -13,7 +13,7 @@
     "eslint-plugin-no-storage": "1.0.2",
     "eslint-plugin-no-unsanitized": "3.0.2",
     "eslint-plugin-security": "1.4.0",
-    "eslint-plugin-xss": "0.1.9",
+    "eslint-plugin-xss": "0.1.10",
     "grunt": "1.0.4",
     "grunt-eslint": "22.0.0",
     "grunt-shell": "3.0.1",
