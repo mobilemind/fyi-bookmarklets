@@ -14,13 +14,13 @@
     "eslint-plugin-no-unsanitized": "3.0.2",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-xss": "0.1.10",
-    "grunt": "1.0.4",
+    "grunt": "1.1.0",
     "grunt-eslint": "22.0.0",
     "grunt-shell": "3.0.1",
     "grunt-yamllint": "0.3.0"
   },
   "engines": {
-    "node": ">11.0"
+    "node": ">12.0"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
@@ -37,5 +37,5 @@
     "install": "npm install -g uglify-es@latest",
     "test": "grunt test --verbose"
   },
-  "version": "2.9.3"
+  "version": "2.9.4"
 }

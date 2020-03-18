@@ -6,8 +6,8 @@ git:
   submodules: false
 language: node_js
 node_js:
-- '11'
 - '12'
+- '13'
 before_script:
 - npm install -g grunt-cli@latest
 notifications:
