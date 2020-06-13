@@ -13,7 +13,7 @@
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
     "eslint-plugin-no-storage": "1.0.2",
-    "eslint-plugin-no-unsanitized": "3.1.1",
+    "eslint-plugin-no-unsanitized": "3.1.2",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-xss": "0.1.10",
     "grunt": "1.1.0",
