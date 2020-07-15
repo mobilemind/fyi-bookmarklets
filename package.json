@@ -8,7 +8,7 @@
     "url": "https://github.com/mobilemind/fyi-bookmarklets/issues"
   },
   "dependencies": {
-    "snyk": "^1.360.0"
+    "snyk": "^1.361.3"
   },
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
