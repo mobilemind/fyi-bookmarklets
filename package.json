@@ -18,7 +18,7 @@
     "grunt-eslint": "23.0.0",
     "grunt-shell": "3.0.1",
     "grunt-yamllint": "0.3.0",
-    "snyk": "1.437.4"
+    "snyk": "1.439.0"
   },
   "engines": {
     "node": ">12.0"
