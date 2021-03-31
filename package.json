@@ -7,7 +7,6 @@
   "bugs": {
     "url": "https://github.com/mobilemind/fyi-bookmarklets/issues"
   },
-  "dependencies": {},
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
     "eslint-plugin-no-storage": "1.0.2",
@@ -18,7 +17,7 @@
     "grunt-eslint": "23.0.0",
     "grunt-shell": "3.0.1",
     "grunt-yamllint": "0.3.0",
-    "snyk": "1.511.0"
+    "snyk": "1.520.0"
   },
   "engines": {
     "node": ">12.0"
