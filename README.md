@@ -200,7 +200,7 @@ accommodate IE DOM method weirdness.
 Version 1.0 ~ April 5, 2011 - First release
 
 <!-- Reference URLs -->
-[build-image]: https://travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=master
+[build-image]: https://travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=main
 [build-url]: https://travis-ci.com/mobilemind/fyi-bookmarklets
 [tag-image]: https://img.shields.io/github/tag/mobilemind/fyi-bookmarklets.svg
 [tag-url]: https://github.com/mobilemind/fyi-bookmarklets/tags

@@ -5,7 +5,7 @@
   ],
   "automerge": true,
   "baseBranches": [
-    "master"
+    "main"
   ],
   "major": {
     "automerge": true
