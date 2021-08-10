@@ -1,22 +1,21 @@
 {
     "compress": {
         "drop_console": true,
-        "ie8": false,
         "passes": 2,
         "reduce_vars": false,
         "toplevel": true,
         "unsafe": true,
         "unsafe_comps": true,
-        "warnings": true
+        "unsafe_math": true,
+        "unsafe_proto": true,
+        "unsafe_undefined": true
     },
-    "ie8": false,
     "mangle": {
-        "ie8": false,
         "toplevel": true
     },
     "output": {
-        "ecma": 6,
-        "ie8": false,
+        "beautify": false,
+        "ie": false,
         "indent_level": 0,
         "quote_style": 1
     },

@@ -34,7 +34,7 @@
     "url": "https://github.com/mobilemind/fyi-bookmarklets.git"
   },
   "scripts": {
-    "install": "npm install -g uglify-es@latest",
+    "install": "npm install -g uglify-js@latest",
     "test": "grunt test --verbose",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
