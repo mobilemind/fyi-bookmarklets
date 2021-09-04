@@ -130,6 +130,8 @@ end of the code in version 1.9 and later.
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
+Version 2.9.6 - September 3, 2021 - require node 14+
+
 Version 2.9.3 - June 13, 2018 - Update to build process to use contemporary
 packages
 

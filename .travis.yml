@@ -6,7 +6,6 @@ git:
   submodules: false
 language: node_js
 node_js:
-- '12'
 - '14'
 - '16'
 before_script:
