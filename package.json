@@ -17,10 +17,10 @@
     "grunt-eslint": "23.0.0",
     "grunt-shell": "3.0.1",
     "grunt-yamllint": "0.3.0",
-    "snyk": "1.729.0"
+    "snyk": "1.731.0"
   },
   "engines": {
-    "node": ">14.17.5"
+    "node": ">14.17.6"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
