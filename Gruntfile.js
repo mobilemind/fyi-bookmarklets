@@ -9,7 +9,6 @@ module.exports = function(grunt) {
             "wk": "fyi-webkit.js"
         },
         "eslint": {
-            "options": {"configFile": ".eslintrc.yml"},
             "target": ["Gruntfile.js", "src/*.js"]
         },
         "pkg": grunt.file.readJSON("package.json"),
