@@ -1,9 +1,7 @@
 # FYI Bookmarklets
 
 ![version](https://img.shields.io/github/package-json/v/mobilemind/fyi-bookmarklets.svg)
-[![Build Status][build-image]][build-url]
-[![Dependency Status][dep-image]][dep-url]
-[![devDependency Status][devDep-image]][devDep-url]
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f3070b7f7ef84ecda7cbb5c1c8be2fdb)](https://www.codacy.com/gh/mobilemind/fyi-bookmarklets/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mobilemind/fyi-bookmarklets&amp;utm_campaign=Badge_Grade)
 
 The "fyi" bookmarklets make it easy to select text on a web page and fire off
 an email that quotes the selection and includes the page title and URL.
