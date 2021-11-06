@@ -1,6 +1,6 @@
 # FYI Bookmarklets
 
-[![Tag][tag-image]][tag-url]
+![version](https://img.shields.io/github/package-json/v/mobilemind/fyi-bookmarklets.svg)
 [![Build Status][build-image]][build-url]
 [![Dependency Status][dep-image]][dep-url]
 [![devDependency Status][devDep-image]][devDep-url]
