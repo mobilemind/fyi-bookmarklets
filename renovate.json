@@ -3,13 +3,10 @@
     "config:base",
     ":maintainLockFilesWeekly"
   ],
-  "automerge": true,
+  "automerge": false,
   "baseBranches": [
     "main"
   ],
-  "major": {
-    "automerge": true
-  },
   "node": {
     "supportPolicy": ["current"]
   },
@@ -17,6 +14,6 @@
     "before 6am every weekend"
   ],
   "travis": {
-    "enabled": true
+    "enabled": false
   }
 }
