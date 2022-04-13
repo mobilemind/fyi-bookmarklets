@@ -7,9 +7,10 @@
   "baseBranches": [
     "main"
   ],
-  "node": {
-    "supportPolicy": ["current"]
+  "npm": {
+    "stabilityDays": 3
   },
+  "rangeStrategy": "replace",
   "schedule": [
     "before 6am every weekend"
   ],
