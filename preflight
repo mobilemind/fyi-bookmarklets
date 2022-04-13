@@ -1,0 +1,124 @@
+#!/usr/bin/env sh
+
+## pre-flight for fyi-bookmarklets
+# use directly (and/or call from a git hook).
+
+# Redirect output to stderr.
+exec 1>&2
+
+## GLOBALS
+JSONLINT=""
+hash jsonlint >/dev/null 2>&1 && JSONLINT="jsonlint -q"
+YAMLLINT=""
+hash yamllint >/dev/null 2>&1 && YAMLLINT="yamllint --schema=DEFAULT_SAFE_SCHEMA"
+
+echo
+
+## check preflight (this file)
+echo "  checking preflight"
+if hash shellcheck >/dev/null 2>&1 ; then
+	shellcheck -s bash preflight \
+		|| { echo "*** ERROR in preflight script- check failed." ; exit 1 ; }
+	echo "    preflight: bash script OK"
+else
+	echo "    --- shellcheck not found: skipping check of preflight script."
+fi
+echo
+
+## check PACKAGE.JSON
+echo "  checking package.json against schema"
+if [ -z "$JSONLINT" ] ; then
+	echo "    --- jsonlint not installed: skipping package.json validation"
+else
+	$JSONLINT -e=json-schema-draft-04 -V="$HOME/common/schema/json/package.json" package.json \
+		|| { echo "    *** ERROR package.json schema check failed." ; exit 1 ; }
+	echo "    package.json: validates OK"
+fi
+echo
+
+## check RENOVATE.JSON
+echo "  checking renovate.json against schema"
+if ! [ -f renovate.json ] ; then
+	echo "   OK- no renovate.json"
+elif [ -z "$JSONLINT" ] ; then
+	echo "    --- jsonlint not installed: skipping renovate.json validation"
+else
+	$JSONLINT -e=json-schema-draft-04 -V="$HOME/common/schema/json/renovate.json" renovate.json \
+	  || { echo "    *** ERROR renovate.json schema check failed." ; exit 1 ; }
+	echo "    renovate.json: validates OK"
+fi
+echo
+
+## check .UGLIFYJS3.JSON
+echo "  checking .uglifyjs3.json is well-formed"
+if [ -z "$JSONLINT" ] ; then
+	echo "    --- jsonlint not installed: skipping .uglifyjs3.json check"
+else
+	$JSONLINT .uglifyjs3.json \
+		 || { echo "    *** ERROR .uglifyjs3.json NOT well-formed" ;	exit 1 ; }
+	echo "    .uglifyjs3.json: well-formedness OK"
+fi
+echo
+
+## check .MARKDOWNLINT.JSON
+echo "  checking .markdownlint.json is well-formed"
+if [ -z "$JSONLINT" ] ; then
+	echo "    --- jsonlint not installed: skipping .markdownlint.json check"
+else
+	$JSONLINT .markdownlint.json \
+		|| { echo "    *** ERROR .markdownlint.json NOT well-formed" ; exit 1 ; }
+	echo "    .markdownlint.json: well-formedness OK"
+fi
+echo
+
+## check .ESLINTRC.YML
+echo "  checking .eslintrc.yml"
+if [ -z "$YAMLLINT" ] ; then
+	echo "    --- yamllint not installed: skipping .eslintrc.yml check"
+else
+	printf "    "
+	$YAMLLINT .eslintrc.yml \
+		|| { echo "    *** ERROR eslintrc.yml check failed." ; exit 1 ; }
+	echo "    .eslintrc.yml: .yml OK"
+fi
+echo
+
+## check .TRAVIS.YML
+echo "  checking .travis.yml"
+if hash travis >/dev/null 2>&1 ; then
+	printf "    "
+	travis lint .travis.yml \
+		|| { echo "*** ERROR travis.yml check failed." ; exit 1 ; }
+  echo "    .travis.yml: OK"
+elif [ -n "$YAMLLINT" ] ; then
+	$YAMLLINT .travis.yml \
+		|| { echo "    *** ERROR travis.yml check failed." ; exit 1 ; }
+	echo "    .travis.yml: .yml OK"
+else
+	echo "    --- travis/yamllint not installed: skipping .travis.yml check"
+fi
+echo
+
+## check JavaScript
+echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
+if hash eslint >/dev/null 2>&1 ; then
+	eslint "*.js" "src/*.js" \
+		|| { echo "    *** ERROR eslint JavaScript check failed." ; exit 1 ; }
+	echo "    *.js src/*.js: JavaScript OK"
+else
+	echo "    --- eslint not installed: skipping eslint JavaScript checks"
+fi
+echo
+
+## check README.md
+echo "  checking README.md"
+if hash markdownlint >/dev/null 2>&1 ; then
+	markdownlint "*.md" \
+		|| { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
+	echo "    *.md: Markdown OK"
+else
+	echo "    --- markdownlint not installed: skipping Markdown checks"
+fi
+echo
+
+echo "  OK, preflight checks passed."

@@ -8,23 +8,15 @@ module.exports = function(grunt) {
             "ie": "fyi-ie.js",
             "wk": "fyi-webkit.js"
         },
-        "eslint": {
-            "target": ["Gruntfile.js", "src/*.js"]
-        },
         "pkg": grunt.file.readJSON("package.json"),
         "shell": {
             "mkdir_web": {"command": "test -d 'web' || mkdir 'web'"},
             "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
-        },
-        "yamllint": {
-            "files": {"src": [".*.yml", "*.yml", "*.yaml"]},
-            "options": {"schema": "FAILSAFE_SCHEMA"}
         }
     });
 
     // Load plugins
     grunt.loadNpmTasks("grunt-eslint");
-    grunt.loadNpmTasks("grunt-yamllint");
     grunt.loadNpmTasks("grunt-shell");
 
     grunt.log.writeln(`\n${grunt.config("pkg.name")} ${grunt.config("pkg.version")}`);
@@ -46,7 +38,7 @@ module.exports = function(grunt) {
     );
 
     // preflight task
-    grunt.registerTask("preflight", ["yamllint", "eslint", "shell:mkdir_web"]);
+    grunt.registerTask("preflight", ["shell:mkdir_web"]);
 
     // test task
     grunt.registerTask("test", ["preflight", "shell:uglify_es", "bookmarkletize"]);
