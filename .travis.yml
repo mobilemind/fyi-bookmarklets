@@ -9,6 +9,3 @@ node_js:
 - '16'
 before_script:
 - npm install -g grunt-cli@latest
-notifications:
-  slack:
-    secure: D9TPn3ca3o5TgTkx0udmoNT3c7x4jA2OEwG37Wt3qD3U59bGYfUKbD3sz773jAihksCFG12kaByGfQkdxneMGJysE5B+6GOJIo0R2FadaLdWDXpxpG8TGEaoIGEGLk1IucUxGnFiwXaNJgZdSKYe98XG3yM741wrRWfamPrgmsk=
