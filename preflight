@@ -105,7 +105,8 @@ if [ -f '.github/workflows/codeql-analysis.yml' ] && [ -n "$YAMLLINT" ] ; then
 	$YAMLLINT .github/workflows/codeql-analysis.yml \
 		|| { echo "    *** ERROR .github/workflows/codeql-analysis.yml check failed." ; exit 1 ; }
 	echo "    codeql-analysis.yml: .yml OK"
-fi	
+	echo
+fi
 
 ## check JavaScript
 echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
