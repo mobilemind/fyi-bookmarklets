@@ -99,6 +99,14 @@ else
 fi
 echo
 
+## check CodeQL, if it exists
+if [ -f '.github/workflows/codeql-analysis.yml' ] && [ -n "$YAMLLINT" ] ; then
+	echo "  checking .github/workflows/codeql-analysis.yml"
+	$YAMLLINT .github/workflows/codeql-analysis.yml \
+		|| { echo "    *** ERROR .github/workflows/codeql-analysis.yml check failed." ; exit 1 ; }
+	echo "    codeql-analysis.yml: .yml OK"
+fi	
+
 ## check JavaScript
 echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
 if hash eslint >/dev/null 2>&1 ; then
