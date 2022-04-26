@@ -9,8 +9,6 @@ exec 1>&2
 ## GLOBALS
 JSONLINT=""
 hash jsonlint >/dev/null 2>&1 && JSONLINT="jsonlint -q"
-YAMLLINT=""
-hash yamllint >/dev/null 2>&1 && YAMLLINT="yamllint --schema=DEFAULT_SAFE_SCHEMA"
 
 echo
 
@@ -71,42 +69,16 @@ else
 fi
 echo
 
-## check .ESLINTRC.YML
-echo "  checking .eslintrc.yml"
-if [ -z "$YAMLLINT" ] ; then
-	echo "    --- yamllint not installed: skipping .eslintrc.yml check"
+## check YAML
+echo "  checking YAML files (w/ eslint, see .eslintrc.yml)"
+if hash eslint >/dev/null 2>&1 ; then
+	eslint ".*.yml" ".github/workflows/*.yml" \
+		|| { echo "    *** ERROR eslint YAML check failed." ; exit 1 ; }
+	echo "    *.yml .github/workflows/*.yml: YAML OK"
 else
-	printf "    "
-	$YAMLLINT .eslintrc.yml \
-		|| { echo "    *** ERROR eslintrc.yml check failed." ; exit 1 ; }
-	echo "    .eslintrc.yml: .yml OK"
+	echo "    --- eslint not installed: skipping eslint YAML checks"
 fi
 echo
-
-## check .TRAVIS.YML
-echo "  checking .travis.yml"
-if hash travis >/dev/null 2>&1 ; then
-	printf "    "
-	travis lint .travis.yml \
-		|| { echo "*** ERROR travis.yml check failed." ; exit 1 ; }
-  echo "    .travis.yml: OK"
-elif [ -n "$YAMLLINT" ] ; then
-	$YAMLLINT .travis.yml \
-		|| { echo "    *** ERROR travis.yml check failed." ; exit 1 ; }
-	echo "    .travis.yml: .yml OK"
-else
-	echo "    --- travis/yamllint not installed: skipping .travis.yml check"
-fi
-echo
-
-## check CodeQL, if it exists
-if [ -f '.github/workflows/codeql-analysis.yml' ] && [ -n "$YAMLLINT" ] ; then
-	echo "  checking .github/workflows/codeql-analysis.yml"
-	$YAMLLINT .github/workflows/codeql-analysis.yml \
-		|| { echo "    *** ERROR .github/workflows/codeql-analysis.yml check failed." ; exit 1 ; }
-	echo "    codeql-analysis.yml: .yml OK"
-	echo
-fi
 
 ## check JavaScript
 echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
