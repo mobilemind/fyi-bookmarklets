@@ -34,19 +34,6 @@ else
 fi
 echo
 
-## check RENOVATE.JSON
-echo "  checking renovate.json against schema"
-if ! [ -f renovate.json ] ; then
-	echo "   OK- no renovate.json"
-elif [ -z "$JSONLINT" ] ; then
-	echo "    --- jsonlint not installed: skipping renovate.json validation"
-else
-	$JSONLINT -e=json-schema-draft-04 -V="$HOME/common/schema/json/renovate.json" renovate.json \
-	  || { echo "    *** ERROR renovate.json schema check failed." ; exit 1 ; }
-	echo "    renovate.json: validates OK"
-fi
-echo
-
 ## check .UGLIFYJS3.JSON
 echo "  checking .uglifyjs3.json is well-formed"
 if [ -z "$JSONLINT" ] ; then

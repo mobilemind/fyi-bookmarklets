@@ -1,13 +1,12 @@
 .eslintignore
 .eslintrc.yml
+.git
 .gitattributes
 .github
 .gitignore
 .remarkrc
 .snyk
-.travis.yml
 node_modules
 npm-debug.log
 preflight
-renovate.json
 tmp
