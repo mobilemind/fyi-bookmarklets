@@ -33,6 +33,6 @@
     "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
-  "version": "2.9.8",
+  "version": "2.9.9",
   "snyk": true
 }
