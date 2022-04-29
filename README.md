@@ -80,6 +80,7 @@ variation of `fyi`.
 
 Historical use of `fyi` with _Custom Keywords_ is included below.
 
+<!-- markdownlint-disable no-inline-html -->
 > Each bookmark in Firefox can have attributes including a Name, Tags, and
 > a Keyword. Custom keywords can be used with a dynamic "replacement string"
 > for the bookmark location (URL or javascript:…).
