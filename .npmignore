@@ -1,10 +1,6 @@
-.eslintignore
-.eslintrc.yml
 .git
-.gitattributes
 .github
 .gitignore
-.remarkrc
 .snyk
 node_modules
 npm-debug.log
