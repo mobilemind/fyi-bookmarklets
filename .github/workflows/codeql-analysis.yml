@@ -1,11 +1,12 @@
+---
 name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches: [main]
   schedule:
     - cron: '10 6 * * 0'
   # eslint "yml/no-empty-mapping-value": 0
@@ -23,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        language: ['javascript']
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
 
     steps:

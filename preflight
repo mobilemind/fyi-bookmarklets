@@ -6,86 +6,71 @@
 # Redirect output to stderr.
 exec 1>&2
 
-## GLOBALS
-JSONLINT=""
-hash jsonlint >/dev/null 2>&1 && JSONLINT="jsonlint -q"
-
 echo
 
 ## check preflight (this file)
 echo "  checking preflight"
 if hash shellcheck >/dev/null 2>&1 ; then
-	shellcheck -s bash preflight \
-		|| { echo "*** ERROR in preflight script- check failed." ; exit 1 ; }
-	echo "    preflight: bash script OK"
+  shellcheck -s bash preflight \
+    || { echo "*** ERROR in preflight script- check failed." ; exit 1 ; }
+  echo "    preflight: bash script OK"
 else
-	echo "    --- shellcheck not found: skipping check of preflight script."
+  echo "    --- shellcheck not found: skipping check of preflight script."
 fi
 echo
 
-## check PACKAGE.JSON
-echo "  checking package.json against schema"
-if [ -z "$JSONLINT" ] ; then
-	echo "    --- jsonlint not installed: skipping package.json validation"
+## check .UGLIFYJS3.JSON & PACKAGE.JSON
+echo "  checking .uglifyjs3.json & package.json"
+if hash eslint >/dev/null 2>&1 ; then
+  eslint -c .github/linters/.eslintrc.yml --no-ignore ".uglifyjs3.json" "package.json" \
+    || { echo "    *** ERROR .uglifyjs3.json & package.json eslint check failed." ; exit 1 ; }
+  echo "    .uglifyjs3.json, package.json: validate OK"
 else
-	$JSONLINT -e=json-schema-draft-04 -V="$HOME/common/schema/json/package.json" package.json \
-		|| { echo "    *** ERROR package.json schema check failed." ; exit 1 ; }
-	echo "    package.json: validates OK"
-fi
-echo
-
-## check .UGLIFYJS3.JSON
-echo "  checking .uglifyjs3.json is well-formed"
-if [ -z "$JSONLINT" ] ; then
-	echo "    --- jsonlint not installed: skipping .uglifyjs3.json check"
-else
-	$JSONLINT .uglifyjs3.json \
-		 || { echo "    *** ERROR .uglifyjs3.json NOT well-formed" ;	exit 1 ; }
-	echo "    .uglifyjs3.json: well-formedness OK"
+  echo "    --- eslint not installed: skipping JSON validation"
 fi
 echo
 
 ## check YAML
-echo "  checking YAML files (w/ eslint, see .eslintrc.yml)"
+echo "  checking YAML files (w/ eslint, see .github/linters/.eslintrc.yml)"
 if hash eslint >/dev/null 2>&1 ; then
-	eslint ".github/linters/.*.yml" \
-		|| { echo "    *** ERROR eslint YAML check failed." ; exit 1 ; }
-	echo "    .github/linters/.*.yml: YAML OK"
+  eslint -c .github/linters/.eslintrc.yml ".github/linters/.*.yml" \
+    || { echo "    *** ERROR eslint YAML check failed." ; exit 1 ; }
+  echo "    .github/linters/.*.yml: YAML OK"
 else
-	echo "    --- eslint not installed: skipping eslint YAML checks"
+  echo "    --- eslint not installed: skipping eslint YAML checks"
 fi
 echo
 
 ## check README.md
 echo "  checking README.md"
 if hash markdownlint >/dev/null 2>&1 ; then
-	markdownlint -c .github/linters/.markdown-lint.yml "*.md" \
-		|| { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
-	echo "    *.md: Markdown OK"
+  markdownlint -c .github/linters/.markdown-lint.yml "*.md" \
+    || { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
+  echo "    *.md: Markdown OK"
 else
-	echo "    --- markdownlint not installed: skipping Markdown checks"
+  echo "    --- markdownlint not installed: skipping Markdown checks"
 fi
 echo
 
 ## check .github/workflows
 echo "  checking GitHub Actions"
 if hash actionlint >/dev/null 2>&1 ; then
-	actionlint .github/workflows/*.yml \
-		|| { echo "    *** ERROR actionlint .github/workflows/*.yml check failed." ; exit 1 ; }
-	echo "    .github/workflows/*.yml: GitHub Actions .yml OK"
+  actionlint -config-file .github/linters/actionlint.yaml .github/workflows/*.yml \
+    || { echo "    *** ERROR actionlint .github/workflows/*.yml check failed." ; exit 1 ; }
+  echo "    .github/workflows/*.yml: GitHub Actions .yml OK"
 else
-	echo "    --- markdownlint not installed: skipping GitHub Action checks"
+  echo "    --- markdownlint not installed: skipping GitHub Action checks"
 fi
 echo
 
 ## check JavaScript
 echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
 if hash eslint >/dev/null 2>&1 ; then
-	eslint -c .github/linters/.eslintrc.yml "*.js" "src/*.js" \
-		|| { echo "    *** ERROR eslint JavaScript check failed." ; exit 1 ; }
-	echo "    *.js src/*.js: JavaScript OK"
+  eslint -c .github/linters/.eslintrc.yml "*.js" "src/*.js" \
+    || { echo "    *** ERROR eslint JavaScript check failed." ; exit 1 ; }
+  echo "    *.js src/*.js: JavaScript OK"
 else
-	echo "    --- eslint not installed: skipping eslint JavaScript checks"
+  echo "    --- eslint not installed: skipping eslint JavaScript checks"
 fi
 echo
 
