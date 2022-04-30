@@ -30,16 +30,19 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
+      # install plugins
+      - name: Install ESLint Plugins
+        run: npm install eslint-plugin-compat@latest eslint-plugin-no-storage@latest eslint-plugin-no-unsanitized@latest eslint-plugin-security@latest eslint-plugin-xss@latest eslint-plugin-yml@latest --save-dev
+
       # Run Linter against code base
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          env:
           FILTER_REGEX_EXCLUDE: .*web/.*.js
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOG_LEVEL: NOTICE
+          VALIDATE_ALL_CODEBASE: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_JSON: true
