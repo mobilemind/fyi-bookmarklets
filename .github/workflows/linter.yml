@@ -26,7 +26,7 @@ jobs:
 
       # install plugins
       - name: Install ESLint Plugins
-        run: npm install eslint-plugin-compat@latest eslint-plugin-no-storage@latest eslint-plugin-no-unsanitized@latest eslint-plugin-security@latest eslint-plugin-xss@latest eslint-plugin-yml@latest --save-dev
+        run: npm install eslint-plugin-compat@latest eslint-plugin-no-storage@latest eslint-plugin-no-unsanitized@latest eslint-plugin-security@latest eslint-plugin-xss@latest eslint-plugin-yml@latest
 
       # Run Linter against code base
       - name: Lint Code Base
