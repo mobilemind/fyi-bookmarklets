@@ -12,9 +12,6 @@ jobs:
   build:
     name: Lint Code Base
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
 
     steps:
       # Checkout the code base
@@ -24,7 +21,7 @@ jobs:
           # Full git history needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-      # install plugins
+      # install plugins globally to avoid changing package-lock.json
       - name: Install ESLint Plugins
         run: npm install -g eslint-plugin-compat@latest eslint-plugin-no-storage@latest eslint-plugin-no-unsanitized@latest eslint-plugin-security@latest eslint-plugin-xss@latest eslint-plugin-yml@latest
 
