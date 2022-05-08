@@ -20,12 +20,10 @@ jobs:
           # Full git history needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-      # install plugins globally to avoid changing package-lock.json
-      - name: Install ESLint Plugins
-        run: npm install -g eslint-plugin-compat eslint-plugin-no-storage eslint-plugin-no-unsanitized eslint-plugin-security eslint-plugin-xss eslint-plugin-yml
-
       # Run Linter against code base
       - name: Lint Code Base
+        # install plugins globally to avoid changing package-lock.json
+        run: npm install -g eslint-plugin-compat eslint-plugin-no-storage eslint-plugin-no-unsanitized eslint-plugin-security eslint-plugin-xss eslint-plugin-yml
         uses: github/super-linter/slim@v4
         env:
           DEFAULT_BRANCH: main
