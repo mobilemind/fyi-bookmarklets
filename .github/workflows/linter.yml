@@ -1,6 +1,8 @@
 ---
 name: Lint Code Base
 on:
+  push:
+    branches: [main, dev/edit-linter]
   pull_request:
     branches: [main]
   workflow_dispatch:
