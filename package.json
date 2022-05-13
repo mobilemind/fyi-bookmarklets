@@ -9,9 +9,9 @@
   },
   "description": "Browser bookmarklets that fire off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
-    "grunt": "~1.5.2",
+    "grunt": "~1.5.3",
     "grunt-shell": "4.0.0",
-    "@snyk/protect": "^1.922.0"
+    "@snyk/protect": "^1.931.0"
   },
   "engines": {
     "node": ">16.14.1"
