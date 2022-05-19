@@ -11,7 +11,7 @@
   "devDependencies": {
     "grunt": "~1.5.3",
     "grunt-shell": "4.0.0",
-    "@snyk/protect": "^1.931.0"
+    "@snyk/protect": "^1.934.0"
   },
   "engines": {
     "node": ">16.14.1"
