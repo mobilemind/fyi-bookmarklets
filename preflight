@@ -19,6 +19,17 @@ else
 fi
 echo
 
+## check for node_modules to verify devDependencies are installed
+if hash eslint >/dev/null 2>&1 ; then
+	echo "  checking if devDependencies needed for eslint are installed…"
+	if [ -d "node_modules" ] ; then
+		echo "    node_modules: found"
+	else
+		echo "    running npm install …"
+		npm install
+	fi
+fi
+
 ## check .UGLIFYJS3.JSON & PACKAGE.JSON
 echo "  checking .uglifyjs3.json & package.json"
 if hash eslint >/dev/null 2>&1 ; then

@@ -1,5 +1,5 @@
 ---
-name: "Lint Code Base"
+name: Lint Code Base
 on:
   push:
     branches: [main, hotfix]
@@ -21,13 +21,14 @@ jobs:
           fetch-depth: 0
 
       # install plugins globally to avoid changing package-lock.json
-      - name: Install ESLint Plugins
-        run: npm install -g eslint-plugin-compat eslint-plugin-no-storage eslint-plugin-no-unsanitized eslint-plugin-security eslint-plugin-xss eslint-plugin-yml
+      - name: Install devDependencies
+        run: npm install
 
       # Run Linter against code base
-      - name: Lint Code Base
+      - name: Lint Code Base with env
         uses: github/super-linter/slim@v4
         env:
+          ACTIONS_RUNNER_DEBUG: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: web/.*.js
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
