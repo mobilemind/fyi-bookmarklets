@@ -29,6 +29,7 @@
   "license": "MIT",
   "main": "Gruntfile.js",
   "name": "fyi-bookmarklets",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/mobilemind/fyi-bookmarklets.git"
