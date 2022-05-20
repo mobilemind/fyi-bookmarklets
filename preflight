@@ -44,7 +44,7 @@ echo
 ## check YAML
 echo "  checking YAML files (w/ eslint, see .github/linters/.eslintrc.yml)"
 if hash eslint >/dev/null 2>&1 ; then
-  eslint -c .github/linters/.eslintrc.yml ".github/linters/.*.yml" \
+  eslint -c .github/linters/.eslintrc.yml ".github/*.yml" ".github/linters/.*.yml" \
     || { echo "    *** ERROR eslint YAML check failed." ; exit 1 ; }
   echo "    .github/linters/.*.yml: YAML OK"
 else
