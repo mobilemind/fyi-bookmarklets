@@ -1,5 +1,6 @@
 ---
 name: Lint Code Base
+
 on:
   push:
     branches: [main, hotfix]
@@ -17,10 +18,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          # Full git history needed to get a proper list of changed files within `super-linter`
+          # Full git history needed to get list of changed files w/in `super-linter`
           fetch-depth: 0
 
-      # install plugins globally to avoid changing package-lock.json
+      # install for devDependencies that get eslint-plugins
       - name: Install devDependencies
         run: npm install
 
