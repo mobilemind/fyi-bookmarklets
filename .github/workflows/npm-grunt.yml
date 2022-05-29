@@ -8,7 +8,7 @@ on:
     branches: [main]
   # eslint "yml/no-empty-mapping-value": 0
   workflow_dispatch:
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,5 +29,5 @@ jobs:
       run: |
         npm install
         # grunt-shell uses CLI uglifyjs
-        npm install uglify-js -g
+        npm install --location=global uglify-js
         grunt test
