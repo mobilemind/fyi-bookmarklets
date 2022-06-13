@@ -29,5 +29,5 @@ jobs:
       run: |
         npm install
         # grunt-shell uses CLI uglifyjs
-        npm install --location=global uglify-js
-        grunt test
+        npm install --location=global --no-save uglify-js
+        npx grunt test
