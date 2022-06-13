@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         "bookmarkletize": {
-            "ff": "fyi-webkit.js"
+            "wk": "fyi-webkit.js"
         },
         "pkg": grunt.file.readJSON("package.json"),
         "shell": {
