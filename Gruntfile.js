@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         "pkg": grunt.file.readJSON("package.json"),
         "shell": {
             "mkdir_web": {"command": "(mkdir 'web' || true)"},
-            "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
+            "uglify_es": {"command": "for FYIJS in src/fyi-*.js; do npx uglifyjs --config-file .uglifyjs3.json --output \"web/$(basename \"$FYIJS\")\" \"$FYIJS\" ; done"}
         }
     });
 
