@@ -108,14 +108,6 @@ accommodate IE DOM method weirdness.
 Version 1.0 ~ April 5, 2011 - First release
 
 <!-- Reference URLs -->
-[build-image]: https://travis-ci.com/mobilemind/fyi-bookmarklets.png?branch=main
-[build-url]: https://travis-ci.com/mobilemind/fyi-bookmarklets
-[tag-image]: https://img.shields.io/github/tag/mobilemind/fyi-bookmarklets.svg
-[tag-url]: https://github.com/mobilemind/fyi-bookmarklets/tags
-[dep-image]: https://david-dm.org/mobilemind/fyi-bookmarklets.svg
-[dep-url]: https://david-dm.org/mobilemind/fyi-bookmarklets
-[devDep-image]: https://img.shields.io/david/dev/mobilemind/fyi-bookmarklets.svg
-[devDep-url]: https://david-dm.org/mobilemind/fyi-bookmarklets#info=devDependencies
 
 [mikes-fyi-url]: http://www.mikechambers.com/blog/2009/07/13/fyi-ubiquity-command-updated/
 "Mike Chambers: code=joy : Ubiquity fyi command updated"
