@@ -61,7 +61,7 @@ if hash actionlint >/dev/null 2>&1 ; then
     || { echo "    *** ERROR actionlint .github/workflows/*.yml check failed." ; exit 1 ; }
   echo "    .github/workflows/*.yml: GitHub Actions .yml OK"
 else
-  echo "    --- markdownlint not installed: skipping GitHub Action checks"
+  echo "    --- actionlint not installed: skipping GitHub Action checks"
 fi
 echo
 
