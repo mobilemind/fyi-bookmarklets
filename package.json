@@ -11,7 +11,7 @@
   "devDependencies": {
     "eslint-plugin-no-unsanitized": "^4.0.1",
     "eslint-plugin-security": "^1.5.0",
-    "eslint-plugin-xss": "^0.1.11",
+    "eslint-plugin-xss": "^0.1.12",
     "grunt": "~1.5.3",
     "grunt-shell": "4.0.0"
   },
