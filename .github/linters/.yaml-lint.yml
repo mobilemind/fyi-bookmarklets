@@ -20,6 +20,10 @@ rules:
     max-spaces-inside: 1
     min-spaces-inside-empty: 0
     max-spaces-inside-empty: 1
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 1
   indentation:
     spaces: consistent
     indent-sequences: consistent
