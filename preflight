@@ -23,18 +23,18 @@ echo
 echo "  checking if devDependencies needed for eslint are installed…"
 if [ -d "node_modules" ] ; then
 	echo "    node_modules: found"
-	echo
 else
 	echo "    running npm install …"
 	npm install
-	echo
 fi
+echo
 
 ## check .UGLIFYJS3.JSON & PACKAGE.JSON
 echo "  checking .uglifyjs3.json & package.json"
 npx eslint -c .github/linters/.eslintrc.yml --no-ignore ".uglifyjs3.json" "package.json" \
     || { echo "    *** ERROR .uglifyjs3.json & package.json eslint check failed." ; exit 1 ; }
 echo "    .uglifyjs3.json, package.json: validate OK"
+echo
 
 ## check YAML
 echo "  checking YAML files (w/ yamllint, see .github/linters/.yaml-lint.yml)"
@@ -43,14 +43,14 @@ if hash yamllint >/dev/null 2>&1 ; then
     || { echo "    *** ERROR yamllint YAML check failed." ; exit 1 ; }
   echo "    .github/: YAML OK"
 else
-  echo "    --- yamllint not installed: skipping eslint YAML checks"
+  echo "    --- yamllint not installed: skipping yamllint YAML checks"
 fi
 echo
 
 ## check README.md
 echo "  checking README.md"
 npx markdownlint -c .github/linters/.markdown-lint.yml "*.md" \
-	|| { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
+  || { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
 echo "    *.md: Markdown OK"
 echo
 
@@ -61,7 +61,7 @@ if hash actionlint >/dev/null 2>&1 ; then
     || { echo "    *** ERROR actionlint .github/workflows/*.yml check failed." ; exit 1 ; }
   echo "    .github/workflows/*.yml: GitHub Actions .yml OK"
 else
-  echo "    --- actionlint not installed: skipping GitHub Action checks"
+  echo "    --- markdownlint not installed: skipping GitHub Action checks"
 fi
 echo
 
@@ -69,7 +69,7 @@ echo
 echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
 npx eslint -c .github/linters/.eslintrc.yml "*.js" "src/*.js" \
     || { echo "    *** ERROR eslint JavaScript check failed." ; exit 1 ; }
-  echo "    *.js src/*.js: JavaScript OK"
+echo "    *.js src/*.js: JavaScript OK"
 echo
 
 echo "  OK, preflight checks passed."
