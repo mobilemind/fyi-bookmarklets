@@ -16,7 +16,7 @@
     "grunt-shell": "4.0.0"
   },
   "engines": {
-    "node": ">16.16.0"
+    "node": ">16.17"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
