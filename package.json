@@ -14,7 +14,7 @@
     "eslint-plugin-xss": "^0.1.12",
     "grunt": "~1.5.3",
     "grunt-shell": "4.0.0",
-    "uglify-js": "^3.17.3"
+    "uglify-js": "^3.17.4"
   },
   "engines": {
     "node": ">16.17.1"
