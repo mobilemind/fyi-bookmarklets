@@ -17,7 +17,7 @@
     "uglify-js": "^3.17.4"
   },
   "engines": {
-    "node": ">16.17.1"
+    "node": ">18.10.0"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
