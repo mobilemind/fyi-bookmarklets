@@ -10,14 +10,14 @@
   "description": "Safari browser bookmarklet that fires off an email with body text that quotes the selected text and includes the page title and URL.",
   "devDependencies": {
     "eslint-plugin-no-unsanitized": "^4.0.2",
-    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-security": "^1.6.0",
     "eslint-plugin-xss": "^0.1.12",
     "grunt": "~1.5.3",
     "grunt-shell": "4.0.0",
     "uglify-js": "^3.17.4"
   },
   "engines": {
-    "node": ">18.10.0"
+    "node": ">18.12.0"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
