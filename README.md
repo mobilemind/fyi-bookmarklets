@@ -66,7 +66,9 @@ end of the code in version 1.9 and later.
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
 
-Version 3.0.4 - October 20, 22 - Updates for nodejs.org LTS changes
+Version 3.1.0 - April 21, 2023 - Updates for nodejs.org LTS changes
+
+Version 3.0.4 - October 20, 2022 - Updates for nodejs.org LTS changes
 
 Version 3.0.0 - May 19, 2022 - drop Firefox and IE versions.
 See release(s) 2.9.9 or earlier if you need those.

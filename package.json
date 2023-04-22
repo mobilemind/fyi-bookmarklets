@@ -17,7 +17,7 @@
     "uglify-js": "^3.17.4"
   },
   "engines": {
-    "node": ">18.14.1"
+    "node": ">=20.0.0"
   },
   "homepage": "https://github.com/mobilemind/fyi-bookmarklets",
   "keywords": [
@@ -35,5 +35,5 @@
     "install": "npm install --location=global --no-save uglify-js@latest",
     "test": "npx grunt test --verbose"
   },
-  "version": "3.0.4"
+  "version": "3.1.0"
 }
