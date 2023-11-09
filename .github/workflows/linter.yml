@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checkout the code base
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # Full git history needed to get list of changed files w/in `super-linter`
           fetch-depth: 0
@@ -27,7 +27,7 @@ jobs:
 
       # Run Linter against code base
       - name: Lint Code Base with env
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v5
         env:
           ACTIONS_RUNNER_DEBUG: false
           DEFAULT_BRANCH: main
