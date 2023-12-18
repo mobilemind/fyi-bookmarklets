@@ -4,7 +4,6 @@ root: true
 env:
   browser: true
   es6: true
-  jquery: false
   node: true
 
 parserOptions:
@@ -27,150 +26,117 @@ extends: [eslint:recommended, plugin:json/recommended, plugin:security/recommend
 
 # http://eslint.org/docs/rules/
 rules:
-  # Possible Errors
-  for-direction: 2
-  no-await-in-loop: 2
-  no-cond-assign: 2
-  no-console: 2
-  no-inner-declarations: [2, functions]
-  no-prototype-builtins: 2
-  no-template-curly-in-string: 2
-  no-unsafe-negation: 2
+  # Possible Problems
+  array-callback-return: "error"
+  no-await-in-loop: "error"
+  no-console: "error"
+  no-template-curly-in-string: "error"
 
-  # Best Practices
-  accessor-pairs: 2
-  array-callback-return: 2
-  block-scoped-var: 2
-  class-methods-use-this: 2
-  complexity: [2, 12]
-  consistent-return: 2
-  curly: 2
-  default-case: 2
-  guard-for-in: 2
-  no-alert: 0
-  no-caller: 2
-  no-div-regex: 2
-  no-else-return: 2
-  no-empty-function: 2
-  no-eq-null: 2
-  no-eval: 2
-  no-extend-native: 2
-  no-extra-bind: 2
-  no-extra-label: 2
-  no-implicit-coercion: 2
-  no-implicit-globals: 0
-  no-implied-eval: 2
-  no-invalid-this: 0
-  no-iterator: 2
-  no-labels: 2
-  no-lone-blocks: 2
-  no-loop-func: 2
-  no-magic-numbers: 0
-  no-multi-str: 2
-  no-new-func: 2
-  no-new-wrappers: 2
-  no-new: 2
-  no-octal-escape: 2
-  no-param-reassign: 2
-  no-proto: 2
-  no-restricted-properties: 2
-  no-return-assign: 2
-  no-script-url: 0
-  no-self-compare: 2
-  no-sequences: 2
-  no-throw-literal: 2
-  no-unmodified-loop-condition: 2
-  no-unused-expressions: 2
-  no-useless-call: 2
-  no-useless-concat: 2
-  no-useless-escape: 2
-  no-useless-return: 2
-  no-void: 2
-  no-warning-comments: 2
-  no-with: 2
-  prefer-promise-reject-errors: 2
-  radix: 2
-  require-await: 2
-  vars-on-top: 2
-  yoda: 0
+  # Suggestions
+  accessor-pairs: "error"
+  arrow-body-style: "error"
+  block-scoped-var: "error"
+  class-methods-use-this: "error"
+  complexity: ["error", 12]
+  consistent-return: "error"
+  consistent-this: "error"
+  curly: "error"
+  default-case: "error"
+  func-name-matching: "error"
+  guard-for-in: "error"
+  id-denylist: "error"
+  id-match: "error"
+  init-declarations: "error"
+  max-depth: "error"
+  max-lines: "error"
+  max-nested-callbacks: "error"
+  max-params: ["error", 5]
+  max-statements: ["error", 30]
+  new-cap: "error"
+  no-array-constructor: "error"
+  no-bitwise: "error"
+  no-caller: "error"
+  no-continue: "error"
+  no-div-regex: "error"
+  no-duplicate-imports: "error"
+  no-else-return: "error"
+  no-empty-function: "error"
+  no-empty-static-block: "error"
+  no-eq-null: "error"
+  no-eval: "error"
+  no-extend-native: "error"
+  no-extra-bind: "error"
+  no-extra-label: "error"
+  no-implicit-coercion: "error"
+  no-implied-eval: "error"
+  no-inline-comments: "error"
+  no-iterator: "error"
+  no-label-var: "error"
+  no-labels: "error"
+  no-lone-blocks: "error"
+  no-lonely-if: "error"
+  no-loop-func: "error"
+  no-magic-numbers: "off"
+  no-multi-str: "error"
+  no-negated-condition: "error"
+  no-nested-ternary: "error"
+  no-new-func: "error"
+  no-new-wrappers: "error"
+  no-new: "error"
+  no-octal-escape: "error"
+  no-param-reassign: "error"
+  no-plusplus: "error"
+  no-proto: "error"
+  no-restricted-globals: "error"
+  no-restricted-imports: "error"
+  no-restricted-properties: "error"
+  no-restricted-syntax: "error"
+  no-return-assign: "error"
+  no-self-compare: "error"
+  no-sequences: "error"
+  no-shadow: "error"
+  no-throw-literal: "error"
+  no-undef-init: "error"
+  no-undefined: "error"
+  no-underscore-dangle: "error"
+  no-unmodified-loop-condition: "error"
+  no-unneeded-ternary: "error"
+  no-unused-expressions: "error"
+  no-unused-vars: "error"
+  no-use-before-define: "error"
+  no-useless-call: "error"
+  no-useless-computed-key: "error"
+  no-useless-concat: "error"
+  no-useless-constructor: "error"
+  no-useless-rename: "error"
+  no-useless-return: "error"
+  no-void: "error"
+  no-warning-comments: "error"
+  object-shorthand: "error"
+  operator-assignment: "error"
+  prefer-arrow-callback: "error"
+  prefer-destructuring: "error"
+  prefer-numeric-literals: "error"
+  prefer-promise-reject-errors: "error"
+  prefer-rest-params: "error"
+  prefer-spread: "error"
+  radix: "error"
+  require-await: "error"
+  sort-imports: "error"
+  sort-keys: "warn"
+  symbol-description: "error"
+  vars-on-top: "error"
 
-  # Strict
-  strict: 0
-
-  # Variables
-  init-declarations: 2
-  no-shadow: 2
-  no-label-var: 2
-  no-restricted-globals: 2
-  no-shadow-restricted-names: 2
-  no-undef-init: 2
-  no-undefined: 2
-  no-unused-vars: 2
-  no-use-before-define: 2
-
-  # Node.js and CommonJS
-
-  # Stylistic Issues
-  camelcase: 0
-  capitalized-comments: 0
-  consistent-this: 2
-  func-name-matching: 2
-  func-names: 0
-  func-style: 0
-  id-denylist: 2
-  id-length: 0
-  id-match: 2
-  line-comment-position: 0
-  max-depth: 2
-  max-lines: 2
-  max-nested-callbacks: 2
-  max-params: [2, 5]
-  max-statements: [2, 30]
-  new-cap: 2
-  no-array-constructor: 2
-  no-bitwise: 2
-  no-continue: 2
-  no-inline-comments: 2
-  no-lonely-if: 2
-  no-negated-condition: 2
-  no-nested-ternary: 2
-  no-plusplus: 2
-  no-restricted-syntax: 2
-  no-ternary: 0
-  no-underscore-dangle: 2
-  no-unneeded-ternary: 2
-  one-var: 0
-  operator-assignment: 2
-  sort-keys: 1
-  sort-vars: 0
-  unicode-bom: 2
-
-  # ECMAScript 6
-  arrow-body-style: 2
-  no-duplicate-imports: 2
-  no-restricted-imports: 2
-  no-useless-computed-key: 2
-  no-useless-constructor: 2
-  no-useless-rename: 2
-  no-var: 0
-  object-shorthand: 2
-  prefer-arrow-callback: 2
-  prefer-const: 0
-  prefer-destructuring: 2
-  prefer-numeric-literals: 2
-  prefer-rest-params: 2
-  prefer-spread: 2
-  prefer-template: 0
-  sort-imports: 2
-  symbol-description: 2
+  # Layout & Formatting
+  unicode-bom: "error"
 
   # no-unsanitized - https://github.com/mozilla/eslint-plugin-no-unsanitized
-  no-unsanitized/method: 2
-  no-unsanitized/property: 2
+  no-unsanitized/method: "error"
+  no-unsanitized/property: "error"
 
   # security - https://github.com/nodesecurity/eslint-plugin-security
-  security/detect-non-literal-regexp: 0
+  security/detect-non-literal-regexp: "off"
 
   # xss - https://github.com/Rantanen/eslint-plugin-xss
-  xss/no-location-href-assign: 0
-  xss/no-mixed-html: 2
+  xss/no-location-href-assign: "off"
+  xss/no-mixed-html: "error"
