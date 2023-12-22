@@ -22,7 +22,8 @@ plugins:
 - xss
 
 # yamllint disable-line rule:line-length
-extends: [eslint:recommended, plugin:json/recommended, plugin:security/recommended]
+extends: [eslint:recommended, plugin:json/recommended,
+          plugin:security/recommended-legacy]
 
 # http://eslint.org/docs/rules/
 rules:
