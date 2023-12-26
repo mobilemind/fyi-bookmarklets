@@ -9,11 +9,11 @@ exec 1>&2
 echo
 
 ## check preflight (this file)
-echo "  checking preflight"
+echo '  checking preflight'
 if hash shellcheck >/dev/null 2>&1 ; then
   shellcheck -s bash preflight \
-    || { echo "*** ERROR in preflight script- check failed." ; exit 1 ; }
-  echo "    preflight: bash script OK"
+    || { echo '    *** ERROR in preflight script- check failed.' ; exit 1 ; }
+  echo '    preflight: bash script OK'
 else
   echo "    --- shellcheck not found: skipping check of preflight script."
 fi
@@ -21,55 +21,51 @@ echo
 
 ## check for node_modules to verify devDependencies are installed
 echo "  checking if devDependencies needed for eslint are installed…"
-if [ -d "node_modules" ] ; then
-	echo "    node_modules: found"
+if [ -d "node_modules/eslint" ] ; then
+	echo '    node_modules/eslint: found'
 else
-	echo "    running npm install …"
-	npm install
+	echo '    running npm clean-install …'
+	npm clean-install || { echo '    *** ERROR npm clean-install failed.'
+		echo '        try: npm install && npm audit fix && ./preflight'
+		exit 1 ; }
 fi
-echo
-
-## check .UGLIFYJS3.JSON & PACKAGE.JSON
-echo "  checking .uglifyjs3.json & package.json"
-npx eslint -c .github/linters/.eslintrc.yml --no-ignore ".uglifyjs3.json" "package.json" \
-    || { echo "    *** ERROR .uglifyjs3.json & package.json eslint check failed." ; exit 1 ; }
-echo "    .uglifyjs3.json, package.json: validate OK"
 echo
 
 ## check YAML
 echo "  checking YAML files (w/ yamllint, see .github/linters/.yaml-lint.yml)"
 if hash yamllint >/dev/null 2>&1 ; then
   yamllint -c .github/linters/.yaml-lint.yml .github/ \
-    || { echo "    *** ERROR yamllint YAML check failed." ; exit 1 ; }
-  echo "    .github/: YAML OK"
+    || { echo '    *** ERROR yamllint YAML check failed.' ; exit 1 ; }
+  echo '    .github/: YAML OK'
 else
-  echo "    --- yamllint not installed: skipping yamllint YAML checks"
+  echo '    --- yamllint not installed: skipping yamllint YAML checks'
 fi
 echo
 
 ## check README.md
-echo "  checking README.md"
-npx markdownlint -c .github/linters/.markdown-lint.yml "*.md" \
-  || { echo "    *** ERROR markdownlint *.md check failed." ; exit 1 ; }
-echo "    *.md: Markdown OK"
+echo '  checking README.md'
+npx markdownlint -c .github/linters/.markdownlint.js "*.md" \
+  || { echo '    *** ERROR markdownlint *.md check failed.' ; exit 1 ; }
+echo '    *.md: Markdown OK'
 echo
 
 ## check .github/workflows
-echo "  checking GitHub Actions"
+echo '  checking GitHub Actions'
 if hash actionlint >/dev/null 2>&1 ; then
   actionlint -config-file .github/linters/actionlint.yaml .github/workflows/*.yml \
-    || { echo "    *** ERROR actionlint .github/workflows/*.yml check failed." ; exit 1 ; }
-  echo "    .github/workflows/*.yml: GitHub Actions .yml OK"
+    || { echo '    *** ERROR actionlint .github/workflows/*.yml check failed.' ; exit 1 ; }
+  echo '    .github/workflows/*.yml: GitHub Actions .yml OK'
 else
-  echo "    --- markdownlint not installed: skipping GitHub Action checks"
+  echo '    --- actionlint not installed: skipping GitHub Action checks'
 fi
 echo
 
 ## check JavaScript
-echo "  checking JavaScript files (w/ eslint, see .eslintrc.yml)"
-npx eslint -c .github/linters/.eslintrc.yml "*.js" "src/*.js" \
-    || { echo "    *** ERROR eslint JavaScript check failed." ; exit 1 ; }
-echo "    *.js src/*.js: JavaScript OK"
+echo '  checking JavaScript & JSON files (w/ eslint, see .eslintrc.yml)'
+npx eslint -c .github/linters/.eslintrc.js "*.js" "src/*.js" ".github/linters/.*.js" \
+		package.json \
+    || { echo '    *** ERROR eslint JavaScript & JSON check failed.' ; exit 1 ; }
+echo '    *.js src/*.js package.json .github/linters/.*.js: JavaScript & JSON OK'
 echo
 
-echo "  OK, preflight checks passed."
+echo '  OK, preflight checks passed.'

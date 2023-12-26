@@ -24,8 +24,7 @@ Drag the desired bookmark to the bookmark bar or add bookmark/favorite.
 Optionally edit or rename the bookmark/favorite.
 
 + `fyi-webkit` --
-  <a href="javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.2wk%27"
-  title="fyi-webkit">fyi</a>
+  [fyi](javascript:%28%28%29%3D%3E%7Blet%20o%3D%27user%40domain.tld%27%2Ce%3D%27%27%3Bconst%20n%3DencodeURIComponent%28document.title%29%2Ct%3D%27%250D%250A%27%2Cd%3Dwindow.getSelection%28%29%3B%27%27%3D%3D%3De%26%26%28e%3Dwindow.prompt%28%27Send%20link%20to%20email%20address%28es%29%3A%27%2Co%29%29%3B%27%27%21%3D%3De%26%26%28location.href%3D%60mailto%3A%24%7Be%7D%3Fsubject%3Dfyi%3A%24%7Bn%7D%26body%3D%24%7Bn%7D%24%7Bt%7D%24%7BencodeURIComponent%28location.href%29%7D%24%7Bt%7D---%24%7Bt%7D%24%7BencodeURIComponent%28d%29%7D%24%7Bt%7D%24%7Bt%7D%60%29%7D%29%28%29%3Bvoid%272.9.2wk%27)
 
 ## Usage
 
@@ -65,6 +64,8 @@ end of the code in version 1.9 and later.
 ## Version Notes
 
 Inspired by [Mike Chambers' Firefox Ubiquity fyi command][mikes-fyi-url].
+
+Version 3.2.0 - December 26, 2023 - Safer URL encoding, modernized lint & build
 
 Version 3.1.0 - April 21, 2023 - Updates for nodejs.org LTS changes
 

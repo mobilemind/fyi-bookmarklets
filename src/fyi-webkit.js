@@ -1,8 +1,8 @@
 //  webkit version skips substitution string, but other code is shared with firefox
 (() => {
-    let defaultEmail = "user@domain.tld",
-        emailAddress = "";
-    const pageTitle = encodeURIComponent(document.title),
+    let emailAddress = "";
+    const defaultEmail = "user@domain.tld",
+        pageTitle = encodeURIComponent(document.title),
         returnChar = "%250D%250A",
         selectedText = window.getSelection();
     if ("" === emailAddress) {
