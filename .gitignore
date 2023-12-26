@@ -1,0 +1,7 @@
+.github/
+node_modules/
+npm-debug.log
+package*.json
+src/*.js
+tmp
+web/*.js
