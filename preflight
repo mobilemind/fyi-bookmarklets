@@ -44,6 +44,7 @@ echo
 
 ## check README.md
 echo '  checking README.md'
+[ -d node_modules/markdownlint ] || npm install --no-save markdownlint-cli
 npx markdownlint -c .github/linters/.markdownlint.js "*.md" \
   || { echo '    *** ERROR markdownlint *.md check failed.' ; exit 1 ; }
 echo '    *.md: Markdown OK'
