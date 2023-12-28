@@ -1,0 +1,30 @@
+{
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "npm install && npm audit fix"
+    }
+  ],
+  "tasks": {
+    "build": {
+      "name": "build",
+      "command": "npx grunt build",
+      "runAtStart": false
+    },
+    "lint": {
+      "name": "lint",
+      "command": "npx grunt lint",
+      "runAtStart": false
+    },
+    "preflight": {
+      "name": "preflight",
+      "command": "./preflight",
+      "runAtStart": false
+    },
+    "test": {
+      "name": "test",
+      "command": "npm run test",
+      "runAtStart": true
+    }
+  }
+}
