@@ -23,7 +23,7 @@
     },
     "test": {
       "name": "test",
-      "command": "npm run test",
+      "command": "npx grunt",
       "runAtStart": true
     }
   }

@@ -1,5 +1,5 @@
 ---
-name: Lint Code Base
+name: "Lint Code Base"
 
 on:
   push:
@@ -10,19 +10,19 @@ on:
 
 jobs:
   build:
-    name: Lint Code Base
+    name: "Lint Code Base"
     runs-on: ubuntu-latest
 
     steps:
       # Checkout the code base
-      - name: Checkout Code
+      - name: "Checkout Code"
         uses: actions/checkout@v4
         with:
           # Full git history needed to get list of changed files w/in `super-linter`
           fetch-depth: 0
 
-      # install for devDependencies that get eslint-plugins
-      - name: Install devDependencies
+      # install
+      - name: "Install"
         run: npm install
 
       # Run Linter against code base
@@ -31,7 +31,7 @@ jobs:
         env:
           ACTIONS_RUNNER_DEBUG: false
           DEFAULT_BRANCH: main
-          FILTER_REGEX_EXCLUDE: web/.*.js
+          FILTER_REGEX_EXCLUDE: web\/.*\.js
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOG_LEVEL: NOTICE
           SUPPRESS_POSSUM: true

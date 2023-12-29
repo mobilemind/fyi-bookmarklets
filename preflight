@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 ## pre-flight for fyi-bookmarklets
 # use directly (and/or call from a git hook).
@@ -15,7 +15,7 @@ if hash shellcheck >/dev/null 2>&1 ; then
     || { echo '    *** ERROR in preflight script- check failed.' ; exit 1 ; }
   echo '    preflight: bash script OK'
 else
-  echo "    --- shellcheck not found: skipping check of preflight script."
+  echo '    --- shellcheck not found: skipping check of preflight script.'
 fi
 echo
 
@@ -44,7 +44,7 @@ echo
 
 ## check README.md
 echo '  checking README.md'
-[ -d node_modules/markdownlint ] || npm install --no-save markdownlint-cli
+[ -d 'node_modules/markdownlint' ] || npm install --no-save markdownlint-cli
 npx markdownlint -c .github/linters/.markdownlint.js "*.md" \
   || { echo '    *** ERROR markdownlint *.md check failed.' ; exit 1 ; }
 echo '    *.md: Markdown OK'
@@ -63,10 +63,10 @@ echo
 
 ## check JavaScript
 echo '  checking JavaScript & JSON files (w/ eslint, see .eslintrc.yml)'
-npx eslint -c .github/linters/.eslintrc.js "*.js" "src/*.js" ".github/linters/.*.js" \
-		package.json \
+npx eslint -c .github/linters/.eslintrc.js "*.js" "src/*.js" .codesandbox/tasks.json \
+		".github/linters/.*.js" package.json \
     || { echo '    *** ERROR eslint JavaScript & JSON check failed.' ; exit 1 ; }
-echo '    *.js src/*.js package.json .github/linters/.*.js: JavaScript & JSON OK'
+echo '    *.js src/*.js package.json .codesandbox/tasks.json .github/linters/.*.js: JavaScript & JSON OK'
 echo
 
 echo '  OK, preflight checks passed.'

@@ -1,7 +1,5 @@
 module.exports = function(grunt) {
     "use strict";
-
-    // Project configuration.
     grunt.initConfig({
         "bookmarkletize": {
             "wk": "fyi-webkit.js"
@@ -34,7 +32,6 @@ module.exports = function(grunt) {
                 },
                 "output": {
                     "beautify": false,
-                    "ie": false,
                     "indent_level": 0,
                     "quote_style": 1
                 },
